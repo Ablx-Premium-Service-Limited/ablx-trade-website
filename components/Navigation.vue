@@ -4,9 +4,11 @@
       <div class="flex justify-between w-full items-center">
         <!-- Logo -->
         <div class="flex items-center">
+          <a href="/">
           <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-            <img :src="logoSrc" alt="ABLX Logo" class="w-12 h-12" :class="hasLogo ? '' : 'rounded-full mt-3 sm:pt-0'"/>
+            <img :src="logoSrc" alt="ABLX Logo" class="w-12 h-12" />
           </div>
+          </a>
         </div>
 
         <!-- Desktop Navigation -->
@@ -83,15 +85,15 @@ const hasLogo = ref(true) // Set to false if logo image is not available
 const isScrolled = ref(false)
 
 const navigationLinks = [
-  { name: 'About Us', href: '#about' },
-  { name: 'How It Works', href: '#how-it-works' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'Contact Us', href: '#contact' }
+  { name: 'About Us', href: '/about' },
+  { name: 'How It Works', href: '/#how-it-works' },
+  { name: 'Testimonials', href: '/#testimonials' },
+  { name: 'Contact Us', href: '/contact-us' }
 ]
 
 const navBackground = ref('gradient-bg')
 const logoSrc = computed(() =>
-  hasLogo.value ? '/asset-1-1.png' : '/icon.png'
+  hasLogo.value ? '/asset-1-1.png' : '/favi.png'
 )
 
 const toggleMobileMenu = () => {
