@@ -10,6 +10,18 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  routeRules: {
+    '/blogs/**': { 
+      ssr: true,
+      cors: true
+    }
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://ablxtrade.com',
+      blogSubdomain: 'blogs.ablxtrade.com'
+    }
+  },
   vite: {
     plugins: [tsconfigPaths()],
   },
