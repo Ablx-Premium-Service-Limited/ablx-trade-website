@@ -64,19 +64,7 @@
               <div>Google Play</div>
             </div>
           </button>
-          
-          <a 
-            href="https://app.ablxtrade.com" 
-            target="_blank"
-            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400"
-          >
-            <i class="fas fa-rocket mr-3 text-xl"></i>
-            <div class="text-left">
-              <div class="text-xs opacity-70">Launch</div>
-              <div>Web App</div>
-            </div>
-          </a>
-        </div>
+                  </div>
         
         <!-- Security Badges -->
         <div class="flex items-center mt-8 space-x-6">
@@ -235,7 +223,7 @@ onMounted(() => {
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   position: relative;
 }
 
@@ -248,7 +236,7 @@ onMounted(() => {
   bottom: 0;
   background: 
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #1d4ed8 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
   pointer-events: none;
 }

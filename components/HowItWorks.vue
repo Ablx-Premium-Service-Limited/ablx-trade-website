@@ -2,7 +2,7 @@
   <section id="how-it-works" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in" ref="title">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">How <span class="gradient-text">ABLX Works</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">How <span class="gradient-text">ABLX Trade Works</span></h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">Get started in just a few simple steps</p>
       </div>
       

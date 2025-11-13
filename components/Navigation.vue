@@ -132,7 +132,7 @@ onUnmounted(() => {
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   position: relative;
   overflow: hidden;
 }
@@ -146,7 +146,7 @@ onUnmounted(() => {
   bottom: 0;
   background: 
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%);
   pointer-events: none;
 }
 

@@ -42,7 +42,7 @@ export default {
         id: 2,
         icon: 'globe-africa',
         title: 'Cross-Border Payments',
-        description: 'Send money from Nigeria to Kenya and vice versa instantly with low fees.'
+        description: 'Send money from Nigeria to Kenya and other countries instantly with low fees.'
       },
       {
         id: 3,
