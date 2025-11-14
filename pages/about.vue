@@ -414,10 +414,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-}
-
 .gradient-text {
   background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   -webkit-background-clip: text;
