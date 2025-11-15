@@ -1,6 +1,6 @@
 <template>
   <nav class="w-full z-50 fixed transition-all duration-300" :class="navBackground">
-    <div class="container mx-auto w-full px-4 py-4">
+    <div class="container mx-auto w-full px-4 md:py-4 py-1">
       <div class="flex justify-between w-full items-center">
         <!-- Logo -->
         <div class="flex items-center">
