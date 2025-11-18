@@ -14,7 +14,7 @@
 
       <!-- Carousel -->
       <div 
-        class="relative select-none overflow-x-hidden"
+        class="relative select-none overflow-hidden h-60"
         @mouseenter="pauseAutoSlide"
         @mouseleave="startAutoSlide"
       >
@@ -85,7 +85,8 @@ export default {
       { id: 3, icon: "tv", title: "Cable TV Subscription", description: "Pay for DSTV, GOTV, and more." },
       { id: 4, icon: "wifi", title: "Airtime & Data", description: "Buy airtime/data on all networks." },
       { id: 5, icon: "bolt", title: "Electricity Bills", description: "Pay PHCN prepaid/postpaid instantly." },
-      { id: 6, icon: "wallet", title: "Betting Wallet Funding", description: "Fund Bet9ja, SportyBet, 1xBet instantly." }
+      { id: 6, icon: "wallet", title: "Betting Wallet Funding", description: "Fund Bet9ja, SportyBet, 1xBet instantly." },
+      { id: 7, icon: "money-bill-transfer", title: "Quick Convert", description: "Convert between fiat kes-ngn and vice versa"}
     ];
 
     // GROUP INTO PAIRS
@@ -112,7 +113,7 @@ export default {
     };
 
     const startAutoSlide = () => {
-      autoSlideInterval = setInterval(nextSlide, 3000);
+      autoSlideInterval = setInterval(nextSlide, 5000);
     };
 
     const pauseAutoSlide = () => clearInterval(autoSlideInterval);

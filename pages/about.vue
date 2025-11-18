@@ -27,7 +27,7 @@
               <div class="text-blue-100 text-xs md:text-sm">Transactions</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
+              <div class="text-3xl md:text-4xl font-bold text-white mb-2">2+</div>
               <div class="text-blue-100 text-xs md:text-sm">Countries Served</div>
             </div>
             <div class="text-center">
@@ -69,7 +69,7 @@
                 <div class="text-gray-500 text-xs md:text-sm">Transactions Processed</div>
               </div>
               <div class="text-center px-3">
-                <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">50+</div>
+                <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">2+</div>
                 <div class="text-gray-500 text-xs md:text-sm">Countries Served</div>
               </div>
               <div class="text-center px-3">
@@ -134,7 +134,7 @@
               </div>
               <h3 class="text-xl font-bold mb-3 text-gray-800">Foundation</h3>
               <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-                Born from the vision to solve cross-border payment challenges between Nigeria and Kenya, addressing real financial pain points.
+              Born from the vision to solve cross-border payment challenges between Africans, addressing real financial pain points.
               </p>
             </div>
 
@@ -196,10 +196,6 @@
                 <i class="fas fa-check text-green-500 mr-2 text-base"></i>
                 Real-time market data
               </li>
-              <li class="flex items-center">
-                <i class="fas fa-check text-green-500 mr-2 text-base"></i>
-                Secure wallet storage
-              </li>
             </ul>
           </div>
 
@@ -209,7 +205,7 @@
             </div>
             <h3 class="text-xl font-bold mb-3 text-gray-800">Cross-Border Payments</h3>
             <p class="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
-              Send money between Nigeria and Kenya instantly with minimal fees and great exchange rates.
+              Send money between Nigeria and Kenya instantly with zero fees and great exchange rates.
             </p>
             <ul class="space-y-2 text-gray-600 text-sm md:text-base">
               <li class="flex items-center">

@@ -1,87 +1,115 @@
 <template>
-  <section id="how-it-works" class="py-16 bg-gray-50">
+  <section id="how-it-works" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16 fade-in" ref="title">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">How <span class="gradient-text">ABLX Trade Works</span></h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          So, we’ve created a powerful yet easy-to-use solution that allows you to be efficient and informed every step of the way.
+      <!-- Header -->
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">How <span class="gradient-text">ABLX Trade Works</span></h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Experience the future of digital trading with our powerful yet intuitive platform designed to keep you efficient and informed every step of the way.
         </p>
       </div>
 
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="md:w-1/2 mb-10 md:mb-0 slide-in-left" ref="leftContent">
-          <div class="relative">
-            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md mx-auto">
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-12 h-12 flex-shrink-0 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">
-                  1</div>
-                <div class="ml-4">
-                  <h3 class="text-xl font-bold">Create Your Account</h3>
-                  <p class="text-gray-600">Register with ABLX Trade and Gain Access to Seamless Crypto and Gift Card
-                    Trading.</p>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-12 h-12 flex-shrink-0 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">
-                  2</div>
-                <div class="ml-4">
-                  <h3 class="text-xl font-bold">Initiate a Trade</h3>
-                  <p class="text-gray-600">Begin with selecting the currency/gift card you will like to trade for a fast
-                    and seemless process.</p>
-                </div>
-              </div>
-
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 rounded-full gradient-bg flex flex-shrink-0 items-center justify-center text-white font-bold text-xl">
-                  3</div>
-                <div class="ml-4">
-                  <h3 class="text-xl font-bold">
-                    Get Paid</h3>
-                  <p class="text-gray-600">Experience Lightning-Fast Payments with ABLX Trade. Get Paid in Minutes and
-                    Enjoy the Fruits of Your Trading Success.</p>
-                </div>
+      <!-- Main Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Side - Steps -->
+        <div class="space-y-8">
+          <!-- Step 1 -->
+          <div class="flex gap-6 group hover:transform hover:scale-105 transition-all duration-300">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                1
               </div>
             </div>
-
-            <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-100 rounded-full opacity-50 animate-pulse-slow">
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">Create Your Account</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Sign up in minutes with ABLX Trade and unlock seamless access to crypto and gift card trading. Complete verification and start trading immediately.
+              </p>
             </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-6 group hover:transform hover:scale-105 transition-all duration-300">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                2
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">Initiate a Trade</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Select your preferred currency or gift card to trade. Our intelligent system ensures fast, secure, and seamless transaction processing.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-6 group hover:transform hover:scale-105 transition-all duration-300">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                3
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">Get Paid Instantly</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                Experience lightning-fast payments with ABLX Trade. Receive your funds in minutes and enjoy the rewards of your successful trading journey.
+              </p>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-6">
+            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              Start Trading Now
+            </button>
           </div>
         </div>
 
-        <div class="md:w-1/2 slide-in-right" ref="rightContent">
-          <div class="bg-white rounded-2xl shadow-lg p-6 max-w-md mx-auto">
-            <h3 class="text-2xl font-bold mb-6 text-center">Start Using ABLX Today</h3>
-
-            <div class="space-y-4">
-              <div class="flex items-center p-4 bg-blue-50 rounded-lg">
-                <i class="fas fa-shield-alt text-blue-500 text-xl mr-4"></i>
-                <div>
-                  <h4 class="font-bold">Bank-Level Security</h4>
-                  <p class="text-sm text-gray-600">Your funds and data are protected with encryption</p>
-                </div>
-              </div>
-
-              <div class="flex items-center p-4 bg-green-50 rounded-lg">
-                <i class="fas fa-bolt text-green-500 text-xl mr-4"></i>
-                <div>
-                  <h4 class="font-bold">Instant Transactions</h4>
-                  <p class="text-sm text-gray-600">Send money and pay bills in seconds</p>
-                </div>
-              </div>
-
-              <div class="flex items-center p-4 bg-purple-50 rounded-lg">
-                <i class="fas fa-headset text-purple-500 text-xl mr-4"></i>
-                <div>
-                  <h4 class="font-bold">24/7 Support</h4>
-                  <p class="text-sm text-gray-600">Our team is always ready to help you</p>
-                </div>
-              </div>
-            </div>
+        <!-- Right Side - Person Using Phone -->
+        <div class="relative">
+          <!-- Main Image Container -->
+          <div class="relative z-10">
+            <div class="relative">
+              <!-- Person with Phone Image -->
+              <img 
+                src="/photo-1517841905240-472988babdf9.png"
+                alt="Happy person using ABLX Trade app on smartphone"
+                class="rounded-3xl shadow-2xl w-full max-w-md mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500"
+              />
+                          </div>
           </div>
+
+          <!-- Floating Elements -->
+          <div class="absolute -top-4 -right-4 w-24 h-24 bg-blue-200 rounded-full opacity-60 animate-float"></div>
+          <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-200 rounded-full opacity-40 animate-float-delayed"></div>
+                  </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+        <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+            <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Bank-Level Security</h4>
+          <p class="text-gray-600">Military-grade encryption protects your funds and personal data at all times</p>
+        </div>
+
+        <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+            <i class="fas fa-bolt text-green-600 text-2xl"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Instant Transactions</h4>
+          <p class="text-gray-600">Send money, pay bills, and complete trades in seconds, not days</p>
+        </div>
+
+        <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
+            <i class="fas fa-headset text-purple-600 text-2xl"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3">24/7 Support</h4>
+          <p class="text-gray-600">Our dedicated team is always available to assist you with any questions</p>
         </div>
       </div>
     </div>
@@ -94,29 +122,81 @@ import { ref, onMounted } from 'vue'
 export default {
   name: 'HowItWorks',
   setup() {
-    const title = ref(null)
-    const leftContent = ref(null)
-    const rightContent = ref(null)
+    const elements = ref([])
 
     onMounted(() => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
+            entry.target.classList.add('animate-fade-in-up')
           }
         })
       }, { threshold: 0.1 })
 
-      if (title.value) observer.observe(title.value)
-      if (leftContent.value) observer.observe(leftContent.value)
-      if (rightContent.value) observer.observe(rightContent.value)
+      // Observe all elements with animation classes
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el)
+      })
     })
 
     return {
-      title,
-      leftContent,
-      rightContent
+      elements
     }
   }
 }
 </script>
+
+<style scoped>
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #1a35cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #2e5dec 100%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 4s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.fade-in-up {
+  opacity: 0;
+}
+
+/* Ensure the phone overlay is properly positioned */
+.relative .absolute {
+  z-index: 20;
+}
+</style>

@@ -178,8 +178,7 @@
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Email Us</h4>
-                      <p class="text-blue-100">support@ablx.finance</p>
-                      <p class="text-blue-100">partnerships@ablx.finance</p>
+                      <p class="text-blue-100">Support@ablxtrade.com</p>
                     </div>
                   </div>
                   
@@ -189,8 +188,8 @@
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Call Us</h4>
-                      <p class="text-blue-100">+234 1 700 0000 (Nigeria)</p>
-                      <p class="text-blue-100">+254 20 000 0000 (Kenya)</p>
+                      <p class="text-blue-100">+2348109657477 (Nigeria)</p>
+                      <p class="text-blue-100">+254115392088 (Kenya)</p>
                     </div>
                   </div>
                   
@@ -213,11 +212,7 @@
               <h3 class="text-2xl font-bold mb-6 text-gray-800">Support Hours</h3>
               <div class="space-y-4">
                 <div class="flex justify-between items-center pb-4 border-b border-gray-100">
-                  <span class="text-gray-600">Monday - Friday</span>
-                  <span class="font-semibold text-gray-800">24/7</span>
-                </div>
-                <div class="flex justify-between items-center pb-4 border-b border-gray-100">
-                  <span class="text-gray-600">Saturday - Sunday</span>
+                  <span class="text-gray-600">Monday - Sunday</span>
                   <span class="font-semibold text-gray-800">24/7</span>
                 </div>
                 <div class="flex justify-between items-center">
