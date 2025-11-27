@@ -2,19 +2,14 @@
   <section id="faq" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in" ref="title">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span>
+        </h2>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">Find answers to common questions about ABLX</p>
       </div>
-      
+
       <div class="max-w-3xl mx-auto">
-        <FAQItem 
-          v-for="(faq, index) in faqs"
-          :key="faq.id"
-          :faq="faq"
-          :is-active="activeFAQ === faq.id"
-          @toggle="toggleFAQ(faq.id)"
-          :ref="el => { if (el) faqItems[index] = el }"
-        />
+        <FAQItem v-for="(faq, index) in faqs" :key="faq.id" :faq="faq" :is-active="activeFAQ === faq.id"
+          @toggle="toggleFAQ(faq.id)" :ref="el => { if (el) faqItems[index] = el }" />
       </div>
     </div>
   </section>
@@ -43,7 +38,8 @@ export default {
       {
         id: 2,
         question: 'What documents do I need for verification?',
-        answer: 'You\'ll need a valid government-issued ID (International Passport, National ID, or Driver\'s License) and a recent utility bill or bank statement for address verification.'
+        answer: 'You\'ll need a valid government-issued ID (International Passport, National ID, or Driver\'s License) and a recent utility bill or bank statement for address verification.',
+        videoUrl: "https://youtu.be/6R6pAiHO_9Y?si=ocqfu9DnS7CvKTDX",
       },
       {
         id: 3,
@@ -76,7 +72,7 @@ export default {
       }, { threshold: 0.1 })
 
       if (title.value) observer.observe(title.value)
-      
+
       faqItems.value.forEach((item, index) => {
         if (item.$el) {
           setTimeout(() => {

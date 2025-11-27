@@ -1,97 +1,104 @@
 <template>
-<section class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white overflow-hidden relative">
-  <!-- Animated Background Elements -->
-  <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse-slow"></div>
-  <div class="absolute top-1/4 right-20 w-16 h-16 bg-yellow-400/20 rounded-full animate-pulse-slow" style="animation-delay: 1s;"></div>
-  <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-green-400/20 rounded-full animate-pulse-slow" style="animation-delay: 2s;"></div>
+  <section class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white overflow-hidden relative">
+    <!-- Animated Background Elements -->
+    <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse-slow"></div>
+    <div class="absolute top-1/4 right-20 w-16 h-16 bg-yellow-400/20 rounded-full animate-pulse-slow"
+      style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-green-400/20 rounded-full animate-pulse-slow"
+      style="animation-delay: 2s;"></div>
 
-  <!-- Floating Crypto Icons -->
-  <div class="absolute top-1/3 left-1/4 animate-float">
-    <i class="fab fa-bitcoin text-yellow-400/30 text-4xl"></i>
-  </div>
-  <div class="absolute top-1/2 right-1/3 animate-float" style="animation-delay: 2s;">
-    <i class="fab fa-ethereum text-purple-400/30 text-3xl"></i>
-  </div>
+    <!-- Floating Crypto Icons -->
+    <div class="absolute top-1/3 left-1/4 animate-float">
+      <i class="fab fa-bitcoin text-yellow-400/30 text-4xl"></i>
+    </div>
+    <div class="absolute top-1/2 right-1/3 animate-float" style="animation-delay: 2s;">
+      <i class="fab fa-ethereum text-purple-400/30 text-3xl"></i>
+    </div>
 
-  <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-    <div class="md:w-1/2 mb-10 md:mb-0 slide-in-left" ref="leftContent">
-      <!-- Trust Badge -->
-      <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
-        <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-        <span class="text-sm font-medium">Trusted by 50,000+ Users</span>
-      </div>
-
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-        Your All-in-One
-        <span class="text-yellow-300 bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">Fintech</span>
-        Solution
-      </h1>
-
-      <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
-        Buy and sell crypto, pay bills, send money across borders, and manage your finances all in one <span class="font-semibold text-yellow-300">secure platform</span>.
-      </p>
-
-      <!-- Stats -->
-      <div class="flex flex-wrap gap-6 mb-8">
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-yellow-300">$50M+</div>
-          <div class="text-sm opacity-80">Transactions</div>
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+      <div class="md:w-1/2 mb-10 md:mb-0 slide-in-left" ref="leftContent">
+        <!-- Trust Badge -->
+        <div
+          class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+          <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+          <span class="text-sm font-medium">Trusted by 50,000+ Users</span>
         </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-yellow-300">50K+</div>
-          <div class="text-sm opacity-80">Active Users</div>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-yellow-300">99.9%</div>
-          <div class="text-sm opacity-80">Uptime</div>
-        </div>
-      </div>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-          <i class="fab fa-apple mr-3 text-xl"></i>
-          <div class="text-left">
-            <div class="text-xs opacity-70">Download on</div>
-            <div>App Store</div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          Your All-in-One
+          <span
+            class="text-yellow-300 bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">Fintech</span>
+          Solution
+        </h1>
+
+        <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+          Buy and sell crypto/giftcards, pay bills, send money across borders, and manage your finances all in one <span
+            class="font-semibold text-yellow-300">secure platform</span>.
+        </p>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-6 mb-8">
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-300">$50M+</div>
+            <div class="text-sm opacity-80">Transactions</div>
           </div>
-        </button>
-
-        <button class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-          <i class="fab fa-google-play mr-3 text-xl"></i>
-          <div class="text-left">
-            <div class="text-xs opacity-70">Get it on</div>
-            <div>Google Play</div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-300">50K+</div>
+            <div class="text-sm opacity-80">Active Users</div>
           </div>
-        </button>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-300">99.9%</div>
+            <div class="text-sm opacity-80">Uptime</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+            <i class="fab fa-apple mr-3 text-xl"></i>
+            <div class="text-left">
+              <div class="text-xs opacity-70">Download on</div>
+              <div>App Store</div>
+            </div>
+          </button>
+
+          <button
+            class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+            <i class="fab fa-google-play mr-3 text-xl"></i>
+            <div class="text-left">
+              <div class="text-xs opacity-70">Get it on</div>
+              <div>Google Play</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Security Badges -->
+        <div class="flex items-center mt-8 space-x-6">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-shield-alt text-green-400"></i>
+            <span class="text-sm">Bank-Level Security</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-bolt text-yellow-400"></i>
+            <span class="text-sm">Instant Transactions</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Security Badges -->
-      <div class="flex items-center mt-8 space-x-6">
-        <div class="flex items-center space-x-2">
-          <i class="fas fa-shield-alt text-green-400"></i>
-          <span class="text-sm">Bank-Level Security</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <i class="fas fa-bolt text-yellow-400"></i>
-          <span class="text-sm">Instant Transactions</span>
-        </div>
+      <!-- App Preview Replaced With Image -->
+      <div class="md:w-1/2 flex justify-center slide-in-right" ref="rightContent">
+        <img src="/ablx_app_img-removebg.png" alt="App Preview" class="w-full max-w-lg rounded-3xl animate-float" />
       </div>
     </div>
 
-    <!-- App Preview Replaced With Image -->
-    <div class="md:w-1/2 flex justify-center slide-in-right" ref="rightContent">
-      <img src="/ablx_app_img-removebg.png" alt="App Preview" class="w-full max-w-lg rounded-3xl animate-float" />
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
+      </div>
     </div>
-  </div>
-
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-      <div class="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
-    </div>
-  </div>
-</section>
+  </section>
 </template>
 
 <script setup>
@@ -106,7 +113,7 @@ onMounted(() => {
     if (leftContent.value) leftContent.value.classList.add('visible')
     if (rightContent.value) rightContent.value.classList.add('visible')
   }, 100)
-  
+
   // Add intersection observer for scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -115,7 +122,7 @@ onMounted(() => {
       }
     })
   }, { threshold: 0.1 })
-  
+
   if (leftContent.value) observer.observe(leftContent.value)
   if (rightContent.value) observer.observe(rightContent.value)
 })
@@ -134,7 +141,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, #1d4ed8 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
@@ -150,13 +157,29 @@ onMounted(() => {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
 }
 
 .slide-in-left {

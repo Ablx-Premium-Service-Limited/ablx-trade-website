@@ -5,67 +5,54 @@
         <!-- Logo -->
         <div class="flex items-center">
           <a href="/">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-            <img :src="logoSrc" alt="ABLX Logo" class="w-12 h-12" />
-          </div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+              <img :src="logoSrc" alt="ABLX Logo" class="w-12 h-12" />
+            </div>
           </a>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
-          <a 
-            v-for="link in navigationLinks" 
-            :key="link.name"
-            :href="link.href" 
+          <a v-for="link in navigationLinks" :key="link.name" :href="link.href"
             class="nav-link font-medium transition-all duration-300 relative group"
-            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-blue-700 hover:text-blue-900'"
-          >
+            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-blue-700 hover:text-blue-900'">
             {{ link.name }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </div>
 
         <!-- CTA Buttons -->
         <div class="hidden lg:flex items-center space-x-4">
-          <button 
+          <button
             class="px-8 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-yellow-400"
-            @click="scrollToHero"
-          >
+            @click="scrollToHero">
             Get Started
           </button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button 
-          class="md:hidden p-2 rounded-lg transition-colors"
+        <button class="md:hidden p-2 rounded-lg transition-colors"
           :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black-700 hover:text-black-900'"
-          @click="toggleMobileMenu"
-        >
+          @click="toggleMobileMenu">
           <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
 
       <!-- Mobile Menu -->
-      <div 
+      <div
         class="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden transition-all duration-300"
-        :class="mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'"
-      >
+        :class="mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'">
         <div class="p-6 space-y-4">
-          <a 
-            v-for="link in navigationLinks" 
-            :key="link.name"
-            :href="link.href" 
+          <a v-for="link in navigationLinks" :key="link.name" :href="link.href"
             class="block font-medium py-2 transition-colors border-b border-white/10 last:border-b-0"
-            @click="closeMobileMenu"
-            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black'"
-          >
+            @click="closeMobileMenu" :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black'">
             {{ link.name }}
           </a>
           <div class="pt-4 space-y-3">
-            <button 
+            <button
               class="w-full px-4 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              @click="scrollToHero"
-            >
+              @click="scrollToHero">
               Get Started
             </button>
           </div>
@@ -86,9 +73,9 @@ const isScrolled = ref(false)
 
 const navigationLinks = [
   { name: 'About Us', href: '/about' },
-  { name: 'How It Works', href: '/#how-it-works' },
   { name: 'Testimonials', href: '/#testimonials' },
-  { name: 'Contact Us', href: '/contact-us' }
+  { name: 'Contact Us', href: '/contact-us' },
+  { name: 'FAQs', href: '/faqs' }
 ]
 
 const navBackground = ref('gradient-bg')
@@ -115,10 +102,10 @@ const scrollToHero = () => {
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
   // Change background based on scroll position
-  navBackground.value = isScrolled.value 
-    ? 'bg-white/90 backdrop-blur-md shadow-lg' 
+  navBackground.value = isScrolled.value
+    ? 'bg-white/90 backdrop-blur-md shadow-lg'
     : 'gradient-bg'
-    hasLogo.value = !isScrolled.value
+  hasLogo.value = !isScrolled.value
 }
 
 onMounted(() => {
