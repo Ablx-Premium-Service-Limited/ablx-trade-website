@@ -2,22 +2,24 @@
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
     <!-- Navigation -->
     <Navigation />
-    
+
     <!-- Hero Section -->
     <section class="pt-24 pb-16 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+          <div
+            class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
             <i class="fas fa-headset mr-2 text-base"></i>
             <span class="text-sm font-medium">We're Here to Help</span>
           </div>
-          
+
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Get in <span class="text-yellow-300">Touch</span>
           </h1>
-          
+
           <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto opacity-95">
-            Have questions about our financial services? Our dedicated support team is ready to assist you with any inquiries.
+            Have questions about our financial services? Our dedicated support team is ready to assist you with any
+            inquiries.
           </p>
 
           <div class="flex justify-center space-x-8 md:space-x-12 pt-4">
@@ -54,73 +56,51 @@
               <i class="fas fa-paper-plane mr-2 text-base"></i>
               <span class="text-sm font-semibold">Send us a Message</span>
             </div>
-            
+
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 leading-tight">
               Let's Start a <span class="gradient-text">Conversation</span>
             </h2>
-            
+
             <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-              Fill out the form below and our team will get back to you within 24 hours. We're committed to providing you with the best financial solutions.
+              Fill out the form below and our team will get back to you within 24 hours. We're committed to providing
+              you with the best financial solutions.
             </p>
 
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
                   <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    v-model="form.firstName"
-                    required
+                  <input type="text" id="firstName" v-model="form.firstName" required
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                    placeholder="Enter your first name"
-                  >
+                    placeholder="Enter your first name">
                 </div>
-                
+
                 <div class="form-group">
                   <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    v-model="form.lastName"
-                    required
+                  <input type="text" id="lastName" v-model="form.lastName" required
                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                    placeholder="Enter your last name"
-                  >
+                    placeholder="Enter your last name">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  v-model="form.email"
-                  required
+                <input type="email" id="email" v-model="form.email" required
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                  placeholder="your.email@example.com"
-                >
+                  placeholder="your.email@example.com">
               </div>
 
               <div class="form-group">
                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  v-model="form.phone"
+                <input type="tel" id="phone" v-model="form.phone"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                  placeholder="+1 (555) 000-0000"
-                >
+                  placeholder="+1 (555) 000-0000">
               </div>
 
               <div class="form-group">
                 <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                <select 
-                  id="subject" 
-                  v-model="form.subject"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                >
+                <select id="subject" v-model="form.subject" required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
                   <option value="">Select a topic</option>
                   <option value="crypto-trading">Crypto Trading Support</option>
                   <option value="payments">Cross-Border Payments</option>
@@ -135,21 +115,13 @@
 
               <div class="form-group">
                 <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                <textarea 
-                  id="message" 
-                  v-model="form.message"
-                  required
-                  rows="6"
+                <textarea id="message" v-model="form.message" required rows="6"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 resize-none"
-                  placeholder="Tell us how we can help you..."
-                ></textarea>
+                  placeholder="Tell us how we can help you..."></textarea>
               </div>
 
-              <button 
-                type="submit" 
-                :disabled="isSubmitting"
-                class="w-full gradient-bg text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
+              <button type="submit" :disabled="isSubmitting"
+                class="w-full gradient-bg text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
                 <span v-if="!isSubmitting" class="flex items-center justify-center">
                   <i class="fas fa-paper-plane mr-3"></i>
                   Send Message
@@ -170,7 +142,7 @@
                 <p class="text-lg leading-relaxed mb-8">
                   Reach out to us through any of these channels. We're always here to support your financial journey.
                 </p>
-                
+
                 <div class="space-y-6">
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
@@ -181,7 +153,7 @@
                       <p class="text-blue-100">Support@ablxtrade.com</p>
                     </div>
                   </div>
-                  
+
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
                       <i class="fas fa-phone text-yellow-300 text-xl"></i>
@@ -192,7 +164,7 @@
                       <p class="text-blue-100">+254115392088 (Kenya)</p>
                     </div>
                   </div>
-                  
+
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
                       <i class="fas fa-map-marker-alt text-yellow-300 text-xl"></i>
@@ -280,9 +252,12 @@
 
         <div class="max-w-4xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div v-for="(faq, index) in faqs" :key="index" class="bg-white rounded-2xl p-6 card-hover border border-gray-100 fade-in" :style="`animation-delay: ${index * 0.1}s`">
+            <div v-for="(faq, index) in faqs" :key="index"
+              class="bg-white rounded-2xl p-6 card-hover border border-gray-100 fade-in"
+              :style="`animation-delay: ${index * 0.1}s`">
               <div class="flex items-start">
-                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-4 flex-shrink-0 mt-1">
+                <div
+                  class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-4 flex-shrink-0 mt-1">
                   <i class="fas fa-question text-sm"></i>
                 </div>
                 <div>
@@ -306,27 +281,26 @@
           Join thousands of satisfied users who trust ABLX for their financial needs across Africa.
         </p>
         <div class="flex flex-col w-full sm:justify-center sm:flex-row gap-4" ref="buttons">
-          <button class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-            <i class="fab fa-apple mr-3 text-xl"></i> 
+          <a href="https://apps.apple.com/ng/app/ablxtrade-giftcards-crypto/id6476493549"
+            class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+            <i class="fab fa-apple mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Download on</div>
               <div>App Store</div>
             </div>
-          </button>
-          
-          <button class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+          </a>
+
+          <a href="https://play.google.com/store/apps/details?id=app.ablxtrade.com"
+            class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
             <i class="fab fa-google-play mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Get it on</div>
               <div>Google Play</div>
             </div>
-          </button>
-          
-          <a 
-            href="https://app.ablxtrade.com" 
-            target="_blank"
-            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400"
-          >
+          </a>
+
+          <a href="https://app.ablxtrade.com" target="_blank"
+            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">
             <i class="fas fa-rocket mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Launch</div>
@@ -338,7 +312,7 @@
     </section>
 
     <!-- Footer -->
-     <Footer />
+    <Footer />
   </div>
 </template>
 
@@ -514,8 +488,13 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Enhanced container padding */

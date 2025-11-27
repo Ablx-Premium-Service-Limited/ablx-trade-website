@@ -2,22 +2,24 @@
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
     <!-- Navigation -->
     <Navigation />
-    
+
     <!-- Hero Section -->
     <section class="pt-24 pb-16 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+          <div
+            class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
             <i class="fas fa-file-contract mr-2 text-base"></i>
             <span class="text-sm font-medium">Legal Agreement</span>
           </div>
-          
+
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Terms of <span class="text-yellow-300">Service</span>
           </h1>
-          
+
           <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto opacity-95">
-            Please read these terms carefully before using ABLX Trade services. By using our platform, you agree to be bound by these terms.
+            Please read these terms carefully before using ABLX Trade services. By using our platform, you agree to be
+            bound by these terms.
           </p>
 
           <div class="flex justify-center space-x-8 md:space-x-12 pt-4">
@@ -60,7 +62,9 @@
                 <div>
                   <h3 class="text-xl font-bold mb-2 text-gray-800">Important Notice</h3>
                   <p class="text-gray-700">
-                    By accessing or using ABLX Trade services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with these terms, please do not use our services.
+                    By accessing or using ABLX Trade services, you acknowledge that you have read, understood, and agree
+                    to be bound by these Terms of Service. If you do not agree with these terms, please do not use our
+                    services.
                   </p>
                 </div>
               </div>
@@ -74,12 +78,10 @@
               Quick Navigation
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <a v-for="section in termsSections" 
-                 :key="section.id"
-                 :href="`#${section.id}`"
-                 class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group"
-              >
-                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
+              <a v-for="section in termsSections" :key="section.id" :href="`#${section.id}`"
+                class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                <div
+                  class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
                   <i :class="section.icon"></i>
                 </div>
                 <span class="text-gray-700 font-medium text-sm">{{ section.title }}</span>
@@ -100,15 +102,19 @@
               <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
                 <div class="space-y-4 text-gray-600 leading-relaxed text-lg">
                   <p>
-                    These Terms of Service ("Terms") govern your access to and use of ABLX Trade's website, mobile application, and services (collectively, the "Services"). By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy.
+                    These Terms of Service ("Terms") govern your access to and use of ABLX Trade's website, mobile
+                    application, and services (collectively, the "Services"). By accessing or using our Services, you
+                    agree to be bound by these Terms and our Privacy Policy.
                   </p>
                   <p>
-                    If you are using the Services on behalf of an organization, you are agreeing to these Terms for that organization and promising that you have the authority to bind that organization to these Terms.
+                    If you are using the Services on behalf of an organization, you are agreeing to these Terms for that
+                    organization and promising that you have the authority to bind that organization to these Terms.
                   </p>
                   <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-4">
                     <p class="text-blue-800 font-medium">
                       <i class="fas fa-info-circle mr-2"></i>
-                      You must be at least 18 years old and have the legal capacity to enter into binding contracts to use our Services.
+                      You must be at least 18 years old and have the legal capacity to enter into binding contracts to
+                      use our Services.
                     </p>
                   </div>
                 </div>
@@ -126,22 +132,26 @@
               <div class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4">
+                    <div
+                      class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4">
                       <i class="fas fa-id-card"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800">KYC Verification</h3>
                     <p class="text-gray-600 leading-relaxed">
-                      You must complete our Know Your Customer (KYC) verification process by providing accurate and current identification documents.
+                      You must complete our Know Your Customer (KYC) verification process by providing accurate and
+                      current identification documents.
                     </p>
                   </div>
 
                   <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-                    <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-4">
+                    <div
+                      class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-4">
                       <i class="fas fa-lock"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800">Account Security</h3>
                     <p class="text-gray-600 leading-relaxed">
-                      You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.
+                      You are responsible for maintaining the confidentiality of your account credentials and for all
+                      activities under your account.
                     </p>
                   </div>
                 </div>
@@ -223,7 +233,8 @@
                     Fee Transparency
                   </h3>
                   <p class="text-gray-700 mb-4">
-                    We believe in complete fee transparency. All applicable fees will be clearly displayed before you confirm any transaction.
+                    We believe in complete fee transparency. All applicable fees will be clearly displayed before you
+                    confirm any transaction.
                   </p>
                   <ul class="space-y-2 text-gray-700">
                     <li class="flex items-center">
@@ -257,7 +268,8 @@
                   Strictly Forbidden Activities
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div v-for="activity in prohibitedActivities" :key="activity.title" class="bg-white rounded-xl p-4 border border-red-200">
+                  <div v-for="activity in prohibitedActivities" :key="activity.title"
+                    class="bg-white rounded-xl p-4 border border-red-200">
                     <div class="flex items-start">
                       <i class="fas fa-times-circle text-red-500 mr-3 mt-1 text-lg"></i>
                       <div>
@@ -270,7 +282,8 @@
                 <div class="mt-6 p-4 bg-red-100 rounded-xl border border-red-300">
                   <p class="text-red-800 font-medium text-center">
                     <i class="fas fa-gavel mr-2"></i>
-                    Violation of these prohibitions may result in immediate account suspension, termination, and legal action.
+                    Violation of these prohibitions may result in immediate account suspension, termination, and legal
+                    action.
                   </p>
                 </div>
               </div>
@@ -292,7 +305,8 @@
                       Our Rights
                     </h3>
                     <p class="text-gray-600 mb-4">
-                      All intellectual property rights in the Services, including trademarks, logos, software, and content, are owned by ABLX Trade or our licensors.
+                      All intellectual property rights in the Services, including trademarks, logos, software, and
+                      content, are owned by ABLX Trade or our licensors.
                     </p>
                     <ul class="space-y-2 text-gray-600">
                       <li class="flex items-center">
@@ -315,7 +329,8 @@
                       Your License
                     </h3>
                     <p class="text-gray-600 mb-4">
-                      We grant you a limited, non-exclusive, non-transferable license to access and use our Services for personal, non-commercial purposes.
+                      We grant you a limited, non-exclusive, non-transferable license to access and use our Services for
+                      personal, non-commercial purposes.
                     </p>
                     <ul class="space-y-2 text-gray-600">
                       <li class="flex items-center">
@@ -350,7 +365,8 @@
                   <div>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Important Legal Disclaimer</h3>
                     <p class="text-gray-700">
-                      To the maximum extent permitted by law, ABLX Trade shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues.
+                      To the maximum extent permitted by law, ABLX Trade shall not be liable for any indirect,
+                      incidental, special, consequential, or punitive damages, or any loss of profits or revenues.
                     </p>
                   </div>
                 </div>
@@ -361,7 +377,8 @@
                       Market Risks
                     </h4>
                     <p class="text-gray-600 text-sm">
-                      Cryptocurrency investments are subject to market risks. Past performance does not guarantee future results.
+                      Cryptocurrency investments are subject to market risks. Past performance does not guarantee future
+                      results.
                     </p>
                   </div>
                   <div class="bg-white rounded-xl p-4">
@@ -370,7 +387,8 @@
                       Technical Issues
                     </h4>
                     <p class="text-gray-600 text-sm">
-                      We are not liable for service interruptions, delays, or errors caused by factors beyond our reasonable control.
+                      We are not liable for service interruptions, delays, or errors caused by factors beyond our
+                      reasonable control.
                     </p>
                   </div>
                 </div>
@@ -390,7 +408,8 @@
                   <div>
                     <h3 class="text-xl font-bold mb-4 text-gray-800">Applicable Law</h3>
                     <p class="text-gray-600 mb-4">
-                      These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria, without regard to its conflict of law provisions.
+                      These Terms shall be governed by and construed in accordance with the laws of the Federal Republic
+                      of Nigeria, without regard to its conflict of law provisions.
                     </p>
                     <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
                       <p class="text-blue-800 text-sm">
@@ -402,7 +421,8 @@
                   <div>
                     <h3 class="text-xl font-bold mb-4 text-gray-800">Dispute Resolution</h3>
                     <p class="text-gray-600 mb-4">
-                      Most disputes can be resolved quickly and amicably by contacting our support team. If we cannot resolve a dispute informally, we agree to resolve any claim through binding arbitration.
+                      Most disputes can be resolved quickly and amicably by contacting our support team. If we cannot
+                      resolve a dispute informally, we agree to resolve any claim through binding arbitration.
                     </p>
                     <ul class="space-y-2 text-gray-600 text-sm">
                       <li class="flex items-center">
@@ -462,7 +482,8 @@
                 <div>
                   <h3 class="text-xl font-bold mb-2 text-gray-800">Acceptance of Terms</h3>
                   <p class="text-gray-600">
-                    By using ABLX Trade services, you confirm that you have read, understood, and agree to be bound by these Terms of Service.
+                    By using ABLX Trade services, you confirm that you have read, understood, and agree to be bound by
+                    these Terms of Service.
                   </p>
                 </div>
               </div>
@@ -482,27 +503,26 @@
           Join thousands of users across Africa who trust ABLX for secure and innovative financial services.
         </p>
         <div class="flex flex-col w-full sm:justify-center sm:flex-row gap-4" ref="buttons">
-          <button class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-            <i class="fab fa-apple mr-3 text-xl"></i> 
+          <a href="https://apps.apple.com/ng/app/ablxtrade-giftcards-crypto/id6476493549"
+            class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+            <i class="fab fa-apple mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Download on</div>
               <div>App Store</div>
             </div>
-          </button>
-          
-          <button class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+          </a>
+
+          <a href="https://play.google.com/store/apps/details?id=com.ablxtrade.app"
+            class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
             <i class="fab fa-google-play mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Get it on</div>
               <div>Google Play</div>
             </div>
-          </button>
-          
-          <a 
-            href="https://app.ablxtrade.com" 
-            target="_blank"
-            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400"
-          >
+          </a>
+
+          <a href="https://app.ablxtrade.com" target="_blank"
+            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">
             <i class="fas fa-rocket mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Launch</div>
@@ -514,7 +534,7 @@
     </section>
 
     <!-- Footer -->
-     <Footer />
+    <Footer />
   </div>
 </template>
 

@@ -199,23 +199,23 @@
                     Join thousands of users across Africa who trust ABLX for secure and innovative trading services.
                 </p>
                 <div class="flex flex-col w-full sm:justify-center sm:flex-row gap-4">
-                    <button
+                    <a href="https://apps.apple.com/ng/app/ablxtrade-giftcards-crypto/id6476493549"
                         class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
                         <i class="fab fa-apple mr-3 text-xl"></i>
                         <div class="text-left">
                             <div class="text-xs opacity-70">Download on</div>
                             <div>App Store</div>
                         </div>
-                    </button>
+                    </a>
 
-                    <button
+                    <a href="https://play.google.com/store/apps/details?id=app.ablxtrade.com"
                         class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
                         <i class="fab fa-google-play mr-3 text-xl"></i>
                         <div class="text-left">
                             <div class="text-xs opacity-70">Get it on</div>
                             <div>Google Play</div>
                         </div>
-                    </button>
+                    </a>
 
                     <a href="https://app.ablxtrade.com" target="_blank"
                         class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">

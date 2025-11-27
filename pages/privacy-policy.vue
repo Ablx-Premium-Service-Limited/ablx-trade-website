@@ -2,20 +2,21 @@
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
     <!-- Navigation -->
     <Navigation />
-    
+
     <!-- Hero Section -->
     <section class="pt-24 pb-16 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+          <div
+            class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
             <i class="fas fa-shield-alt mr-2 text-base"></i>
             <span class="text-sm font-medium">Your Privacy Matters</span>
           </div>
-          
+
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Privacy <span class="text-yellow-300">Policy</span>
           </h1>
-          
+
           <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto opacity-95">
             Learn how ABLX protects your financial data and respects your privacy across all our services.
           </p>
@@ -66,12 +67,10 @@
               Quick Navigation
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <a v-for="section in policySections" 
-                 :key="section.id"
-                 :href="`#${section.id}`"
-                 class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group"
-              >
-                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
+              <a v-for="section in policySections" :key="section.id" :href="`#${section.id}`"
+                class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                <div
+                  class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
                   <i :class="section.icon"></i>
                 </div>
                 <span class="text-gray-700 font-medium text-sm">{{ section.title }}</span>
@@ -91,10 +90,14 @@
               </div>
               <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
                 <p class="text-gray-600 leading-relaxed mb-4 text-lg">
-                  At ABLX Trade ("we," "our," or "us"), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our financial services platform.
+                  At ABLX Trade ("we," "our," or "us"), we are committed to protecting your privacy and ensuring the
+                  security of your personal information. This Privacy Policy explains how we collect, use, disclose, and
+                  safeguard your information when you use our financial services platform.
                 </p>
                 <p class="text-gray-600 leading-relaxed text-lg">
-                  By accessing or using ABLX services, you consent to the practices described in this policy. We encourage you to read this policy carefully to understand our views and practices regarding your personal data.
+                  By accessing or using ABLX services, you consent to the practices described in this policy. We
+                  encourage you to read this policy carefully to understand our views and practices regarding your
+                  personal data.
                 </p>
               </div>
             </div>
@@ -116,7 +119,8 @@
                   <ul class="space-y-3 text-gray-600">
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
-                      <span><strong>Identity Data:</strong> Full name, government-issued ID, date of birth, photograph</span>
+                      <span><strong>Identity Data:</strong> Full name, government-issued ID, date of birth,
+                        photograph</span>
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
@@ -124,11 +128,13 @@
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
-                      <span><strong>Financial Data:</strong> Bank account details, transaction history, payment information</span>
+                      <span><strong>Financial Data:</strong> Bank account details, transaction history, payment
+                        information</span>
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
-                      <span><strong>Verification Data:</strong> KYC documents, proof of address, selfie verification</span>
+                      <span><strong>Verification Data:</strong> KYC documents, proof of address, selfie
+                        verification</span>
                     </li>
                   </ul>
                 </div>
@@ -141,7 +147,8 @@
                   <ul class="space-y-3 text-gray-600">
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
-                      <span><strong>Device Information:</strong> IP address, browser type, device type, operating system</span>
+                      <span><strong>Device Information:</strong> IP address, browser type, device type, operating
+                        system</span>
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
@@ -149,7 +156,8 @@
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
-                      <span><strong>Location Data:</strong> General location based on IP address for security purposes</span>
+                      <span><strong>Location Data:</strong> General location based on IP address for security
+                        purposes</span>
                     </li>
                   </ul>
                 </div>
@@ -165,8 +173,10 @@
                 <h2 class="text-3xl font-bold text-gray-800">How We Use Your Information</h2>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div v-for="use in informationUses" :key="use.title" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
-                  <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
+                <div v-for="use in informationUses" :key="use.title"
+                  class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+                  <div
+                    class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
                     <i :class="use.icon"></i>
                   </div>
                   <h3 class="text-xl font-bold mb-3 text-gray-800">{{ use.title }}</h3>
@@ -189,7 +199,8 @@
                 </p>
                 <div class="space-y-4">
                   <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4 flex-shrink-0">
+                    <div
+                      class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4 flex-shrink-0">
                       <i class="fas fa-gavel"></i>
                     </div>
                     <div>
@@ -198,7 +209,8 @@
                     </div>
                   </div>
                   <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
-                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mr-4 flex-shrink-0">
+                    <div
+                      class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mr-4 flex-shrink-0">
                       <i class="fas fa-handshake"></i>
                     </div>
                     <div>
@@ -207,7 +219,8 @@
                     </div>
                   </div>
                   <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
-                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-4 flex-shrink-0">
+                    <div
+                      class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-4 flex-shrink-0">
                       <i class="fas fa-shield-alt"></i>
                     </div>
                     <div>
@@ -252,8 +265,10 @@
                 <h2 class="text-3xl font-bold text-gray-800">Your Rights</h2>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div v-for="right in userRights" :key="right.title" class="bg-white rounded-2xl p-6 border border-gray-200 card-hover text-center">
-                  <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto">
+                <div v-for="right in userRights" :key="right.title"
+                  class="bg-white rounded-2xl p-6 border border-gray-200 card-hover text-center">
+                  <div
+                    class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto">
                     <i :class="right.icon"></i>
                   </div>
                   <h3 class="text-xl font-bold mb-3 text-gray-800">{{ right.title }}</h3>
@@ -273,14 +288,17 @@
               <div class="bg-gray-50 rounded-2xl p-6 md:p-8 text-center">
                 <h3 class="text-2xl font-bold mb-4 text-gray-800">Privacy Concerns & Questions</h3>
                 <p class="text-gray-600 mb-6 text-lg">
-                  If you have any questions about this Privacy Policy or how we handle your data, please contact our Data Protection Officer.
+                  If you have any questions about this Privacy Policy or how we handle your data, please contact our
+                  Data Protection Officer.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                  <a href="mailto:privacy@ablxtrade.com" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300">
+                  <a href="mailto:privacy@ablxtrade.com"
+                    class="inline-flex items-center px-6 py-3 gradient-bg text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300">
                     <i class="fas fa-envelope mr-3"></i>
                     privacy@ablxtrade.com
                   </a>
-                  <a href="/contact" class="inline-flex items-center px-6 py-3 bg-white text-gray-700 font-bold rounded-lg border border-gray-300 hover:shadow-lg transition-all duration-300">
+                  <a href="/contact"
+                    class="inline-flex items-center px-6 py-3 bg-white text-gray-700 font-bold rounded-lg border border-gray-300 hover:shadow-lg transition-all duration-300">
                     <i class="fas fa-headset mr-3"></i>
                     Contact Support
                   </a>
@@ -296,10 +314,12 @@
               <div>
                 <h3 class="text-xl font-bold mb-2 text-gray-800">Policy Updates</h3>
                 <p class="text-gray-600 mb-3">
-                  We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+                  We may update this Privacy Policy from time to time. We will notify you of any changes by posting the
+                  new Privacy Policy on this page and updating the "Last Updated" date.
                 </p>
                 <p class="text-gray-600 text-sm">
-                  Your continued use of our services after any modifications constitutes acceptance of the updated policy.
+                  Your continued use of our services after any modifications constitutes acceptance of the updated
+                  policy.
                 </p>
               </div>
             </div>
@@ -318,27 +338,26 @@
           Join the financial revolution with a platform that prioritizes your privacy and security.
         </p>
         <div class="flex flex-col w-full sm:justify-center sm:flex-row gap-4" ref="buttons">
-          <button class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-            <i class="fab fa-apple mr-3 text-xl"></i> 
+          <a href="https://apps.apple.com/ng/app/ablxtrade-giftcards-crypto/id6476493549"
+            class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+            <i class="fab fa-apple mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Download on</div>
               <div>App Store</div>
             </div>
-          </button>
-          
-          <button class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
+          </a>
+
+          <a href="https://play.google.com/store/apps/details?id=com.ablxtrade.app" target="_blank"
+            class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
             <i class="fab fa-google-play mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Get it on</div>
               <div>Google Play</div>
             </div>
-          </button>
-          
-          <a 
-            href="https://app.ablxtrade.com" 
-            target="_blank"
-            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400"
-          >
+          </a>
+
+          <a href="https://app.ablxtrade.com" target="_blank"
+            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">
             <i class="fas fa-rocket mr-3 text-xl"></i>
             <div class="text-left">
               <div class="text-xs opacity-70">Launch</div>
@@ -350,7 +369,7 @@
     </section>
 
     <!-- Footer -->
-     <Footer />
+    <Footer />
   </div>
 </template>
 
