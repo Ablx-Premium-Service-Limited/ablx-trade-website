@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "title": "Another Post Now",
+      "author": {
+        "name": "ABLX",
+        "photo": "https://res.cloudinary.com/campnet/image/upload/v1764460373/scylevmw0zetj1bos2fw.jpg"
+      },
+      "coverImage": "https://res.cloudinary.com/campnet/image/upload/v1764460264/dhkhftepkkteepv6vbim.png",
+      "tags": [
+        "Crypto",
+        "Bitcoin"
+      ],
+      "content": "<p>A very cool amazing blog.</p><p><img src=\"https://res.cloudinary.com/campnet/image/upload/v1764460296/ttsuxxe422tygpiutcjo.png\"></p>",
+      "status": "published",
+      "excerpt": "A very cool amazing blog.",
+      "updatedAt": "2025-11-29T23:52:57.043Z",
+      "id": "miky3un637lvuhqyk69",
+      "createdAt": "2025-11-29T23:51:42.306Z"
+    }
+  ],
+  "lastUpdated": "2025-11-29T23:52:57.051Z",
+  "totalPosts": 1
+}

@@ -14,6 +14,10 @@ export default defineNuxtConfig({
     '/blogs/**': { 
       ssr: true,
       cors: true
+    },
+    '/admin/**': { 
+      ssr: false,
+      prerender: false 
     }
   },
   runtimeConfig: {
