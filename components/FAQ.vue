@@ -37,11 +37,37 @@ export default {
       },
       {
         id: 2,
-        question: 'What documents do I need for verification?',
-        answer: 'You\'ll need a valid government-issued ID (International Passport, National ID, or Driver\'s License) and a recent utility bill or bank statement for address verification.',
+        question: 'How do I verify my account on the ABLX Trade App?',
+        answer: `Verifying your account on ABLX Trade is simple and can be completed in just a few minutes. Follow these steps:
+
+1. **Create an ABLX Trade Account**
+   Sign up on the app using your details.
+
+2. **Go to Your Profile**
+   After logging in, click on your Account Profile.
+
+3. **Select Account Verification**
+   You'll see three verification tiers you can complete:
+
+   **Tier 1:**
+   Submit your BVN to unlock up to ₦100,000 deposit limit within 24 hours.
+   Withdrawals remain unlimited.
+
+   **Tier 2:**
+   Submit your NIN for higher deposit limits.
+
+   **Tier 3:**
+   Upload any government-verified document for full access to all fiat deposit limits.
+
+**Important Notes:**
+
+• Verification is only required for depositing fiat (NGN, KES, USD).
+• You do not need verification to trade cryptocurrency or gift cards.
+• The entire verification process is fast, seamless, and can be completed within 5 minutes.
+
+If you ever need help during verification, our support team is available to assist you.`,
         videoUrl: "https://youtu.be/6R6pAiHO_9Y?si=ocqfu9DnS7CvKTDX",
-      },
-      {
+      }, {
         id: 3,
         question: 'How long do international transfers take?',
         answer: 'Transfers between Nigeria and Kenya are typically completed within minutes. In rare cases, it may take up to 24 hours during high transaction periods.'

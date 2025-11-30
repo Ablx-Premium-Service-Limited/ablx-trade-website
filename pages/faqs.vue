@@ -109,22 +109,22 @@
                             </button>
 
                             <!-- Answer -->
-                            <div class="transition-all duration-300 overflow-hidden"
-                                :class="openFaq === faq.id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'">
+                            <div class="transition-all duration-300"
+                                :class="openFaq === faq.id ? 'opacity-100' : 'max-h-0 opacity-0'">
                                 <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-gray-200 pt-6">
                                     <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
                                         <div v-html="formatAnswer(faq.answer)"></div>
                                     </div>
 
                                     <!-- YouTube Video Section -->
-                                    <div v-if="faq.id === '9976e50d-0592-4775-9578-057d72415d7d'" class="mt-6">
+                                    <div v-if="faq.videoUrl" class="mt-6">
                                         <h4 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                                             <i class="fas fa-play-circle mr-2 text-red-500"></i>
-                                            Watch How to Verify
+                                            Watch Video
                                         </h4>
-                                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl overflow-hidden">
-                                            <iframe class="w-full h-64 md:h-80"
-                                                src="https://www.youtube.com/embed/6R6pAiHO_9Y"
+                                        <div class="relative bg-gray-200 rounded-xl" style="padding-bottom: 56.25%;">
+                                            <!-- 16:9 aspect ratio -->
+                                            <iframe class="absolute top-0 left-0 w-full h-full" :src="faq.videoUrl"
                                                 title="ABLX Trade Tutorial" frameborder="0"
                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen>
@@ -190,7 +190,7 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="py-16 md:py-20 gradient-bg text-white">
+        <section class="py-16 md:py-20 gradient-bg text-white" id="hero">
             <div class="container mx-auto px-4 sm:px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
                     Ready to Start <span class="text-yellow-300">Trading</span>?
@@ -309,7 +309,13 @@ const faqs = [
         "question": "How does ABLX Trade work?",
         "answer": "ABLX Trade is a secure and user-friendly cryptocurrency exchange platform that allows you to buy, sell, and trade digital assets seamlessly. Here's how it works:\n1. Sign Up & Verify: Create an account and complete the Know Your Customer (KYC) verification for security and compliance.\n2. Request wallet: request wallet to trade your crypto currencies by clicking on trade, choosing your preferred asset to trade and inputing the amount you intend to exchange then clicking proceed.\n3. Trade Crypto: sell cryptocurrencies at real-time market rates.\n4. Withdraw Your Funds: Securely withdraw your fiat to your preferred  bank account.\n5. Stay Secure & Updated: Enable two-factor authentication (2FA) and receive price alerts for better trading decisions.",
         "category": "getting-started",
-        "videoUrl": "https://youtu.be/6R6pAiHO_9Y?si=ocqfu9DnS7CvKTDX"
+    },
+    {
+        "id": "9976e50e-0592-4775-9578-057d72415e3r",
+        "question": "How do I verify my account on the ABLX Trade App?",
+        "category": "getting-started",
+        "answer": "Verifying your account on ABLX Trade is simple and can be completed in just a few minutes. Follow these steps:\n\n1. **Create an ABLX Trade Account**\n   Sign up on the app using your details.\n\n2. **Go to Your Profile**\n   After logging in, click on your Account Profile.\n\n3. **Select Account Verification**\n   You'll see three verification tiers you can complete:\n\n   **Tier 1:**\n   Submit your BVN to unlock up to ₦100,000 deposit limit within 24 hours.\n   Withdrawals remain unlimited.\n\n   **Tier 2:**\n   Submit your NIN for higher deposit limits.\n\n   **Tier 3:**\n   Upload any government-verified document for full access to all fiat deposit limits.\n\n**Important Notes:**\n\n• Verification is only required for depositing fiat (NGN, KES, USD).\n• You do not need verification to trade cryptocurrency or gift cards.\n• The entire verification process is fast, seamless, and can be completed within 5 minutes.\n\nIf you ever need help during verification, our support team is available to assist you.",
+        "videoUrl": "https://www.youtube.com/embed/6R6pAiHO_9Y"
     },
     {
         "id": "9976e50e-6a42-45ef-b666-7bd1c3666830",
@@ -352,6 +358,13 @@ const faqs = [
         "question": "Can I trade gift cards for cryptocurrencies on ABLX Trade?",
         "answer": "No, ABLX Trade does not support the exchange of gift cards for cryptocurrencies. Our platform currently focuses on crypto-to-fiat transactions, allowing users to buy and sell cryptocurrency using supported fiat payment methods, such as bank transfers.\nWe prioritize secure and transparent transactions to ensure the best trading experience for our users.",
         "category": "trading"
+    },
+    {
+        "id": "9976f4ce-0c64-4c27-a1231-ab76e32af126",
+        "question": "How do I convert my Naira to Shillings on the ABLX Trade App?",
+        "category": "trading",
+        "answer": "You can convert Naira (NGN) to Kenyan Shillings (KES) directly on the ABLX Trade App. Simply follow these steps:\n\n1. **Verify Your Account:**\n   Complete your account verification to generate your virtual Naira account.\n\n2. **Deposit Your Naira:**\n   Send money into the virtual account generated for you.\n\n3. **Go to the Convert Section:**\n   Open the Convert feature on the app.\n   Select the currency you are converting from (NGN) and the currency you are converting to (KES or USD).\n   Enter the amount you want to convert.\n\n4. **Confirm Conversion:**\n   Click the Convert button. Your wallet will be credited instantly with the converted amount in NGN, KES, or USD.\n\n5. **Withdraw Your Funds:**\n   To withdraw, simply click the Send button and choose your preferred account or payment method.\n\nThis process is fast, secure, and designed to make currency conversion easy for all users.",
+        "videoUrl": "https://www.youtube.com/embed/6Oe8kDbXzHE"
     },
     {
         "id": "9976f4e1-48d8-4031-9ad7-4714fa8a6e0a",

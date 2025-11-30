@@ -375,23 +375,38 @@ const form = ref({
 })
 
 const isSubmitting = ref(false)
+const submitError = ref('')
+const submitSuccess = ref('')
 
 const submitForm = async () => {
   isSubmitting.value = true
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 2000))
-  isSubmitting.value = false
-  // Reset form
-  form.value = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+  submitError.value = ''
+  submitSuccess.value = ''
+
+  try {
+    const { success, message } = await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value
+    })
+
+    if (success) {
+      submitSuccess.value = message
+      // Reset form
+      form.value = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      }
+    }
+  } catch (error) {
+    submitError.value = error.data?.statusMessage || 'Failed to send message. Please try again.'
+    console.error('Form submission error:', error)
+  } finally {
+    isSubmitting.value = false
   }
-  // Show success message (you can implement a toast notification here)
-  alert('Thank you for your message! We will get back to you within 24 hours.')
 }
 
 // FAQ Data
