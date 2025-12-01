@@ -1,39 +1,5 @@
 {
-  "posts": [
-    {
-      "title": "The Rise of Crypto Remittances in Africa: Revolutionizing Cross-Border Payments",
-      "author": {
-        "name": "ABLX",
-        "photo": ""
-      },
-      "coverImage": "https://res.cloudinary.com/campnet/image/upload/v1764465856/zntyam5hpw3pwkjtlwi3.avif",
-      "tags": [],
-      "content": "<p><em>How digital currencies are transforming the $100 billion African remittance market</em><span class=\"ql-cursor\">﻿﻿﻿﻿</span></p><h2><strong><span class=\"ql-cursor\">﻿﻿﻿</span>Introduction</strong></h2><p>In the bustling markets of Lagos, the trading floors of Nairobi, and the small businesses of Accra, a quiet revolution is taking place. For millions of Africans relying on remittances from abroad, cryptocurrency is no longer just an investment vehicle—it's becoming a lifeline that's faster, cheaper, and more accessible than traditional money transfer services.</p><p>The African remittance market, valued at over $100 billion annually, has long been dominated by traditional players charging exorbitant fees that sometimes reach 20% of the transfer amount. But blockchain technology is changing this narrative, offering Africans in the diaspora a more efficient way to support their families back home.</p><p><a href=\"https://ablxtrade.com\" rel=\"noopener noreferrer\" target=\"_blank\">https://ablxtrade.com</a></p><p><img src=\"https://res.cloudinary.com/campnet/image/upload/v1764465995/lpvkmjdjk3hgoh91sczt.jpg\"></p><h3><strong>The High Cost of Sending Money Home</strong></h3><p>Traditional remittance channels have created significant barriers for Africans abroad:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Exorbitant Fees</strong>: Western Union, MoneyGram, and banks typically charge 8-20% in transfer fees</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Long Processing Times</strong>: Transfers can take 3-5 business days to complete</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Limited Access</strong>: Rural recipients often travel hours to access funds</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Currency Challenges</strong>: Multiple currency conversions eat into the final amount</li></ol><p><br></p><p><br></p><p><br></p>",
-      "status": "published",
-      "excerpt": "How digital currencies are transforming the $100 billion African remittance market﻿﻿﻿﻿﻿﻿﻿IntroductionIn the bustling markets of Lagos, the trading flo...",
-      "updatedAt": "2025-11-30T01:30:41.583Z",
-      "id": "mil1ipjsf75jv1a8gmo",
-      "createdAt": "2025-11-30T01:27:14.392Z"
-    },
-    {
-      "title": "Another Post Now",
-      "author": {
-        "name": "ABLX",
-        "photo": "https://res.cloudinary.com/campnet/image/upload/v1764460373/scylevmw0zetj1bos2fw.jpg"
-      },
-      "coverImage": "https://res.cloudinary.com/campnet/image/upload/v1764460264/dhkhftepkkteepv6vbim.png",
-      "tags": [
-        "Crypto",
-        "Bitcoin"
-      ],
-      "content": "<p>A very cool amazing blog.</p><p><img src=\"https://res.cloudinary.com/campnet/image/upload/v1764460296/ttsuxxe422tygpiutcjo.png\"></p>",
-      "status": "published",
-      "excerpt": "A very cool amazing blog.",
-      "updatedAt": "2025-11-29T23:52:57.043Z",
-      "id": "miky3un637lvuhqyk69",
-      "createdAt": "2025-11-29T23:51:42.306Z"
-    }
-  ],
-  "lastUpdated": "2025-11-30T01:30:41.595Z",
-  "totalPosts": 2
+  "posts": [],
+  "lastUpdated": "2025-12-01T04:20:13.703Z",
+  "totalPosts": 0
 }

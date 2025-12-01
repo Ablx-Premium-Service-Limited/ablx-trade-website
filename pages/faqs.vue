@@ -130,9 +130,6 @@
                                                 allowfullscreen>
                                             </iframe>
                                         </div>
-                                        <p class="text-sm text-gray-500 mt-2">
-                                            Learn how to verify your account with our step-by-step video guide.
-                                        </p>
                                     </div>
 
                                     <!-- Additional Info -->
