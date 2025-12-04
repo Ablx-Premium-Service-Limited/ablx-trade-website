@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['@/assets/css/index.css'],
+  plugins: [
+    '~/plugins/zoho-chat.client.js'
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
