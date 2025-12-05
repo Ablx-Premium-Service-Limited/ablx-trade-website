@@ -461,7 +461,7 @@
                     <div class="text-center">
                       <i class="fas fa-envelope text-2xl mb-2 text-yellow-300"></i>
                       <h4 class="font-bold mb-1">Legal Department</h4>
-                      <p class="text-blue-100">legal@ablxtrade.com</p>
+                      <p class="text-blue-100">hello@ablxtrade.com</p>
                     </div>
                     <div class="text-center">
                       <i class="fas fa-headset text-2xl mb-2 text-yellow-300"></i>
@@ -651,17 +651,17 @@ const services = [
 const transactionFees = [
   {
     type: 'Crypto Trading',
-    amount: '0.25%',
+    amount: '0%',
     description: 'Per trade (buy/sell)'
   },
   {
     type: 'Cross-Border Payments',
-    amount: '1.5%',
+    amount: '0%',
     description: 'Of transfer amount'
   },
   {
     type: 'Bank Transfers',
-    amount: '₦50',
+    amount: '₦0',
     description: 'Flat fee per transfer'
   }
 ]

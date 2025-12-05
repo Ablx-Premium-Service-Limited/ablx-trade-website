@@ -23,11 +23,11 @@
         <div>
           <h3 class="text-lg font-bold mb-4">Products</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">Convert gift cards to fiat</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Crypto Trading</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Cross-Border Payments</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Bill Payments</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Airtime & Data</a></li>
+            <li class="text-gray-400 hover:text-white">Convert gift cards to fiat</li>
+            <li class="text-gray-400 hover:text-white">Crypto Trading</li>
+            <li class="text-gray-400 hover:text-white">Cross-Border Payments</li>
+            <li class="text-gray-400 hover:text-white">Bill Payments</li>
+            <li class="text-gray-400 hover:text-white">Airtime & Data</li>
           </ul>
         </div>
 
@@ -35,7 +35,7 @@
           <h3 class="text-lg font-bold mb-4">Company</h3>
           <ul class="space-y-2">
             <li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
-            <li><a href="https://blog.ablxtrade.com" class="text-gray-400 hover:text-white">Blog</a></li>
+            <li><a href="https://blogs.ablxtrade.com" class="text-gray-400 hover:text-white">Blog</a></li>
           </ul>
         </div>
 
