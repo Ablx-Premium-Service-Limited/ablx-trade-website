@@ -10,7 +10,8 @@
           </div>
           <p class="text-gray-400">Where value meet exchange.</p>
           <div class="flex space-x-4 mt-4">
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100095155584258" class="text-gray-400 hover:text-white"><i
+                class="fab fa-facebook-f"></i></a>
             <a href="https://x.com/ablxtrade?s=11&t=0wg6bruDtVmOhaFsfSg3TQ" class="text-gray-400 hover:text-white"><i
                 class="fab fa-twitter"></i></a>
             <a href="https://www.instagram.com/ablxtrade/?igshid=MzRlODBiNWFlZA%3D%3D"
