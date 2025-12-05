@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white overflow-hidden relative">
+  <section class="pt-16 pb-16 md:pb-24 gradient-bg text-white overflow-hidden relative">
     <!-- Animated Background Elements -->
     <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse-slow"></div>
     <div class="absolute top-1/4 right-20 w-16 h-16 bg-yellow-400/20 rounded-full animate-pulse-slow"

@@ -3,8 +3,29 @@
     <!-- Navigation -->
     <Navigation />
 
+    <!-- Toast Notification -->
+    <div v-if="toast.show" :class="['fixed top-4 right-4 z-50 max-w-sm w-full p-4 rounded-lg shadow-lg transform transition-all duration-300',
+      toast.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200']"
+      @click="toast.show = false" role="alert">
+      <div class="flex items-center">
+        <div :class="['flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3',
+          toast.type === 'success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600']">
+          <i :class="toast.type === 'success' ? 'fas fa-check' : 'fas fa-exclamation-triangle'"></i>
+        </div>
+        <div class="flex-1">
+          <p :class="['font-medium text-sm',
+            toast.type === 'success' ? 'text-green-800' : 'text-red-800']">
+            {{ toast.message }}
+          </p>
+        </div>
+        <button class="ml-4 text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 gradient-bg text-white">
+    <section class="pt-16 pb-16 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
           <div
@@ -193,42 +214,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Quick Actions -->
-            <!-- <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-green-100 card-hover">
-              <h3 class="text-2xl font-bold mb-6 text-gray-800">Quick Help</h3>
-              <div class="space-y-4">
-                <a href="#" class="flex items-center p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group">
-                  <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center text-white mr-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-question-circle"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-800">FAQ Center</h4>
-                    <p class="text-sm text-gray-600">Find answers to common questions</p>
-                  </div>
-                </a>
-                
-                <a href="#" class="flex items-center p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group">
-                  <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center text-white mr-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-book"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-800">Help Documentation</h4>
-                    <p class="text-sm text-gray-600">Step-by-step guides and tutorials</p>
-                  </div>
-                </a>
-                
-                <a href="#" class="flex items-center p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300 group">
-                  <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center text-white mr-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-comments"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-800">Live Chat</h4>
-                    <p class="text-sm text-gray-600">Instant messaging with our team</p>
-                  </div>
-                </a>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -375,22 +360,42 @@ const form = ref({
 })
 
 const isSubmitting = ref(false)
-const submitError = ref('')
-const submitSuccess = ref('')
+
+// Toast notification state
+const toast = ref({
+  show: false,
+  message: '',
+  type: 'success' // 'success' or 'error'
+})
+
+// Show toast notification
+const showToast = (message, type = 'success') => {
+  toast.value = {
+    show: true,
+    message,
+    type
+  }
+
+  // Auto hide after 5 seconds
+  setTimeout(() => {
+    toast.value.show = false
+  }, 5000)
+}
 
 const submitForm = async () => {
   isSubmitting.value = true
-  submitError.value = ''
-  submitSuccess.value = ''
 
   try {
-    const { success, message } = await $fetch('/api/contact', {
+    const response = await $fetch('https://api.ablxtrade.com/api/contact', {
       method: 'POST',
       body: form.value
     })
 
-    if (success) {
-      submitSuccess.value = message
+    // Check if status is true (note: it's 'status' not 'success')
+    if (response.status === true) {
+      // Show success toast with the message from the API
+      showToast(response.message || 'Your message has been sent successfully! We will get back to you soon.', 'success')
+
       // Reset form
       form.value = {
         firstName: '',
@@ -400,10 +405,20 @@ const submitForm = async () => {
         subject: '',
         message: ''
       }
+    } else {
+      // Show error toast with the message from the API or default
+      showToast(response.message || 'Failed to send message. Please try again.', 'error')
     }
   } catch (error) {
-    submitError.value = error.data?.statusMessage || 'Failed to send message. Please try again.'
+    // Show error toast with error message
     console.error('Form submission error:', error)
+
+    // Try to extract error message from different possible locations
+    const errorMessage = error.data?.message ||
+      error.data?.statusMessage ||
+      error.message ||
+      'Failed to send message. Please try again.'
+    showToast(errorMessage, 'error')
   } finally {
     isSubmitting.value = false
   }
@@ -528,5 +543,38 @@ onMounted(() => {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Toast notification animations */
+.toast-enter-active {
+  animation: slideIn 0.3s ease;
+}
+
+.toast-leave-active {
+  animation: slideOut 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 </style>
