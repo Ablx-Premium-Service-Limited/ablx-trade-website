@@ -35,7 +35,7 @@
           <h3 class="text-lg font-bold mb-4">Company</h3>
           <ul class="space-y-2">
             <li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
-            <li><a href="/blogs" class="text-gray-400 hover:text-white">Blog</a></li>
+            <li><a href="https://blog.ablxtrade.com" class="text-gray-400 hover:text-white">Blog</a></li>
           </ul>
         </div>
 
