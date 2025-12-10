@@ -24,8 +24,8 @@
 
         <!-- CTA Buttons -->
         <div class="hidden lg:flex items-center space-x-4">
-          <button
-            class="px-8 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-yellow-400"
+          <button :class="hasLogo ? 'border border-grey-300' : 'border border-transparent'"
+            class="px-8 py-2.5 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             @click="scrollToHero">
             Get Started
           </button>
@@ -51,7 +51,7 @@
           </a>
           <div class="pt-4 space-y-3">
             <button
-              class="w-full px-4 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              class="w-full px-4 py-3 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               @click="scrollToHero">
               Get Started
             </button>
@@ -119,7 +119,7 @@ onUnmounted(() => {
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #0f48e4 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   position: relative;
   overflow: hidden;
 }
@@ -161,7 +161,6 @@ html {
 /* Enhanced focus states for accessibility */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid #fbbf24;
   outline-offset: 2px;
   border-radius: 8px;
 }

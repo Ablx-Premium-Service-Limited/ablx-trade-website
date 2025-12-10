@@ -26,28 +26,27 @@
 
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
           Your All-in-One
-          <span
-            class="text-yellow-300 bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">Fintech</span>
+          <span class="bg-clip-text italic">Fintech</span>
           Solution
         </h1>
 
         <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
           Buy and sell crypto/giftcards, pay bills, send money across borders, and manage your finances all in one <span
-            class="font-semibold text-yellow-300">secure platform</span>.
+            class="font-semibold">secure platform</span>.
         </p>
 
         <!-- Stats -->
         <div class="flex flex-wrap gap-6 mb-8">
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-yellow-300">$50M+</div>
+            <div class="text-2xl md:text-3xl font-bold">$50M+</div>
             <div class="text-sm opacity-80">Transactions</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-yellow-300">50K+</div>
+            <div class="text-2xl md:text-3xl font-bold">50K+</div>
             <div class="text-sm opacity-80">Active Users</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-yellow-300">99.9%</div>
+            <div class="text-2xl md:text-3xl font-bold">99.9%</div>
             <div class="text-sm opacity-80">Uptime</div>
           </div>
         </div>

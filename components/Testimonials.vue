@@ -3,26 +3,21 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="gradient-text">Users Say</span></h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied customers across Nigeria and Kenya</p>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied customers across Nigeria and
+          Kenya</p>
       </div>
-      
+
       <!-- Carousel Container -->
       <div class="relative max-w-xl mx-auto">
         <!-- Carousel Track -->
-        <div 
-          class="flex transition-transform duration-500 ease-in-out"
-          :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
-        >
-          <div 
-            v-for="testimonial in testimonials" 
-            :key="testimonial.id"
-            class="w-full flex-shrink-0 px-4"
-          >
+        <div class="flex transition-transform duration-500 ease-in-out"
+          :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+          <div v-for="testimonial in testimonials" :key="testimonial.id" class="w-full flex-shrink-0 px-4">
             <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 transition-all duration-500"
-                 :class="getCardClass(testimonial.id)">
+              :class="getCardClass(testimonial.id)">
               <div class="flex items-center mb-6">
                 <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-4"
-                     :class="getAvatarColor(testimonial.id)">
+                  :class="getAvatarColor(testimonial.id)">
                   {{ testimonial.avatar }}
                 </div>
                 <div>
@@ -31,34 +26,29 @@
                   <p class="text-gray-500 text-sm">{{ testimonial.role }}</p>
                 </div>
               </div>
-              
+
               <div class="flex mb-4">
                 <span v-for="star in 5" :key="star" class="text-yellow-400 text-xl">
-                  {{ star <= testimonial.rating ? '★' : '☆' }}
-                </span>
+                  {{ star <= testimonial.rating ? '★' : '☆' }} </span>
               </div>
-              
+
               <p class="text-gray-700 text-lg leading-relaxed italic">{{ testimonial.content }}</p>
             </div>
           </div>
         </div>
 
         <!-- Navigation Buttons -->
-        <button 
-          @click="prevSlide"
+        <button @click="prevSlide"
           class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 hover:scale-110 border border-gray-100"
-          aria-label="Previous testimonial"
-        >
+          aria-label="Previous testimonial">
           <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        
-        <button 
-          @click="nextSlide"
+
+        <button @click="nextSlide"
           class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10 hover:scale-110 border border-gray-100"
-          aria-label="Next testimonial"
-        >
+          aria-label="Next testimonial">
           <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
@@ -67,14 +57,10 @@
 
       <!-- Indicators -->
       <div class="flex justify-center mt-12 space-x-3">
-        <button
-          v-for="(_, index) in testimonials"
-          :key="index"
-          @click="goToSlide(index)"
+        <button v-for="(_, index) in testimonials" :key="index" @click="goToSlide(index)"
           class="w-3 h-3 rounded-full transition-all duration-300 hover:scale-125"
           :class="currentIndex === index ? 'bg-blue-600 w-8' : 'bg-gray-300 hover:bg-gray-400'"
-          :aria-label="`Go to testimonial ${index + 1}`"
-        />
+          :aria-label="`Go to testimonial ${index + 1}`" />
       </div>
     </div>
   </section>
@@ -212,7 +198,7 @@ export default {
 
 <style scoped>
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
