@@ -1,4 +1,5 @@
 <template>
+  <SchemaFAQ />
   <section id="faq" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in" ref="title">

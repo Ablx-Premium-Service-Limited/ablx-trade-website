@@ -192,8 +192,8 @@
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Visit Us</h4>
-                      <p class="text-blue-100">123 Financial District, Lagos, Nigeria</p>
-                      <p class="text-blue-100">456 Business Hub, Nairobi, Kenya</p>
+                      <p class="text-blue-100">19,olabode street, Ikotun Lagos</p>
+                      <p class="text-blue-100">Columbia height kiambu kenya</p>
                     </div>
                   </div>
                 </div>

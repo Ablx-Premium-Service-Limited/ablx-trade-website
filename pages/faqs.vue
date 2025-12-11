@@ -175,7 +175,7 @@
                                     Email Support
                                 </a>
                                 <a href="https://app.ablxtrade.com" target="_blank"
-                                    class="px-6 py-3 bg-yellow-400 text-gray-900 font-bold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center">
+                                    class="px-6 py-3 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center">
                                     <i class="fas fa-comments mr-2"></i>
                                     Live Chat
                                 </a>
