@@ -35,7 +35,7 @@
           </div>
 
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Get in <span class="text-yellow-300">Touch</span>
+            Get in <span class="italic">Touch</span>
           </h1>
 
           <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto opacity-95">
@@ -157,9 +157,9 @@
 
           <!-- Contact Information -->
           <div class="space-y-8 fade-in" style="animation-delay: 0.2s;">
-            <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white shadow-xl">
+            <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0]  rounded-2xl p-8 text-white shadow-xl">
               <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-yellow-300">Contact Information</h3>
+                <h3 class="text-2xl md:text-3xl font-bold mb-6">Contact Information</h3>
                 <p class="text-lg leading-relaxed mb-8">
                   Reach out to us through any of these channels. We're always here to support your financial journey.
                 </p>
@@ -167,7 +167,7 @@
                 <div class="space-y-6">
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                      <i class="fas fa-envelope text-yellow-300 text-xl"></i>
+                      <i class="fas fa-envelope text-xl"></i>
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Email Us</h4>
@@ -177,7 +177,7 @@
 
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                      <i class="fas fa-phone text-yellow-300 text-xl"></i>
+                      <i class="fas fa-phone text-xl"></i>
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Call Us</h4>
@@ -188,7 +188,7 @@
 
                   <div class="flex items-start">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                      <i class="fas fa-map-marker-alt text-yellow-300 text-xl"></i>
+                      <i class="fas fa-map-marker-alt text-xl"></i>
                     </div>
                     <div>
                       <h4 class="font-bold text-lg mb-1">Visit Us</h4>
@@ -257,44 +257,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 md:py-20 gradient-bg text-white" id="hero">
-      <div class="container mx-auto px-4 sm:px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Ready to <span class="text-yellow-300">Transform</span> Your Financial Experience?
-        </h2>
-        <p class="text-lg mb-10 max-w-2xl mx-auto opacity-95">
-          Join thousands of satisfied users who trust ABLX for their financial needs across Africa.
-        </p>
-        <div class="flex flex-col w-full sm:justify-center sm:flex-row gap-4" ref="buttons">
-          <a href="https://apps.apple.com/ng/app/ablxtrade-giftcards-crypto/id6476493549"
-            class="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-            <i class="fab fa-apple mr-3 text-xl"></i>
-            <div class="text-left">
-              <div class="text-xs opacity-70">Download on</div>
-              <div>App Store</div>
-            </div>
-          </a>
-
-          <a href="https://play.google.com/store/apps/details?id=app.ablxtrade.com"
-            class="group px-8 py-4 bg-gray-900 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
-            <i class="fab fa-google-play mr-3 text-xl"></i>
-            <div class="text-left">
-              <div class="text-xs opacity-70">Get it on</div>
-              <div>Google Play</div>
-            </div>
-          </a>
-
-          <a href="https://app.ablxtrade.com" target="_blank"
-            class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">
-            <i class="fas fa-rocket mr-3 text-xl"></i>
-            <div class="text-left">
-              <div class="text-xs opacity-70">Launch</div>
-              <div>Web App</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+    <CTA />
 
     <!-- Footer -->
     <Footer />
@@ -470,11 +433,11 @@ onMounted(() => {
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

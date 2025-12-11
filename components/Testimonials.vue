@@ -72,7 +72,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 export default {
   name: 'TestimonialsCarousel',
   setup() {
-    const currentIndex = ref(0)
+    const currentIndex = ref(1)
     const autoPlayInterval = ref(null)
 
     const testimonials = [

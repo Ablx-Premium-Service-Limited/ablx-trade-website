@@ -2,23 +2,26 @@
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
     <!-- Navigation -->
     <Navigation />
-    
+
     <!-- Hero Section -->
-    <section class="pt-24 pb-20 gradient-bg text-white">
+    <section class="pt-16 pb-20 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+          <div
+            class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
             <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
             <span class="text-sm font-medium">Revolutionizing Digital Finance Across Africa</span>
           </div>
-          
+
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Building the Future of
-            <span class="text-yellow-300 bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent"> African Finance</span>
+            <span class="text-white bg-clip-text text-transparent">
+              <span class="italic"> African Finance </span></span>
           </h1>
-          
+
           <p class="text-lg md:text-xl mb-10 leading-relaxed max-w-3xl mx-auto opacity-95">
-            We're on a mission to democratize financial services across Africa, making crypto trading, cross-border payments, and digital banking accessible to everyone.
+            We're on a mission to democratize financial services across Africa, making crypto trading, cross-border
+            payments, and digital banking accessible to everyone.
           </p>
 
           <div class="flex justify-center space-x-8 md:space-x-12 pt-4">
@@ -48,18 +51,20 @@
               <i class="fas fa-bullseye mr-2 text-base"></i>
               <span class="text-sm font-semibold">Our Mission</span>
             </div>
-            
+
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
               Empowering <span class="gradient-text">Financial Freedom</span> Across Africa
             </h2>
-            
+
             <div class="space-y-4">
               <p class="text-lg text-gray-600 leading-relaxed">
-                At ABLX, we believe that everyone deserves access to modern financial tools. Our mission is to break down barriers and create a seamless financial ecosystem that serves both urban and rural communities.
+                At ABLX, we believe that everyone deserves access to modern financial tools. Our mission is to break
+                down barriers and create a seamless financial ecosystem that serves both urban and rural communities.
               </p>
-              
+
               <p class="text-lg text-gray-600 leading-relaxed">
-                We're building bridges between traditional finance and the digital future, ensuring that no one is left behind in Africa's economic transformation.
+                We're building bridges between traditional finance and the digital future, ensuring that no one is left
+                behind in Africa's economic transformation.
               </p>
             </div>
 
@@ -129,32 +134,38 @@
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="text-center fade-in px-4 py-6">
-              <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
+              <div
+                class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2020
               </div>
               <h3 class="text-xl font-bold mb-3 text-gray-800">Foundation</h3>
               <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-              Born from the vision to solve cross-border payment challenges between Africans, addressing real financial pain points.
+                Born from the vision to solve cross-border payment challenges between Africans, addressing real
+                financial pain points.
               </p>
             </div>
 
             <div class="text-center fade-in px-4 py-6">
-              <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
+              <div
+                class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2021
               </div>
               <h3 class="text-xl font-bold mb-3 text-gray-800">Expansion</h3>
               <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-                Launched crypto trading and expanded our services to include bill payments, airtime, and data bundles for all networks.
+                Launched crypto trading and expanded our services to include bill payments, airtime, and data bundles
+                for all networks.
               </p>
             </div>
 
             <div class="text-center fade-in px-4 py-6">
-              <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
+              <div
+                class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2023
               </div>
               <h3 class="text-xl font-bold mb-3 text-gray-800">Growth</h3>
               <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-                Serving thousands of users across Africa with secure, fast, and affordable financial services, constantly innovating for our community.
+                Serving thousands of users across Africa with secure, fast, and affordable financial services,
+                constantly innovating for our community.
               </p>
             </div>
           </div>
@@ -247,7 +258,8 @@
             </ul>
           </div>
 
-          <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover border border-yellow-100">
+          <div
+            class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover border border-yellow-100">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
               <i class="fas fa-wifi"></i>
             </div>
@@ -297,7 +309,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Security First</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              We implement bank-level security measures to ensure your funds and data are always protected with advanced encryption and multi-factor authentication.
+              We implement bank-level security measures to ensure your funds and data are always protected with advanced
+              encryption and multi-factor authentication.
             </p>
           </div>
 
@@ -307,7 +320,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Innovation</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              We continuously evolve our platform with cutting-edge technology to provide the best financial solutions for Africa's unique challenges.
+              We continuously evolve our platform with cutting-edge technology to provide the best financial solutions
+              for Africa's unique challenges.
             </p>
           </div>
 
@@ -317,7 +331,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Customer Focus</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              Our users are at the heart of everything we do. We listen, adapt, and build solutions that truly meet their financial needs.
+              Our users are at the heart of everything we do. We listen, adapt, and build solutions that truly meet
+              their financial needs.
             </p>
           </div>
 
@@ -327,7 +342,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Financial Inclusion</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              We're committed to bringing financial services to underserved communities, breaking down barriers to economic participation across Africa.
+              We're committed to bringing financial services to underserved communities, breaking down barriers to
+              economic participation across Africa.
             </p>
           </div>
 
@@ -337,7 +353,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Transparency</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              We believe in clear communication, honest pricing, and building trust through complete transparency in all our operations and fees.
+              We believe in clear communication, honest pricing, and building trust through complete transparency in all
+              our operations and fees.
             </p>
           </div>
 
@@ -347,7 +364,8 @@
             </div>
             <h3 class="text-xl font-bold mb-4 text-gray-800">Excellence</h3>
             <p class="text-gray-600 leading-relaxed text-base">
-              We strive for excellence in every aspect of our service, from user experience to customer support and platform reliability and performance.
+              We strive for excellence in every aspect of our service, from user experience to customer support and
+              platform reliability and performance.
             </p>
           </div>
         </div>
@@ -372,7 +390,7 @@ useHead({
     { name: 'keywords', content: 'trading, finance, investment, ABLX Trade, online trading' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'generator', content: 'All in One SEO (AIOSEO) 4.8.3.2' },
-    
+
     // Open Graph tags
     { property: 'og:locale', content: 'en_US' },
     { property: 'og:site_name', content: 'ABLX Trade -' },
@@ -382,7 +400,7 @@ useHead({
     { property: 'og:url', content: 'https://ablxtrade.com/about/' },
     { property: 'article:published_time', content: '2024-07-06T12:55:51+00:00' },
     { property: 'article:modified_time', content: '2025-01-27T20:35:41+00:00' },
-    
+
     // Twitter Card tags
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'About - ABLX Trade' },
@@ -411,7 +429,7 @@ onMounted(() => {
 
 <style scoped>
 .gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -431,13 +449,16 @@ onMounted(() => {
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    opacity: 0.4; 
-    transform: scale(1); 
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
   }
-  50% { 
-    opacity: 0.6; 
-    transform: scale(1.05); 
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
   }
 }
 

@@ -54,21 +54,6 @@
                         <p v-if="errors.password" class="mt-1 text-sm text-red-600">{{ errors.password }}</p>
                     </div>
 
-                    <!-- Remember Me & Forgot Password -->
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input type="checkbox" id="remember" v-model="loginForm.remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <label for="remember" class="ml-2 block text-sm text-gray-700">
-                                Remember me
-                            </label>
-                        </div>
-
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-500 transition-colors">
-                            Forgot password?
-                        </a>
-                    </div>
-
                     <!-- General Error -->
                     <div v-if="errors.general" class="p-3 bg-red-50 border border-red-200 rounded-lg">
                         <p class="text-sm text-red-600">{{ errors.general }}</p>

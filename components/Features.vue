@@ -1,9 +1,8 @@
 <template>
   <section id="features" class="py-20 bg-white overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-
       <!-- Title Section -->
-      <div class="text-center mb-16 fade-in-up" ref="title">
+      <div class="text-center mb-16 fade-in-up">
         <div class="inline-block mb-4 px-4 py-1.5 bg-blue-50 rounded-full">
           <span class="text-sm font-semibold text-[#2E53B0]">POWERFUL FEATURES</span>
         </div>
@@ -18,16 +17,12 @@
       <!-- Infinite Carousel Container -->
       <div class="relative overflow-hidden py-8" @mouseenter="pauseAutoSlide" @mouseleave="startAutoSlide">
         <!-- Carousel Track -->
-        <div ref="carouselTrack" class="flex gap-6 transition-transform duration-500 ease-out"
+        <div ref="carouselTrack" class="flex gap-6 transition-transform duration-700 ease-out"
           :style="{ transform: `translateX(${translateX}px)` }" @touchstart="handleTouchStart"
           @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-          <!-- First set of features -->
-          <FeatureCard v-for="(feature, index) in features" :key="`first-${feature.id}`" :feature="feature"
-            class="carousel-item" />
-
-          <!-- Duplicated set for infinite effect -->
-          <FeatureCard v-for="(feature, index) in features" :key="`second-${feature.id}`" :feature="feature"
-            class="carousel-item" />
+          <!-- Dynamic features rendering with proper infinite loop -->
+          <FeatureCard v-for="(feature, index) in displayedFeatures" :key="`feature-${feature.id}-${index}`"
+            :feature="feature" class="carousel-item" />
         </div>
 
         <!-- Gradient Overlays -->
@@ -53,17 +48,16 @@
 
       <!-- Indicators -->
       <div class="flex justify-center items-center mt-12 gap-3">
-        <span v-for="(_, index) in features" :key="index" @click="goToSlide(index)"
-          class="relative cursor-pointer group" :class="currentActiveIndex === index ? 'w-10' : 'w-2'">
+        <span v-for="(feature, index) in features" :key="feature.id" @click="goToSlide(index)"
+          class="relative cursor-pointer group" :class="currentSlideIndex === index ? 'w-10' : 'w-2'">
           <span class="block h-2 rounded-full transition-all duration-300 group-hover:bg-[#00AAFD]"
-            :class="currentActiveIndex === index ? 'bg-[#2E53B0]' : 'bg-gray-300'"></span>
+            :class="currentSlideIndex === index ? 'bg-[#2E53B0]' : 'bg-gray-300'"></span>
           <span
             class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            {{ features[index].title }}
+            {{ feature.title }}
           </span>
         </span>
       </div>
-
     </div>
   </section>
 </template>
@@ -78,15 +72,15 @@ export default {
   setup() {
     const carouselTrack = ref(null);
     const translateX = ref(0);
-    const currentActiveIndex = ref(0);
+    const currentSlideIndex = ref(0);
     const isAnimating = ref(false);
     const autoSlideInterval = ref(null);
+    const cardGap = 24; // gap-6 = 24px
 
     // Touch handling
     const touchStartX = ref(0);
     const touchEndX = ref(0);
 
-    // Features with your color scheme
     const features = ref([
       {
         id: 1,
@@ -132,68 +126,90 @@ export default {
       }
     ]);
 
-    // Card width calculation
-    const cardWidth = computed(() => {
-      if (!carouselTrack.value || !carouselTrack.value.children[0]) return 384;
-      return carouselTrack.value.children[0].offsetWidth + 24;
+    // Create extended array for seamless infinite scroll
+    // We add extra features at the beginning and end for smooth transitions
+    const displayedFeatures = computed(() => {
+      const extended = [...features.value, ...features.value, ...features.value];
+      return extended;
     });
 
-    const totalItems = computed(() => features.value.length);
+    const cardWidth = computed(() => {
+      if (!carouselTrack.value || !carouselTrack.value.children[0]) return 384; // Default width for md
+      return carouselTrack.value.children[0].offsetWidth + cardGap;
+    });
 
-    const infiniteNextSlide = () => {
-      if (isAnimating.value) return;
-      isAnimating.value = true;
+    const totalSlides = computed(() => features.value.length);
+    const totalDisplayedSlides = computed(() => displayedFeatures.value.length);
+    const middleIndex = computed(() => totalSlides.value); // Start in the middle section
 
-      currentActiveIndex.value = (currentActiveIndex.value + 1) % totalItems.value;
-      translateX.value -= cardWidth.value;
-
-      // Reset to first set when reaching the duplicated set
-      setTimeout(() => {
-        if (currentActiveIndex.value === 0) {
-          translateX.value = -cardWidth.value * totalItems.value;
-        }
-        isAnimating.value = false;
-      }, 500);
+    // Initialize position to start in the middle section
+    const initializePosition = () => {
+      if (carouselTrack.value) {
+        currentSlideIndex.value = 0;
+        // Start at the beginning of the middle section
+        translateX.value = -(cardWidth.value * totalSlides.value);
+      }
     };
 
-    const infinitePrevSlide = () => {
+    const nextSlide = () => {
       if (isAnimating.value) return;
       isAnimating.value = true;
 
-      currentActiveIndex.value = currentActiveIndex.value === 0 ? totalItems.value - 1 : currentActiveIndex.value - 1;
+      currentSlideIndex.value = (currentSlideIndex.value + 1) % totalSlides.value;
+      translateX.value -= cardWidth.value;
+
+      // If we've reached the end of the middle section, instantly reset without animation
+      setTimeout(() => {
+        const currentPosition = -translateX.value / cardWidth.value;
+
+        // If we're at the last slide of the middle section
+        if (currentPosition >= totalSlides.value * 2 - 1) {
+          // Instantly jump back to the start of the middle section
+          translateX.value = -(cardWidth.value * totalSlides.value);
+        }
+
+        isAnimating.value = false;
+      }, 700); // Match the transition duration
+    };
+
+    const prevSlide = () => {
+      if (isAnimating.value) return;
+      isAnimating.value = true;
+
+      currentSlideIndex.value = currentSlideIndex.value === 0 ? totalSlides.value - 1 : currentSlideIndex.value - 1;
       translateX.value += cardWidth.value;
 
-      // Reset position for infinite scroll
+      // If we've reached the beginning of the middle section, instantly reset without animation
       setTimeout(() => {
-        if (currentActiveIndex.value === totalItems.value - 1) {
-          translateX.value = -cardWidth.value * (totalItems.value - 1);
+        const currentPosition = -translateX.value / cardWidth.value;
+
+        // If we're at the first slide of the middle section
+        if (currentPosition < totalSlides.value) {
+          // Instantly jump to the end of the middle section
+          translateX.value = -(cardWidth.value * (totalSlides.value * 2 - 1));
         }
+
         isAnimating.value = false;
-      }, 500);
+      }, 700); // Match the transition duration
     };
 
     const goToSlide = (index) => {
-      if (isAnimating.value) return;
+      if (isAnimating.value || currentSlideIndex.value === index) return;
       isAnimating.value = true;
 
-      const diff = index - currentActiveIndex.value;
+      const diff = index - currentSlideIndex.value;
       translateX.value -= diff * cardWidth.value;
-      currentActiveIndex.value = index;
+      currentSlideIndex.value = index;
 
       setTimeout(() => {
-        // Handle wrap-around
-        if (currentActiveIndex.value === 0 && diff > 0) {
-          translateX.value = -cardWidth.value * totalItems.value;
-        } else if (currentActiveIndex.value === totalItems.value - 1 && diff < 0) {
-          translateX.value = -cardWidth.value * (totalItems.value - 1);
-        }
         isAnimating.value = false;
-      }, 500);
+      }, 700);
     };
 
     // Auto-slide functionality
     const startAutoSlide = () => {
-      autoSlideInterval.value = setInterval(infiniteNextSlide, 4000);
+      if (autoSlideInterval.value) clearInterval(autoSlideInterval.value);
+      autoSlideInterval.value = setInterval(nextSlide, 4000);
     };
 
     const pauseAutoSlide = () => {
@@ -221,9 +237,9 @@ export default {
 
       if (Math.abs(diff) > threshold) {
         if (diff > 0) {
-          infiniteNextSlide();
+          nextSlide();
         } else {
-          infinitePrevSlide();
+          prevSlide();
         }
       }
 
@@ -232,11 +248,25 @@ export default {
       startAutoSlide();
     };
 
-    // Initialize
+    // Handle window resize
+    const handleResize = () => {
+      // Recalculate position based on new card width
+      if (carouselTrack.value) {
+        const newCardWidth = carouselTrack.value.children[0].offsetWidth + cardGap;
+        const currentPosition = -translateX.value / cardWidth.value;
+        translateX.value = -(newCardWidth * currentPosition);
+      }
+    };
+
     onMounted(() => {
-      // Start with middle set of features for infinite effect
-      translateX.value = -cardWidth.value * totalItems.value;
-      startAutoSlide();
+      // Wait for DOM to be ready
+      setTimeout(() => {
+        initializePosition();
+        startAutoSlide();
+      }, 100);
+
+      // Add resize listener
+      window.addEventListener('resize', handleResize);
 
       // Intersection Observer for animations
       const observer = new IntersectionObserver(
@@ -255,15 +285,17 @@ export default {
 
     onBeforeUnmount(() => {
       pauseAutoSlide();
+      window.removeEventListener('resize', handleResize);
     });
 
     return {
       carouselTrack,
       features,
+      displayedFeatures,
       translateX,
-      currentActiveIndex,
-      nextSlide: infiniteNextSlide,
-      prevSlide: infinitePrevSlide,
+      currentSlideIndex,
+      nextSlide,
+      prevSlide,
       goToSlide,
       startAutoSlide,
       pauseAutoSlide,
@@ -307,6 +339,6 @@ export default {
 
 /* Smooth transitions for carousel */
 .transition-transform {
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

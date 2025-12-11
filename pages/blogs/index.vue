@@ -4,7 +4,7 @@
     <Navigation />
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 gradient-bg text-white">
+    <section class="pt-16 pb-16 gradient-bg text-white">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
           <div
@@ -14,7 +14,7 @@
           </div>
 
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            ABLX <span class="text-yellow-300">Blog</span>
+            ABLX <span class="italic">Blog</span>
           </h1>
 
           <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto opacity-95">
@@ -567,11 +567,11 @@ onMounted(() => {
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

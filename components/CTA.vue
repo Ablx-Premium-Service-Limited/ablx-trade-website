@@ -25,7 +25,7 @@
         </a>
 
         <a href="https://app.ablxtrade.com" target="_blank"
-          class="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105 border-2 border-yellow-400">
+          class="group px-8 py-4 bg-[#00AAFD] text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center hover:scale-105">
           <i class="fas fa-rocket mr-3 text-xl"></i>
           <div class="text-left">
             <div class="text-xs opacity-70">Launch</div>

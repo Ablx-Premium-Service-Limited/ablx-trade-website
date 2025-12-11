@@ -21,13 +21,6 @@
       {{ feature.description }}
     </p>
 
-    <!-- Learn More Link -->
-    <div
-      class="flex items-center text-blue-600 dark:text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <span class="mr-2">Learn more</span>
-      <i class="fa-solid fa-arrow-right text-sm transform transition-transform group-hover:translate-x-2"></i>
-    </div>
-
     <!-- Decorative elements -->
     <div
       class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-transparent to-gray-50 dark:to-gray-900/20 rounded-tr-2xl rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">

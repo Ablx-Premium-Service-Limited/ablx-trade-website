@@ -18,13 +18,13 @@
             :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-blue-700 hover:text-blue-900'">
             {{ link.name }}
             <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00AAFD] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </div>
 
         <!-- CTA Buttons -->
         <div class="hidden lg:flex items-center space-x-4">
-          <button :class="hasLogo ? 'border border-grey-300' : 'border border-transparent'"
+          <button :class="hasLogo ? 'border border-white/40' : 'border border-transparent bg-[#00AAFD]'"
             class="px-8 py-2.5 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             @click="scrollToHero">
             Get Started
