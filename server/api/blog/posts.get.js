@@ -122,12 +122,6 @@ export default defineEventHandler(async (event) => {
         availableTags: allTags.filter(t => t).sort(),
         appliedFilters: { status, tag, author, search }
       },
-      debug: {
-        filterUsed: filter,
-        collection: 'feed-blogs',
-        database: db.databaseName,
-        timestamp: new Date().toISOString()
-      }
     }
     
     console.log('🎉 Response ready, returning', response.posts.length, 'posts')
