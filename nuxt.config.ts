@@ -40,6 +40,9 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    mongodbUri: process.env.MONGODB_URI,
+    mongodbDb: process.env.MONGODB_DB || 'blogs',
+
     public: {
       siteUrl: 'https://ablxtrade.com',
       blogSubdomain: 'blogs.ablxtrade.com'

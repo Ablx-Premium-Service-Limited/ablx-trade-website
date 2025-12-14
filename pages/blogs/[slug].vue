@@ -1,4 +1,5 @@
 <template>
+    <!-- Template remains exactly the same - no changes -->
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
         <!-- Navigation -->
         <Navigation />
@@ -394,23 +395,31 @@ const moreArticles = ref([])
 const tableOfContents = ref([])
 const contentElement = ref(null)
 
-// Methods
+// Methods - UPDATED: Fetch from MongoDB API
 const fetchBlogPost = async () => {
     loading.value = true
     error.value = false
 
     try {
-        // Fetch all posts from the JSON file
-        const response = await fetch('/blog/posts.json')
+        console.log('📡 Fetching single post with ID:', blogId)
+
+        // Fetch single post from MongoDB API
+        const response = await fetch(`/api/blog/${blogId}`)
+
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('Post not found')
+            } else if (response.status === 400) {
+                throw new Error('Invalid post ID')
+            } else {
+                throw new Error(`Server error: ${response.status}`)
+            }
+        }
+
         const data = await response.json()
 
-        allPosts.value = data.posts.filter(post => post.status === 'published')
-
-        // Find the specific post by ID
-        const foundPost = allPosts.value.find(p => p.id === blogId)
-
-        if (foundPost) {
-            post.value = foundPost
+        if (data.success) {
+            post.value = data.post
 
             // Update SEO with actual post data
             useSeoMeta({
@@ -421,33 +430,60 @@ const fetchBlogPost = async () => {
                 ogImage: post.value.coverImage || 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&h=630&fit=crop&auto=format'
             })
 
-            // Get related posts (exclude current post)
-            relatedPosts.value = allPosts.value
-                .filter(p => p.id !== blogId)
-                .slice(0, 3)
+            // Get related posts from API response
+            relatedPosts.value = data.relatedPosts || []
 
-            // Get more articles for the bottom section
-            moreArticles.value = allPosts.value
-                .filter(p => p.id !== blogId)
-                .slice(0, 3)
+            // Fetch more articles for the bottom section
+            await fetchMoreArticles()
 
             // Generate table of contents after content is rendered
             await nextTick()
             generateTableOfContents()
+
+            console.log('✅ Post loaded successfully')
         } else {
+            console.error('API returned unsuccessful response')
             error.value = true
         }
     } catch (err) {
         console.error('Error fetching blog post:', err)
+
+        // User-friendly error messages
+        if (err.message.includes('not found')) {
+            console.error('Post not found with ID:', blogId)
+        } else if (err.message.includes('Invalid')) {
+            console.error('Invalid post ID format:', blogId)
+        }
+
         error.value = true
     } finally {
         loading.value = false
     }
 }
 
-const generateTableOfContents = () => {
-    console.log('Found headings for TOC:', contentElement.value)
+// Fetch more articles for the bottom section
+const fetchMoreArticles = async () => {
+    try {
+        // Fetch recent published posts (excluding current post)
+        const response = await fetch('/api/blog/posts?status=published&limit=3')
 
+        if (response.ok) {
+            const data = await response.json()
+
+            if (data.success) {
+                // Filter out the current post and get top 3
+                moreArticles.value = data.posts
+                    .filter(p => p.id !== blogId)
+                    .slice(0, 3)
+            }
+        }
+    } catch (err) {
+        console.error('Error fetching more articles:', err)
+        moreArticles.value = [] // Set empty array on error
+    }
+}
+
+const generateTableOfContents = () => {
     if (!contentElement.value) return
 
     const headings = contentElement.value.querySelectorAll('h1, h2, h3, h4, h5, h6')
@@ -496,7 +532,7 @@ const toggleBookmark = () => {
 const shareOnTwitter = () => {
     const text = `Check out this article: ${post.value.title}`
     const url = window.location.href
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank')
+    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank')
 }
 
 const shareOnLinkedIn = () => {
@@ -548,6 +584,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* All CSS remains exactly the same - no changes */
 .gradient-bg {
     background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
 }

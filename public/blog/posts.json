@@ -1,5 +1,23 @@
 {
-  "posts": [],
-  "lastUpdated": "2025-12-01T04:20:13.703Z",
-  "totalPosts": 0
+  "posts": [
+    {
+      "title": "ABLX TRADE",
+      "author": {
+        "name": "ABLX",
+        "photo": "https://res.cloudinary.com/campnet/image/upload/v1765634424/fxhbbckub9jtq0d7ueqf.png"
+      },
+      "coverImage": "https://res.cloudinary.com/campnet/image/upload/v1765634433/i4gly7hu74prh75zgrht.jpg",
+      "tags": [
+        "Crypto"
+      ],
+      "content": "<p>My amazing blog content</p><p><strong>Nice one guys.</strong></p><ol><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>wer</li></ol>",
+      "status": "draft",
+      "excerpt": "My amazing blog contentNice one guys.wer",
+      "updatedAt": "2025-12-13T14:01:11.399Z",
+      "id": "mj4d6dbbcntti96y1fs",
+      "createdAt": "2025-12-13T14:01:11.399Z"
+    }
+  ],
+  "lastUpdated": "2025-12-13T14:01:11.561Z",
+  "totalPosts": 1
 }

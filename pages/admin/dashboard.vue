@@ -243,36 +243,51 @@ const formatDate = (dateString) => {
     })
 }
 
-const loadBlogPosts = async () => {
+const loadBlogPosts = async (options = {}) => {
     loading.value = true
     try {
-        // Load from the JSON file in public folder
-        const response = await fetch('/blog/posts.json')
+        // Load from MongoDB API with optional filters
+        const queryParams = new URLSearchParams()
+
+        if (options.limit) queryParams.set('limit', options.limit)
+        if (options.page) queryParams.set('page', options.page)
+        if (options.status) queryParams.set('status', options.status)
+        if (options.tag) queryParams.set('tag', options.tag)
+        if (options.search) queryParams.set('search', options.search)
+        if (options.sortBy) queryParams.set('sortBy', options.sortBy)
+        if (options.sortOrder) queryParams.set('sortOrder', options.sortOrder)
+
+        const queryString = queryParams.toString()
+        const url = `/api/blog/posts${queryString ? `?${queryString}` : ''}`
+
+        const response = await fetch(url)
+
         if (response.ok) {
             const data = await response.json()
-            blogPosts.value = data.posts || []
+            if (data.success) {
+                blogPosts.value = data.posts || []
+                // Return additional data for pagination/filters
+                return {
+                    posts: data.posts,
+                    pagination: data.pagination,
+                    filters: data.filters,
+                    metadata: data.metadata
+                }
+            } else {
+                blogPosts.value = []
+                return { posts: [], pagination: null }
+            }
         } else {
-            // If file doesn't exist, start with empty array
+            console.error('Failed to load posts:', response.statusText)
             blogPosts.value = []
+            return { posts: [], pagination: null }
         }
     } catch (error) {
         console.error('Error loading blog posts:', error)
         blogPosts.value = []
+        return { posts: [], pagination: null }
     } finally {
         loading.value = false
-    }
-}
-
-const saveBlogPosts = async () => {
-    try {
-        await $fetch('/api/blog/save-post', {
-            method: 'POST',
-            body: { posts: blogPosts.value }
-        })
-
-    } catch (error) {
-        console.error('Error saving blog posts:', error)
-        throw error
     }
 }
 
@@ -282,57 +297,155 @@ const editPost = (post) => {
 }
 
 const deletePost = async (postId) => {
-    if (confirm('Are you sure you want to delete this post?')) {
-        loading.value = true
-        try {
-            blogPosts.value = blogPosts.value.filter(post => post.id !== postId)
-            await saveBlogPosts()
-        } catch (error) {
-            alert('Failed to delete post. Please try again.')
-        } finally {
-            loading.value = false
-        }
+    if (!confirm('Are you sure you want to delete this post?')) {
+        return
     }
-}
 
-const handlePostSaved = async (postData) => {
     loading.value = true
+
     try {
-        if (editingPost.value) {
-            // Update existing post
-            const index = blogPosts.value.findIndex(p => p.id === editingPost.value.id)
-            if (index !== -1) {
-                blogPosts.value[index] = {
-                    ...postData,
-                    updatedAt: new Date().toISOString()
-                }
-            }
+        // Option 1: Delete from database only
+        const response = await $fetch(`/api/blog/${postId}`, {
+            method: 'DELETE'
+        })
+
+        if (response.success) {
+            // Remove from local state
+            blogPosts.value = blogPosts.value.filter(post => post.id !== postId)
+
+            // Optional: Show success message
+            alert('Post deleted successfully!')
+
+            // Optional: Refresh data from server
+            // await loadBlogPosts()
         } else {
-            // Add new post
-            blogPosts.value.unshift({
-                ...postData,
-                id: generateId(),
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString()
-            })
+            throw new Error('Delete operation failed')
         }
 
-        await saveBlogPosts()
-        handleModalClosed()
     } catch (error) {
-        alert('Failed to save post. Please try again.')
+        console.error('❌ Error deleting post:', error)
+
+        // User-friendly error message
+        let errorMessage = 'Failed to delete post. Please try again.'
+
+        if (error.data?.statusMessage) {
+            errorMessage = error.data.statusMessage
+        } else if (error.message.includes('404')) {
+            errorMessage = 'Post not found. It may have already been deleted.'
+        } else if (error.message.includes('Network')) {
+            errorMessage = 'Network error. Please check your connection.'
+        }
+
+        alert(errorMessage)
+
+        // If delete failed, reload posts to sync with server
+        await loadBlogPosts()
+
     } finally {
         loading.value = false
     }
 }
 
+
+const handlePostSaved = async (postData) => {
+    loading.value = true;
+
+    try {
+        let result
+
+        if (editingPost.value) {
+            // Update single post using updateOne action
+            result = await $fetch('/api/blog/save-post', {
+                method: 'POST',
+                body: {
+                    posts: [{
+                        ...postData,
+                        id: editingPost.value.id
+                    }],
+                    action: 'updateOne'
+                }
+            })
+
+            if (result.success) {
+                alert('✅ Post updated successfully')
+                await loadBlogPosts()
+                handleModalClosed()
+            } else {
+                throw new Error('Failed to update post')
+            }
+        } else {
+            // Create new post using upsert action
+            const newPost = {
+                ...postData,
+                id: generateId(), // Keep your client-side ID for local state
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            }
+
+            result = await $fetch('/api/blog/save-post', {
+                method: 'POST',
+                body: {
+                    posts: [newPost],
+                    action: 'upsert'
+                }
+            })
+
+            if (result.success) {
+                // Use server-generated ID if available
+                const serverId = result.upsertedIds?.[0] || result.postId
+                const finalPost = {
+                    ...newPost,
+                    id: serverId || newPost.id // Prefer server ID
+                }
+
+                // Add to local state
+                blogPosts.value.unshift(finalPost)
+
+                alert('✅ Post created successfully')
+                handleModalClosed()
+            } else {
+                throw new Error('Failed to create post')
+            }
+        }
+
+    } catch (error) {
+        console.error('❌ Error saving post:', error)
+
+        // User-friendly error messages
+        let errorMessage = 'Failed to save post. Please try again.'
+
+        if (error.data?.statusMessage) {
+            errorMessage = error.data.statusMessage
+        } else if (error.message.includes('Duplicate')) {
+            errorMessage = 'A post with this slug already exists. Please use a different title.'
+        } else if (error.message.includes('Network')) {
+            errorMessage = 'Network error. Please check your connection.'
+        }
+
+        alert(errorMessage)
+
+        // Don't close modal on error - let user fix and retry
+        return false
+
+    } finally {
+        loading.value = false
+    }
+}
+
+
+// Helper function to generate a MongoDB-compatible ID
+const generateId = () => {
+    // Generate a 24-character hex string (like MongoDB ObjectId)
+    return [...Array(24)].map(() =>
+        Math.floor(Math.random() * 16).toString(16)
+    ).join('')
+}
+
+
+
 const handleModalClosed = () => {
     showCreateModal.value = false
     editingPost.value = null
-}
-
-const generateId = () => {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2)
 }
 
 const handleLogout = async () => {

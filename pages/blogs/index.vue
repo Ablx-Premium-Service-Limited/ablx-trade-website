@@ -504,7 +504,7 @@ const fetchBlogPosts = async () => {
   loading.value = true
   try {
     // Fetch from your posts.json file
-    const response = await fetch('/blog/posts.json')
+    const response = await fetch('/api/blog/posts')
     const data = await response.json()
 
     allPosts.value = data.posts.filter(post => post.status === 'published');
