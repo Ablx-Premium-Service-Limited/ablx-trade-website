@@ -268,17 +268,37 @@
 import { onMounted, ref } from 'vue'
 
 // SEO Meta Data
+import { useRuntimeConfig } from '#imports'
+
+const config = useRuntimeConfig()
+const route = useRoute()
+
+// Site configuration
+const siteUrl = config.public.siteUrl || 'https://ablxtrade.com'
+const currentUrl = `${siteUrl}${route.path}`.replace(/\/$/, '') // Remove trailing slash
+
 useHead({
   title: 'Contact Us | ABLX Fintech - Get in Touch with African Financial Experts',
+  htmlAttrs: {
+    lang: 'en',
+    prefix: 'og: https://ogp.me/ns#'
+  },
   meta: [
+    // Basic Meta Tags
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=5' },
+    
+    // Primary SEO Meta
     {
       name: 'description',
       content: 'Contact ABLX Fintech for all your financial service inquiries. Get support for crypto trading, cross-border payments, bill payments, and more across Africa.'
     },
     {
       name: 'keywords',
-      content: 'contact ablx, fintech support, crypto trading help, cross-border payments, african finance, customer service'
+      content: 'contact ablx, fintech support, crypto trading help, cross-border payments, african finance, customer service, financial support africa, ablx trade contact, crypto help, fintech contact'
     },
+    
+    // Open Graph Meta
     {
       property: 'og:title',
       content: 'Contact ABLX Fintech - African Financial Services Support'
@@ -292,6 +312,36 @@ useHead({
       content: 'website'
     },
     {
+      property: 'og:url',
+      content: currentUrl
+    },
+    {
+      property: 'og:image',
+      content: `${siteUrl}/favi.png`
+    },
+    {
+      property: 'og:image:alt',
+      content: 'ABLX Fintech Contact Us - African Financial Experts'
+    },
+    {
+      property: 'og:image:width',
+      content: '1200'
+    },
+    {
+      property: 'og:image:height',
+      content: '630'
+    },
+    {
+      property: 'og:site_name',
+      content: 'ABLX Fintech'
+    },
+    {
+      property: 'og:locale',
+      content: 'en_US'
+    },
+    
+    // Twitter Card Meta
+    {
       name: 'twitter:card',
       content: 'summary_large_image'
     },
@@ -302,15 +352,155 @@ useHead({
     {
       name: 'twitter:description',
       content: 'Reach out to ABLX Fintech for all your financial service needs and inquiries.'
+    },
+    {
+      name: 'twitter:image',
+      content: `${siteUrl}/favi.png`
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Contact ABLX Fintech Support Team'
+    },
+    {
+      name: 'twitter:site',
+      content: '@ablxtrade'
+    },
+    {
+      name: 'twitter:creator',
+      content: '@ablxtrade'
+    },
+    
+    // Robots & Crawling
+    {
+      name: 'robots',
+      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    },
+    {
+      name: 'googlebot',
+      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    },
+    {
+      name: 'bingbot',
+      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    },
+    
+    // Additional Meta Tags
+    {
+      name: 'author',
+      content: 'ABLX Fintech'
+    },
+    {
+      name: 'publisher',
+      content: 'ABLX Fintech'
+    },
+    {
+      name: 'theme-color',
+      content: '#1e40af'
+    },
+    
+    // Structured Data Hints
+    {
+      name: 'thumbnail',
+      content: `${siteUrl}/images/contact-thumbnail.jpg`
     }
   ],
   link: [
     {
       rel: 'canonical',
-      href: 'https://ablxtrade.com/contact/'
+      href: currentUrl
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/apple-touch-icon.png'
+    },
+    {
+      rel: 'manifest',
+      href: '/site.webmanifest'
+    },
+    {
+      rel: 'alternate',
+      hreflang: 'x-default',
+      href: currentUrl
+    },
+    {
+      rel: 'alternate',
+      hreflang: 'en',
+      href: currentUrl
+    },
+    {
+      rel: 'amphtml',
+      href: `${siteUrl}/amp/contact`
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact ABLX Fintech",
+        "description": "Contact page for ABLX Fintech - African financial services and cryptocurrency trading platform",
+        "url": currentUrl,
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": siteUrl
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Contact Us",
+              "item": currentUrl
+            }
+          ]
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ABLX Fintech",
+        "url": siteUrl,
+        "logo": `${siteUrl}/logo.png`,
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+234-810-9657-477", // Add your actual phone number
+            "contactType": "customer service",
+            "areaServed": "NG", // Add country codes you serve
+            "availableLanguage": ["English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "email": "support@ablxtrade.com", // Add your actual email
+            "contactType": "customer support",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English"]
+          }
+        ],
+        "sameAs": [
+          "https://x.com/ablxtrade?s=11&t=0wg6bruDtVmOhaFsfSg3TQ",
+          "https://facebook.com/ablxtrade",
+          "https://www.linkedin.com/in/ablxtrade/",
+          "https://www.instagram.com/ablxtrade/?igshid=MzRlODBiNWFlZA%3D%3D"
+        ]
+      })
     }
   ]
 })
+
 
 // Form state
 const form = ref({

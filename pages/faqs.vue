@@ -174,11 +174,6 @@
                                     <i class="fas fa-envelope mr-2"></i>
                                     Email Support
                                 </a>
-                                <a href="https://app.ablxtrade.com" target="_blank"
-                                    class="px-6 py-3 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center">
-                                    <i class="fas fa-comments mr-2"></i>
-                                    Live Chat
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -199,63 +194,57 @@
 import { ref, computed, onMounted } from 'vue'
 
 // SEO Meta Data
+useSeoMeta({
+  title: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  ogTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  description: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  ogDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  ogImage: 'https://ablxtrade.com/favi.png',
+  ogImageAlt: 'ABLX Trade FAQ',
+  ogUrl: 'https://ablxtrade.com/faqs',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  twitterDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  twitterImage: 'https://ablxtrade.com/favi.png',
+  robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+});
+
+// Set additional head tags
 useHead({
-    title: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
-    meta: [
-        {
-            name: 'description',
-            content: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.'
-        },
-        {
-            name: 'keywords',
-            content: 'ABLX Trade FAQ, trading questions, crypto support, gift card trading, account verification, fees, security'
-        },
-        {
-            property: 'og:title',
-            content: 'FAQ - ABLX Trade Frequently Asked Questions'
-        },
-        {
-            property: 'og:description',
-            content: 'Get answers to common questions about ABLX Trade platform, trading, security, and account management.'
-        },
-        {
-            property: 'og:type',
-            content: 'article'
-        },
-        {
-            name: 'twitter:card',
-            content: 'summary_large_image'
-        },
-        {
-            name: 'twitter:title',
-            content: 'ABLX Trade FAQ - Your Questions Answered'
-        },
-        {
-            name: 'twitter:description',
-            content: 'Complete FAQ for ABLX Trade financial platform and services.'
-        },
-        {
-            name: 'robots',
-            content: 'index, follow'
-        }
-    ],
-    link: [
-        {
-            rel: 'canonical',
-            href: 'https://ablxtrade.com/faq'
-        }
-    ],
-    script: [
-        {
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": []
-            })
-        }
-    ]
-})
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://ablxtrade.com/faqs'
+    }
+  ],
+  meta: [
+    {
+      name: 'keywords',
+      content: 'ABLX Trade FAQ, trading questions, crypto support, gift card trading, account verification, fees, security'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(item => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+          }
+        }))
+      })
+    }
+  ]
+});
 
 // Complete FAQ Data with all objects
 const faqs = [

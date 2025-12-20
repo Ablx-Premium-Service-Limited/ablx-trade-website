@@ -359,229 +359,490 @@
 </template>
 
 <script setup>
-// Get the route parameter
-const route = useRoute()
-const blogId = route.params.slug
-
-// SEO Configuration
-useSeoMeta({
-    title: 'Blog Article | ABLX Fintech',
-    description: 'Read this insightful article about financial technology and cryptocurrency trends.',
-    ogTitle: 'ABLX Blog Article',
-    ogDescription: 'Insightful analysis and trends in financial technology and cryptocurrency.',
-    ogImage: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&h=630&fit=crop&auto=format',
-    twitterCard: 'summary_large_image'
-})
-
-useHead({
-    link: [
+    import { useRuntimeConfig } from '#imports'
+    
+    // Get the route parameter
+    const route = useRoute()
+    const blogId = route.params.slug
+    const config = useRuntimeConfig()
+    
+    // Reactive data
+    const email = ref('')
+    const isSubscribing = ref(false)
+    const isBookmarked = ref(false)
+    const loading = ref(true)
+    const error = ref(false)
+    const post = ref(null)
+    const allPosts = ref([])
+    const relatedPosts = ref([])
+    const moreArticles = ref([])
+    const tableOfContents = ref([])
+    const contentElement = ref(null)
+    
+    // Site URL configuration
+    const siteUrl = config.public.siteUrl || 'https://ablxtrade.com'
+    const currentUrl = computed(() => `${siteUrl}/blogs/${blogId}`)
+    
+    // Dynamic SEO Meta
+    const seoTitle = computed(() => 
+      post.value ? `${post.value.title} | ABLX Fintech Blog` : 'ABLX Fintech Blog'
+    )
+    
+    const seoDescription = computed(() => 
+      post.value?.excerpt || post.value?.description || 
+      'Read insightful articles about financial technology, cryptocurrency trends, and trading strategies on ABLX Fintech Blog.'
+    )
+    
+    const seoImage = computed(() => 
+      post.value?.coverImage || post.value?.featuredImage || 
+      `${siteUrl}/images/blog-og-default.jpg`
+    )
+    
+    const seoKeywords = computed(() => 
+      post.value?.keywords || post.value?.tags?.join(', ') || 
+      'cryptocurrency, fintech, trading, blockchain, digital assets, finance'
+    )
+    
+    // Structured Data for Rich Results
+    const structuredData = computed(() => {
+      if (!post.value) return null
+      
+      return {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.value.title,
+        "description": seoDescription.value,
+        "image": seoImage.value,
+        "author": {
+          "@type": "Organization",
+          "name": "ABLX Trade",
+          "url": siteUrl
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ABLX Trade",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${siteUrl}/favi.png`
+          }
+        },
+        "datePublished": post.value.publishedAt || post.value.createdAt,
+        "dateModified": post.value.updatedAt || post.value.publishedAt || post.value.createdAt,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": currentUrl.value
+        },
+        "keywords": seoKeywords.value,
+        "wordCount": post.value.content ? post.value.content.split(' ').length : 0,
+        "timeRequired": `PT${calculateReadTime(post.value.content).replace(' min read', 'M')}`,
+        "url": currentUrl.value,
+        "articleSection": post.value.category || "Fintech"
+      }
+    })
+    
+    // Breadcrumb Structured Data
+    const breadcrumbData = computed(() => ({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-            rel: 'canonical',
-            href: `https://ablxtrade.com/blogs/${blogId}`
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": siteUrl
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": `${siteUrl}/blogs`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.value?.title || "Article",
+          "item": currentUrl.value
         }
-    ]
-})
-
-// Reactive data
-const email = ref('')
-const isSubscribing = ref(false)
-const isBookmarked = ref(false)
-const loading = ref(true)
-const error = ref(false)
-const post = ref(null)
-const allPosts = ref([])
-const relatedPosts = ref([])
-const moreArticles = ref([])
-const tableOfContents = ref([])
-const contentElement = ref(null)
-
-// Methods - UPDATED: Fetch from MongoDB API
-const fetchBlogPost = async () => {
-    loading.value = true
-    error.value = false
-
-    try {
+      ]
+    }))
+    
+    // Apply SEO Meta
+    watchEffect(() => {
+      useSeoMeta({
+        // Basic Meta
+        title: seoTitle.value,
+        description: seoDescription.value,
+        
+        // Open Graph
+        ogTitle: seoTitle.value,
+        ogDescription: seoDescription.value,
+        ogImage: seoImage.value,
+        ogImageAlt: post.value?.title || 'ABLX Fintech Blog Article',
+        ogUrl: currentUrl.value,
+        ogType: 'article',
+        ogSiteName: 'ABLX Trade',
+        ogLocale: 'en_US',
+        
+        // Twitter
+        twitterCard: 'summary_large_image',
+        twitterTitle: seoTitle.value,
+        twitterDescription: seoDescription.value,
+        twitterImage: seoImage.value,
+        twitterSite: '@ablxtrade',
+        twitterCreator: '@ablxtrade',
+        
+        // Additional Meta
+        keywords: seoKeywords.value,
+        author: 'ABLX Trade',
+        
+        // Robots
+        robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+        
+        // Article Specific
+        articlePublishedTime: post.value?.publishedAt || post.value?.createdAt,
+        articleModifiedTime: post.value?.updatedAt || post.value?.publishedAt || post.value?.createdAt,
+        articleAuthor: 'ABLX Trade',
+        articleSection: post.value?.category || 'Fintech',
+        articleTag: post.value?.tags || ['fintech', 'cryptocurrency']
+      })
+    })
+    
+    // Set additional head tags
+    useHead({
+      htmlAttrs: {
+        lang: 'en',
+        prefix: 'og: https://ogp.me/ns#'
+      },
+      link: [
+        {
+          rel: 'canonical',
+          href: currentUrl.value
+        },
+        {
+          rel: 'amphtml',
+          href: `${siteUrl}/amp/blogs/${blogId}`
+        },
+        {
+          rel: 'author',
+          href: `${siteUrl}/about`
+        },
+        {
+          rel: 'publisher',
+          href: siteUrl
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: currentUrl.value
+        }
+      ],
+      meta: [
+        {
+          name: 'googlebot',
+          content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+        },
+        {
+          name: 'bingbot',
+          content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+        },
+        {
+          name: 'thumbnail',
+          content: seoImage.value
+        },
+        {
+          property: 'article:author',
+          content: 'ABLX Trade'
+        },
+        {
+          property: 'article:publisher',
+          content: siteUrl
+        }
+      ]
+    })
+    
+    // Add structured data script
+    watch(structuredData, (data) => {
+      if (!data) return
+      
+      useHead({
+        script: [
+          {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify(data)
+          },
+          {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify(breadcrumbData.value)
+          }
+        ]
+      })
+    })
+    
+    // Methods
+    const fetchBlogPost = async () => {
+      loading.value = true
+      error.value = false
+    
+      try {
         console.log('📡 Fetching single post with ID:', blogId)
-
+    
         // Fetch single post from MongoDB API
         const response = await fetch(`/api/blog/${blogId}`)
-
+    
         if (!response.ok) {
-            if (response.status === 404) {
-                throw new Error('Post not found')
-            } else if (response.status === 400) {
-                throw new Error('Invalid post ID')
-            } else {
-                throw new Error(`Server error: ${response.status}`)
-            }
+          if (response.status === 404) {
+            throw new Error('Post not found')
+          } else if (response.status === 400) {
+            throw new Error('Invalid post ID')
+          } else {
+            throw new Error(`Server error: ${response.status}`)
+          }
         }
-
+    
         const data = await response.json()
-
+    
         if (data.success) {
-            post.value = data.post
-
-            // Update SEO with actual post data
-            useSeoMeta({
-                title: `${post.value.title} | ABLX Blog`,
-                description: post.value.excerpt || 'Read this insightful article about financial technology and cryptocurrency trends.',
-                ogTitle: post.value.title,
-                ogDescription: post.value.excerpt || 'Insightful analysis and trends in financial technology and cryptocurrency.',
-                ogImage: post.value.coverImage || 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&h=630&fit=crop&auto=format'
-            })
-
-            // Get related posts from API response
-            relatedPosts.value = data.relatedPosts || []
-
-            // Fetch more articles for the bottom section
-            await fetchMoreArticles()
-
-            // Generate table of contents after content is rendered
-            await nextTick()
-            generateTableOfContents()
-
-            console.log('✅ Post loaded successfully')
+          post.value = data.post
+    
+          // Get related posts from API response
+          relatedPosts.value = data.relatedPosts || []
+    
+          // Fetch more articles for the bottom section
+          await fetchMoreArticles()
+    
+          // Generate table of contents after content is rendered
+          await nextTick()
+          generateTableOfContents()
+    
+          console.log('✅ Post loaded successfully')
         } else {
-            console.error('API returned unsuccessful response')
-            error.value = true
+          console.error('API returned unsuccessful response')
+          error.value = true
         }
-    } catch (err) {
+      } catch (err) {
         console.error('Error fetching blog post:', err)
-
-        // User-friendly error messages
-        if (err.message.includes('not found')) {
-            console.error('Post not found with ID:', blogId)
-        } else if (err.message.includes('Invalid')) {
-            console.error('Invalid post ID format:', blogId)
-        }
-
+        
+        // Set proper error state for SEO
+        useSeoMeta({
+          title: 'Article Not Found | ABLX Blog',
+          description: 'The requested blog article could not be found. Explore other fintech articles on ABLX Blog.',
+          robots: 'noindex, follow'
+        })
+        
         error.value = true
-    } finally {
+      } finally {
         loading.value = false
+      }
     }
-}
-
-// Fetch more articles for the bottom section
-const fetchMoreArticles = async () => {
-    try {
+    
+    const fetchMoreArticles = async () => {
+      try {
         // Fetch recent published posts (excluding current post)
         const response = await fetch('/api/blog/posts?status=published&limit=3')
-
+    
         if (response.ok) {
-            const data = await response.json()
-
-            if (data.success) {
-                // Filter out the current post and get top 3
-                moreArticles.value = data.posts
-                    .filter(p => p.id !== blogId)
-                    .slice(0, 3)
-            }
+          const data = await response.json()
+    
+          if (data.success) {
+            // Filter out the current post and get top 3
+            moreArticles.value = data.posts
+              .filter(p => p.id !== blogId)
+              .slice(0, 3)
+          }
         }
-    } catch (err) {
+      } catch (err) {
         console.error('Error fetching more articles:', err)
-        moreArticles.value = [] // Set empty array on error
+        moreArticles.value = []
+      }
     }
-}
-
-const generateTableOfContents = () => {
-    if (!contentElement.value) return
-
-    const headings = contentElement.value.querySelectorAll('h1, h2, h3, h4, h5, h6')
-    const toc = []
-
-    headings.forEach((heading, index) => {
-        // Generate ID if not exists
-        let id = heading.id
-        if (!id) {
-            id = `section-${index}`
-            heading.id = id
-        }
-
-        // Get heading text (remove any HTML tags)
+    
+    const generateTableOfContents = () => {
+      if (!contentElement.value) return
+    
+      const headings = contentElement.value.querySelectorAll('h1, h2, h3')
+      const toc = []
+    
+      headings.forEach((heading, index) => {
+        // Generate semantic ID
         const text = heading.textContent || heading.innerText
-
+        const id = text.toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/--+/g, '-')
+        
+        heading.id = id || `section-${index}`
+        
+        // Add aria-label for accessibility
+        heading.setAttribute('aria-label', text)
+        
         toc.push({
-            id: id,
-            text: text,
-            level: parseInt(heading.tagName.charAt(1))
+          id: heading.id,
+          text: text,
+          level: parseInt(heading.tagName.charAt(1))
         })
-    })
-
-    tableOfContents.value = toc
-}
-
-const subscribeNewsletter = async () => {
-    if (email.value) {
-        isSubscribing.value = true
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        alert(`Thank you for subscribing with ${email.value}! You'll receive our latest insights.`)
-        email.value = ''
+      })
+    
+      tableOfContents.value = toc
+    }
+    
+    const subscribeNewsletter = async () => {
+      if (!email.value || !validateEmail(email.value)) return
+      
+      isSubscribing.value = true
+      try {
+        const response = await fetch('/api/newsletter/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.value })
+        })
+        
+        if (response.ok) {
+          alert(`Thank you for subscribing with ${email.value}! You'll receive our latest insights.`)
+          email.value = ''
+        }
+      } catch (err) {
+        console.error('Subscription error:', err)
+      } finally {
         isSubscribing.value = false
+      }
     }
-}
-
-const toggleBookmark = () => {
-    isBookmarked.value = !isBookmarked.value
-    // You could save to localStorage or send to API
-    if (isBookmarked.value) {
-        // Save bookmark logic
+    
+    const validateEmail = (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      return re.test(email)
     }
-}
-
-const shareOnTwitter = () => {
-    const text = `Check out this article: ${post.value.title}`
-    const url = window.location.href
-    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank')
-}
-
-const shareOnLinkedIn = () => {
-    const url = window.location.href
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
-}
-
-const shareOnFacebook = () => {
-    const url = window.location.href
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank')
-}
-
-const copyLink = async () => {
-    try {
-        await navigator.clipboard.writeText(window.location.href)
-        alert('Link copied to clipboard!')
-    } catch (err) {
+    
+    const toggleBookmark = () => {
+      isBookmarked.value = !isBookmarked.value
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        const bookmarks = JSON.parse(localStorage.getItem('ablx_blog_bookmarks') || '[]')
+        if (isBookmarked.value) {
+          bookmarks.push(blogId)
+        } else {
+          const index = bookmarks.indexOf(blogId)
+          if (index > -1) bookmarks.splice(index, 1)
+        }
+        localStorage.setItem('ablx_blog_bookmarks', JSON.stringify(bookmarks))
+      }
+    }
+    
+    const shareOnTwitter = () => {
+      const text = `Check out "${post.value.title}" on ABLX Trade Blog`
+      const url = currentUrl.value
+      const via = 'ablxtrade'
+      const hashtags = post.value?.tags?.slice(0, 2).join(',') || 'fintech,crypto'
+      
+      window.open(
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&via=${via}&hashtags=${hashtags}`,
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
+    
+    const shareOnLinkedIn = () => {
+      const url = currentUrl.value
+      window.open(
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
+    
+    const shareOnFacebook = () => {
+      const url = currentUrl.value
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
+    
+    const copyLink = async () => {
+      try {
+        await navigator.clipboard.writeText(currentUrl.value)
+        // Show toast notification instead of alert
+        const toast = document.createElement('div')
+        toast.textContent = 'Link copied to clipboard!'
+        toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#10B981;color:white;padding:12px;border-radius:8px;z-index:1000;'
+        document.body.appendChild(toast)
+        setTimeout(() => toast.remove(), 3000)
+      } catch (err) {
         console.error('Failed to copy link:', err)
+      }
     }
-}
-
-const scrollToSection = (event) => {
-    event.preventDefault()
-    const targetId = event.target.getAttribute('href').substring(1)
-    const targetElement = document.getElementById(targetId)
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    
+    const scrollToSection = (event) => {
+      event.preventDefault()
+      const targetId = event.target.getAttribute('href').substring(1)
+      const targetElement = document.getElementById(targetId)
+      if (targetElement) {
+        // Add smooth scroll with offset for fixed headers
+        const offset = 100
+        const elementPosition = targetElement.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
+    
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+        
+        // Update URL hash without scrolling
+        history.pushState(null, null, `#${targetId}`)
+      }
     }
-}
+    
+    const formatDate = (dateString) => {
+      const date = new Date(dateString)
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        timeZone: 'UTC'
+      })
+    }
+    
+    const calculateReadTime = (content) => {
+      if (!content) return '3 min read'
+    
+      // Remove HTML tags for accurate word count
+      const text = content.replace(/<[^>]*>/g, '')
+      const wordCount = text.split(/\s+/).filter(word => word.length > 0).length
+      const readTime = Math.max(1, Math.ceil(wordCount / 200))
+      return `${readTime} min read`
+    }
+    
+    // Initialize reading progress
+    const readingProgress = ref(0)
+    onMounted(() => {
+      // Fetch the blog post data
+      fetchBlogPost()
+      
+      // Setup reading progress
+      if (typeof window !== 'undefined') {
+        window.addEventListener('scroll', () => {
+          const scrollTop = window.pageYOffset
+          const docHeight = document.body.scrollHeight - window.innerHeight
+          const scrollPercent = (scrollTop / docHeight) * 100
+          readingProgress.value = scrollPercent
+        })
+      }
+      
+      // Check if bookmarked
+      if (typeof window !== 'undefined') {
+        const bookmarks = JSON.parse(localStorage.getItem('ablx_blog_bookmarks') || '[]')
+        isBookmarked.value = bookmarks.includes(blogId)
+      }
+    })
+    
+    // Cleanup
+    onBeforeUnmount(() => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', () => {})
+      }
+    })
+    </script>
 
-const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' }
-    return new Date(dateString).toLocaleDateString('en-US', options)
-}
-
-const calculateReadTime = (content) => {
-    if (!content) return '3 min read'
-
-    // Simple calculation: 200 words per minute
-    const wordCount = content.split(' ').length
-    const readTime = Math.ceil(wordCount / 200)
-    return `${readTime} min read`
-}
-
-onMounted(() => {
-    // Fetch the blog post data
-    fetchBlogPost()
-})
-</script>
 
 <style scoped>
 /* All CSS remains exactly the same - no changes */
