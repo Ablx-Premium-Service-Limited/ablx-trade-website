@@ -193,59 +193,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-// SEO Meta Data
-useSeoMeta({
-  title: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
-  ogTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
-  description: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
-  ogDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
-  ogImage: 'https://ablxtrade.com/favi.png',
-  ogImageAlt: 'ABLX Trade FAQ',
-  ogUrl: 'https://ablxtrade.com/faqs',
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-  twitterTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
-  twitterDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
-  twitterImage: 'https://ablxtrade.com/favi.png',
-  robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
-});
-
-// Set additional head tags
-useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://ablxtrade.com/faqs'
-    }
-  ],
-  meta: [
-    {
-      name: 'keywords',
-      content: 'ABLX Trade FAQ, trading questions, crypto support, gift card trading, account verification, fees, security'
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(item => ({
-          "@type": "Question",
-          "name": item.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": item.answer
-          }
-        }))
-      })
-    }
-  ]
-});
-
 // Complete FAQ Data with all objects
 const faqs = [
     {
@@ -425,6 +372,59 @@ const faqs = [
         "category": "account"
     }
 ]
+
+// SEO Meta Data
+useSeoMeta({
+  title: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  ogTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  description: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  ogDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  ogImage: 'https://ablxtrade.com/favi.png',
+  ogImageAlt: 'ABLX Trade FAQ',
+  ogUrl: 'https://ablxtrade.com/faqs',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'FAQ | ABLX Trade - Frequently Asked Questions & Support',
+  twitterDescription: 'Find answers to frequently asked questions about ABLX Trade. Learn about trading, security, fees, account verification, and more.',
+  twitterImage: 'https://ablxtrade.com/favi.png',
+  robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+});
+
+// Set additional head tags
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://ablxtrade.com/faqs'
+    }
+  ],
+  meta: [
+    {
+      name: 'keywords',
+      content: 'ABLX Trade FAQ, trading questions, crypto support, gift card trading, account verification, fees, security'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(item => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+          }
+        }))
+      })
+    }
+  ]
+});
 
 // Reactive data
 const searchQuery = ref('')
