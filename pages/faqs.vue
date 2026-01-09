@@ -206,6 +206,7 @@ const faqs = [
         "question": "How does ABLX Trade work?",
         "answer": "ABLX Trade is a secure and user-friendly cryptocurrency exchange platform that allows you to buy, sell, and trade digital assets seamlessly. Here's how it works:\n1. Sign Up & Verify: Create an account and complete the Know Your Customer (KYC) verification for security and compliance.\n2. Request wallet: request wallet to trade your crypto currencies by clicking on trade, choosing your preferred asset to trade and inputing the amount you intend to exchange then clicking proceed.\n3. Trade Crypto: sell cryptocurrencies at real-time market rates.\n4. Withdraw Your Funds: Securely withdraw your fiat to your preferred  bank account.\n5. Stay Secure & Updated: Enable two-factor authentication (2FA) and receive price alerts for better trading decisions.",
         "category": "getting-started",
+        "videoUrl": "https://youtu.be/fQUK_h-CaSg?si=iXFMl1hgAouSeQ_o"
     },
     {
         "id": "9976e50e-0592-4775-9578-057d72415e3r",
