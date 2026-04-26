@@ -7,7 +7,6 @@
 </template>
 
 <script setup>
-
 const route = useRoute()
 
 useHead({
@@ -37,6 +36,22 @@ useHead({
     { name: "twitter:title", content: "AblxTrade – Your Gateway to Seamless Trading" },
     { name: "twitter:description", content: "Experience seamless trading with ABLX Trade. Join us today and take your trading to the next level" },
     { name: "twitter:image", content: "https://ablxtrade.com/favi.png" }
+  ],
+
+  // Add Google Analytics scripts here
+  script: [
+    {
+      src: "https://www.googletagmanager.com/gtag/js?id=G-7QFHT17M93",
+      async: true
+    },
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7QFHT17M93');
+      `
+    }
   ]
 })
 </script>
