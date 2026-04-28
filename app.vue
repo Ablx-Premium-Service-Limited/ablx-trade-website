@@ -21,6 +21,10 @@ useHead({
   ],
 
   meta: [
+  {
+      name: 'google-site-verification',
+      content: 'XIqdZ2NPk9fBcal_leBJO4SGUxffyEweDPxnr9rpu44'
+    },
     { name: "description", content: "Experience seamless trading with ABLX Trade. Join us today and take your trading to the next level!" },
 
     // Open Graph
