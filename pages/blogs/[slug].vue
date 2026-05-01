@@ -583,9 +583,7 @@
       loading.value = true
       error.value = false
     
-      try {
-        console.log('📡 Fetching single post with ID:', blogId)
-    
+      try {    
         // Fetch single post from MongoDB API
         const response = await fetch(`/api/blog/${blogId}`)
     
@@ -613,9 +611,7 @@
           // Generate table of contents after content is rendered
           await nextTick()
           generateTableOfContents()
-    
-          console.log('✅ Post loaded successfully')
-        } else {
+            } else {
           console.error('API returned unsuccessful response')
           error.value = true
         }
