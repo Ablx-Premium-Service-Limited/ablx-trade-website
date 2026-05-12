@@ -1,21 +1,20 @@
-// server/api/blog/posts/[id].get.js
+// server/api/blog/[id].get.js — segment is slug (title-based) or legacy MongoDB ObjectId
 import { connectToDatabase, serializeDocument } from '../../utils/mongodb.js'
 import { ObjectId } from 'mongodb'
+import { titleToSlug } from '#blog-slug'
 
 export default defineEventHandler(async (event) => {
-  console.log('📝 GET /api/blog/posts/[id] - Starting')
+  console.log('📝 GET /api/blog/[id] - Starting')
   
   try {
-    // Get the post ID from URL parameters
-    const { id } = event.context.params
-    console.log('🔍 Requested post ID:', id)
+    const { id: segment } = event.context.params
+    const id = segment ? decodeURIComponent(segment) : ''
+    console.log('🔍 Requested post segment:', id)
     
-    // Validate the ID format
-    if (!id || !ObjectId.isValid(id)) {
-      console.error('❌ Invalid post ID format:', id)
+    if (!id || typeof id !== 'string') {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Invalid post ID format. ID must be a 24-character hex string.'
+        statusMessage: 'Invalid blog URL'
       })
     }
     
@@ -26,21 +25,40 @@ export default defineEventHandler(async (event) => {
     
     const collection = db.collection('feed-blogs')
     
-    // Convert string ID to MongoDB ObjectId
-    const objectId = new ObjectId(id)
-    console.log('🎯 Searching for post with _id:', objectId.toString())
-    
-    // Find the post by ID
     console.log('⏳ Fetching post from MongoDB...')
-    const post = await collection.findOne({ _id: objectId })
+    let post = null
+    let objectId = null
+
+    if (ObjectId.isValid(id) && String(new ObjectId(id)) === id) {
+      objectId = new ObjectId(id)
+      post = await collection.findOne({ _id: objectId })
+    }
+
+    if (!post) {
+      post = await collection.findOne({ slug: id })
+    }
+
+    if (!post) {
+      const cursor = collection.find({
+        $or: [{ slug: { $exists: false } }, { slug: null }, { slug: '' }]
+      })
+      for await (const doc of cursor) {
+        if (titleToSlug(doc.title || '') === id) {
+          post = doc
+          break
+        }
+      }
+    }
     
     if (!post) {
-      console.error('❌ Post not found with ID:', id)
+      console.error('❌ Post not found for segment:', id)
       throw createError({
         statusCode: 404,
         statusMessage: 'Blog post not found'
       })
     }
+
+    objectId = post._id
     
     console.log('✅ Post found:', post.title || 'Untitled')
     
@@ -49,7 +67,7 @@ export default defineEventHandler(async (event) => {
       { _id: objectId },
       { $inc: { views: 1 } }
     ).then(() => {
-      console.log('👁️ View count incremented for post:', id)
+      console.log('👁️ View count incremented for post:', objectId.toString())
     }).catch(err => {
       console.error('⚠️ Failed to increment view count:', err.message)
     })
@@ -57,7 +75,7 @@ export default defineEventHandler(async (event) => {
     // Get related posts (same category or tags)
     let relatedPosts = []
     try {
-      relatedPosts = await getRelatedPosts(collection, post, objectId)
+      relatedPosts = await getRelatedPosts(collection, post, post._id)
       console.log(`🔗 Found ${relatedPosts.length} related posts`)
     } catch (error) {
       console.error('⚠️ Error fetching related posts:', error.message)
@@ -73,7 +91,7 @@ export default defineEventHandler(async (event) => {
       relatedPosts,
       metadata: {
         fetchedAt: new Date().toISOString(),
-        postId: id,
+        postId: objectId.toString(),
         hasRelatedPosts: relatedPosts.length > 0
       }
     }

@@ -9,6 +9,15 @@
                     placeholder="Enter post title" />
             </div>
 
+            <!-- Description (SEO / summaries) -->
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea id="description" v-model="form.description" rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Short summary for search and social previews. If empty, the post title is used." />
+                <p class="text-xs text-gray-500 mt-1">Used in meta tags; leave blank to use the title instead.</p>
+            </div>
+
             <!-- Author Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Author Name -->
@@ -133,6 +142,7 @@ const coverImageInput = ref(null)
 // Form data
 const form = ref({
     title: '',
+    description: '',
     author: {
         name: '',
         photo: ''
@@ -157,7 +167,13 @@ watch(() => props.modelValue, (val) => {
 
 watch(() => props.post, (val) => {
     if (val) {
-        form.value = { ...val }
+        const { metaDescription: _md, ...rest } = val
+        form.value = {
+            ...rest,
+            description: val.description != null ? String(val.description) : '',
+            author: { name: '', photo: '', ...val.author },
+            tags: Array.isArray(val.tags) ? [...val.tags] : []
+        }
     } else {
         resetForm()
     }
@@ -167,6 +183,7 @@ watch(() => props.post, (val) => {
 const resetForm = () => {
     form.value = {
         title: '',
+        description: '',
         author: {
             name: '',
             photo: ''

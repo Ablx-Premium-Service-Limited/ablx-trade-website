@@ -1,5 +1,6 @@
 // server/utils/mongodb.js
 import { MongoClient, ObjectId } from 'mongodb'
+import { titleToSlug, blogMetaDescription } from '#blog-slug'
 
 let cachedClient = null
 let cachedDb = null
@@ -39,8 +40,12 @@ export function serializeDocument(doc) {
   if (!doc) return doc
   
   const { _id, ...rest } = doc
-  return { 
+  const slug = rest.slug || titleToSlug(rest.title || '')
+  const serialized = {
     id: _id ? _id.toString() : null,
-    ...rest
+    ...rest,
+    slug
   }
+  serialized.metaDescription = blogMetaDescription(serialized)
+  return serialized
 }

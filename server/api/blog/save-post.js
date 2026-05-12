@@ -1,6 +1,7 @@
 // server/api/blog/save-post.js
-import { connectToDatabase } from '~/server/utils/mongodb.js'
+import { connectToDatabase } from '../../utils/mongodb.js'
 import { ObjectId } from 'mongodb'
+import { titleToSlug } from '#blog-slug'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -144,7 +145,7 @@ async function handleUpsert(collection, posts) {
 
 // Helper function 3: Update single post
 async function handleUpdateOne(collection, post) {
-  const { id, ...postData } = post
+  const { id, metaDescription: _md, ...postData } = post
   
   // Validate post ID
   if (!id || !ObjectId.isValid(id)) {
@@ -158,6 +159,10 @@ async function handleUpdateOne(collection, post) {
   const updateData = {
     ...postData,
     updatedAt: new Date()
+  }
+
+  if (postData.title) {
+    updateData.slug = titleToSlug(postData.title)
   }
   
   // Convert date strings to Date objects if needed
@@ -191,7 +196,7 @@ async function handleUpdateOne(collection, post) {
 
 // Helper function to prepare post data
 function preparePostForSave(post) {
-  const { id, ...postData } = post
+  const { id, metaDescription: _meta, ...postData } = post
 
   delete postData.createdAt;
   delete postData.updatedAt;
@@ -199,6 +204,10 @@ function preparePostForSave(post) {
   // Prepare the post object
   const preparedPost = {
     ...postData,
+  }
+
+  if (preparedPost.title) {
+    preparedPost.slug = titleToSlug(preparedPost.title)
   }
   
   // Add _id if valid ObjectId is provided

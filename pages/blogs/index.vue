@@ -67,7 +67,7 @@
                   </h2>
 
                   <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {{ featuredPost.excerpt || 'Read this featured article for the latest insights.' }}
+                    {{ featuredPost.excerpt?.trim() || blogMetaDescription(featuredPost) || 'Read this featured article for the latest insights.' }}
                   </p>
 
                   <div class="flex items-center justify-between">
@@ -80,7 +80,7 @@
                         <p class="text-gray-500 text-sm">Author</p>
                       </div>
                     </div>
-                    <NuxtLink :to="`/blogs/${featuredPost.id}`"
+                    <NuxtLink :to="blogPathForPost(featuredPost)"
                       class="inline-flex items-center gradient-bg text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
                       Read More
                       <i class="fas fa-arrow-right ml-2"></i>
@@ -182,11 +182,11 @@
 
                     <h3
                       class="text-xl font-bold mb-3 text-gray-800 leading-tight hover:text-blue-600 transition-colors duration-300">
-                      <NuxtLink :to="`/blogs/${post.id}`">{{ post.title }}</NuxtLink>
+                      <NuxtLink :to="blogPathForPost(post)">{{ post.title }}</NuxtLink>
                     </h3>
 
                     <p class="text-gray-600 mb-4 leading-relaxed line-clamp-2">
-                      {{ post.excerpt || 'Read this article for valuable insights.' }}
+                      {{ post.excerpt?.trim() || blogMetaDescription(post) || 'Read this article for valuable insights.' }}
                     </p>
 
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
@@ -196,7 +196,7 @@
                           :alt="post.author.name" class="w-8 h-8 rounded-full mr-3">
                         <span class="text-sm font-medium text-gray-700">{{ post.author.name }}</span>
                       </div>
-                      <NuxtLink :to="`/blogs/${post.id}`"
+                      <NuxtLink :to="blogPathForPost(post)"
                         class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center transition-colors duration-300">
                         Read More
                         <i class="fas fa-arrow-right ml-1 text-xs"></i>
@@ -261,7 +261,7 @@
                     <div>
                       <h4
                         class="font-semibold text-gray-800 text-sm mb-1 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
-                        <NuxtLink :to="`/blogs/${post.id}`">{{ post.title }}</NuxtLink>
+                        <NuxtLink :to="blogPathForPost(post)">{{ post.title }}</NuxtLink>
                       </h4>
                       <div class="flex items-center text-gray-500 text-xs">
                         <span>{{ formatDate(post.createdAt) }}</span>
@@ -341,6 +341,8 @@
 </template>
 
 <script setup>
+import { blogPathForPost, blogMetaDescription } from '#blog-slug'
+
 // SEO Configuration
 useSeoMeta({
   title: 'Blog | ABLX Fintech - Financial Insights, Crypto Trends & Fintech News',
@@ -411,6 +413,7 @@ const filteredPosts = computed(() => {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(post =>
       post.title.toLowerCase().includes(query) ||
+      (post.description && String(post.description).toLowerCase().includes(query)) ||
       (post.excerpt && post.excerpt.toLowerCase().includes(query)) ||
       (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
     )

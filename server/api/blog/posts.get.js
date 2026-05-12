@@ -58,6 +58,7 @@ export default defineEventHandler(async (event) => {
     if (search) {
       filter.$or = [
         { title: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } },
         { excerpt: { $regex: search, $options: 'i' } },
         { content: { $regex: search, $options: 'i' } }
       ]
