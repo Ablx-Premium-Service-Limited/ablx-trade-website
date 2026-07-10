@@ -45,7 +45,7 @@ useHead({
   // Add Google Analytics scripts here
   script: [
     {
-      src: "https://www.googletagmanager.com/gtag/js?id=G-7QFHT17M93",
+      src: "https://www.googletagmanager.com/gtag/js?id=G-MFE8253FY8",
       async: true
     },
     {
@@ -53,7 +53,7 @@ useHead({
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-7QFHT17M93');
+        gtag('config', 'G-MFE8253FY8');
       `
     }
   ]
