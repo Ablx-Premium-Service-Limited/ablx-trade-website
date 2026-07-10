@@ -49,13 +49,17 @@ useHead({
       async: true
     },
     {
-      children: `
+      innerHTML: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-MFE8253FY8');
-      `
+      `,
+      type: 'text/javascript'
     }
-  ]
+  ],
+  __dangerouslyDisableSanitizersByTagID: {
+    'ga-inline': ['innerHTML']
+  }
 })
 </script>
