@@ -9,6 +9,13 @@
 <script setup>
 const route = useRoute()
 
+const { isDark } = useTheme()
+useHead({
+  htmlAttrs: {
+    class: computed(() => (isDark.value ? 'dark' : '')),
+  },
+})
+
 useHead({
   titleTemplate: (title) =>
     title ? `${title} | AblxTrade` : "AblxTrade – Your Gateway to Seamless Trading",

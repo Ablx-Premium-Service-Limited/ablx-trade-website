@@ -1,35 +1,31 @@
-const THEME_KEY = 'ablx-theme'
-
-const isDark = ref(false)
-let initialized = false
-
-function applyTheme(dark) {
-  if (typeof document === 'undefined') return
-  document.documentElement.classList.toggle('dark', dark)
-}
+// Stored in a cookie (not localStorage) so the server can read it during SSR
+// and render the correct icon/colors on the first response — no flash on refresh.
+const systemPrefersDark = ref(false)
+let listenerAttached = false
 
 export function useTheme() {
-  if (!initialized && import.meta.client) {
-    initialized = true
+  const theme = useCookie('ablx-theme', {
+    default: () => null,
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  })
 
-    // The inline head script already applied the class before hydration; just read it.
-    isDark.value = document.documentElement.classList.contains('dark')
-
+  if (import.meta.client && !listenerAttached) {
+    listenerAttached = true
     const media = window.matchMedia('(prefers-color-scheme: dark)')
+    systemPrefersDark.value = media.matches
     media.addEventListener('change', (e) => {
-      if (!localStorage.getItem(THEME_KEY)) {
-        isDark.value = e.matches
-        applyTheme(isDark.value)
-      }
+      systemPrefersDark.value = e.matches
     })
   }
 
+  const isDark = computed(() =>
+    theme.value ? theme.value === 'dark' : systemPrefersDark.value
+  )
+
   function setTheme(mode) {
-    isDark.value = mode === 'dark'
-    applyTheme(isDark.value)
-    if (import.meta.client) {
-      localStorage.setItem(THEME_KEY, mode)
-    }
+    theme.value = mode
   }
 
   function toggleTheme() {

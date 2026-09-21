@@ -21,16 +21,6 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/zoho-chat.client.js'
   ],
-  app: {
-    head: {
-      script: [
-        {
-          // Applies the theme class before hydration/paint to avoid a flash of the wrong theme.
-          innerHTML: `(function(){try{var t=localStorage.getItem('ablx-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
-        },
-      ],
-    },
-  },
   postcss: {
     plugins: {
       tailwindcss: {},
