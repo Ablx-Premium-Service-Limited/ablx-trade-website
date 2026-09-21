@@ -219,6 +219,52 @@
                 </tr>
               </tbody>
             </table>
+
+            <!-- Pagination -->
+            <div
+              v-if="pagination.total > 0"
+              class="px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-200"
+            >
+              <p class="text-sm text-gray-600">
+                Showing
+                <span class="font-medium">{{ (pagination.page - 1) * pagination.limit + 1 }}</span>
+                to
+                <span class="font-medium">{{ Math.min(pagination.page * pagination.limit, pagination.total) }}</span>
+                of
+                <span class="font-medium">{{ pagination.total }}</span>
+                posts
+              </p>
+              <div class="flex items-center space-x-1">
+                <button
+                  @click="prevPage"
+                  :disabled="currentPage === 1"
+                  class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Previous
+                </button>
+                <button
+                  v-for="(p, index) in pageNumbers"
+                  :key="`${p}-${index}`"
+                  @click="goToPage(p)"
+                  :disabled="p === '...'"
+                  class="min-w-9 px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                  :class="p === currentPage
+                    ? 'bg-blue-600 text-white'
+                    : p === '...'
+                      ? 'text-gray-400 cursor-default'
+                      : 'border border-gray-300 text-gray-600 hover:bg-gray-50'"
+                >
+                  {{ p }}
+                </button>
+                <button
+                  @click="nextPage"
+                  :disabled="currentPage === totalPages"
+                  class="px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -281,24 +327,45 @@ const editingPost = ref(null);
 const loading = ref(false);
 const isLoggingOut = ref(false);
 
-// Stats
-const stats = computed(() => {
-  const totalPosts = blogPosts.value.length;
-  const publishedPosts = blogPosts.value.filter(
-    (post) => post.status === "published",
-  ).length;
-  const draftPosts = blogPosts.value.filter(
-    (post) => post.status === "draft",
-  ).length;
-  const allTags = blogPosts.value.flatMap((post) => post.tags);
-  const uniqueTags = [...new Set(allTags)];
+// Pagination
+const pageSize = 10;
+const currentPage = ref(1);
+const pagination = ref({ total: 0, page: 1, limit: pageSize, pages: 1 });
+const totalPages = computed(() => pagination.value.pages || 1);
 
-  return {
-    totalPosts,
-    publishedPosts,
-    draftPosts,
-    totalTags: uniqueTags.length,
-  };
+// Windowed page-number list with ellipses, e.g. [1, '...', 4, 5, 6, '...', 12]
+const pageNumbers = computed(() => {
+  const total = totalPages.value;
+  const current = currentPage.value;
+  const delta = 2;
+  const range = [];
+  const withDots = [];
+  let last;
+
+  for (let i = 1; i <= total; i++) {
+    if (i === 1 || i === total || (i >= current - delta && i <= current + delta)) {
+      range.push(i);
+    }
+  }
+
+  range.forEach((i) => {
+    if (last) {
+      if (i - last === 2) withDots.push(last + 1);
+      else if (i - last > 2) withDots.push("...");
+    }
+    withDots.push(i);
+    last = i;
+  });
+
+  return withDots;
+});
+
+// Stats (counts come from the API's own countDocuments totals, not the current page)
+const stats = ref({
+  totalPosts: 0,
+  publishedPosts: 0,
+  draftPosts: 0,
+  totalTags: 0,
 });
 
 // Methods
@@ -325,16 +392,15 @@ const loadBlogPosts = async (options = {}) => {
     // Load from MongoDB API with optional filters
     const queryParams = new URLSearchParams();
 
-    if (options.limit) queryParams.set("limit", options.limit);
-    if (options.page) queryParams.set("page", options.page);
+    queryParams.set("limit", options.limit || pageSize);
+    queryParams.set("page", options.page || currentPage.value);
     if (options.status) queryParams.set("status", options.status);
     if (options.tag) queryParams.set("tag", options.tag);
     if (options.search) queryParams.set("search", options.search);
     if (options.sortBy) queryParams.set("sortBy", options.sortBy);
     if (options.sortOrder) queryParams.set("sortOrder", options.sortOrder);
 
-    const queryString = queryParams.toString();
-    const url = `/api/blog/posts${queryString ? `?${queryString}` : ""}`;
+    const url = `/api/blog/posts?${queryParams.toString()}`;
 
     const response = await fetch(url);
 
@@ -342,6 +408,12 @@ const loadBlogPosts = async (options = {}) => {
       const data = await response.json();
       if (data.success) {
         blogPosts.value = data.posts || [];
+        pagination.value = data.pagination || pagination.value;
+        currentPage.value = pagination.value.page;
+        stats.value.totalPosts = pagination.value.total;
+        if (data.filters?.availableTags) {
+          stats.value.totalTags = data.filters.availableTags.length;
+        }
         // Return additional data for pagination/filters
         return {
           posts: data.posts,
@@ -367,6 +439,40 @@ const loadBlogPosts = async (options = {}) => {
   }
 };
 
+// Published/draft counts across the whole collection, not just the current page
+const loadStatusCounts = async () => {
+  try {
+    const [publishedRes, draftRes] = await Promise.all([
+      fetch("/api/blog/posts?status=published&limit=1"),
+      fetch("/api/blog/posts?status=draft&limit=1"),
+    ]);
+    const [publishedData, draftData] = await Promise.all([
+      publishedRes.json(),
+      draftRes.json(),
+    ]);
+    stats.value.publishedPosts = publishedData.pagination?.total || 0;
+    stats.value.draftPosts = draftData.pagination?.total || 0;
+  } catch (error) {
+    console.error("Failed to load status counts:", error);
+  }
+};
+
+const goToPage = (page) => {
+  if (
+    page === "..." ||
+    page < 1 ||
+    page > totalPages.value ||
+    page === currentPage.value
+  ) {
+    return;
+  }
+  currentPage.value = page;
+  loadBlogPosts();
+};
+
+const prevPage = () => goToPage(currentPage.value - 1);
+const nextPage = () => goToPage(currentPage.value + 1);
+
 const editPost = (post) => {
   editingPost.value = { ...post };
   showCreateModal.value = true;
@@ -386,14 +492,15 @@ const deletePost = async (postId) => {
     });
 
     if (response.success) {
-      // Remove from local state
-      blogPosts.value = blogPosts.value.filter((post) => post.id !== postId);
-
-      // Optional: Show success message
       alert("Post deleted successfully!");
 
-      // Optional: Refresh data from server
-      // await loadBlogPosts()
+      // Step back a page if that was the last post on a page beyond the first
+      if (blogPosts.value.length === 1 && currentPage.value > 1) {
+        currentPage.value--;
+      }
+
+      await loadBlogPosts();
+      loadStatusCounts();
     } else {
       throw new Error("Delete operation failed");
     }
@@ -444,6 +551,7 @@ const handlePostSaved = async (postData) => {
       if (result.success) {
         alert("✅ Post updated successfully");
         await loadBlogPosts();
+        loadStatusCounts();
         handleModalClosed();
       } else {
         throw new Error("Failed to update post");
@@ -466,17 +574,11 @@ const handlePostSaved = async (postData) => {
       });
 
       if (result.success) {
-        // Use server-generated ID if available
-        const serverId = result.upsertedIds?.[0] || result.postId;
-        const finalPost = {
-          ...newPost,
-          id: serverId || newPost.id, // Prefer server ID
-        };
-
-        // Add to local state
-        blogPosts.value.unshift(finalPost);
-
         alert("✅ Post created successfully");
+        // New posts sort to the top (createdAt desc) — jump back to page 1
+        currentPage.value = 1;
+        await loadBlogPosts();
+        loadStatusCounts();
         handleModalClosed();
       } else {
         throw new Error("Failed to create post");
@@ -543,7 +645,8 @@ onMounted(async () => {
   try {
     const { user } = await $fetch("/api/admin/me");
     adminUser.value = user;
-    loadBlogPosts();
+    await loadBlogPosts();
+    loadStatusCounts();
   } catch (error) {
     console.error("Failed to load user data:", error);
     // If we can't load user data, user might not be authenticated

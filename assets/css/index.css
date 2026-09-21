@@ -13,6 +13,22 @@
   --accent: #06d6a0;
   --dark: #1e293b;
   --light: #f8fafc;
+  --blog-heading: #1f2937;
+  --blog-text: #374151;
+  --blog-muted: #6b7280;
+  --blog-link: #2563eb;
+  --blog-link-hover: #1d4ed8;
+}
+
+.dark {
+  --primary: #0369a1;
+  --primary-dark: #1e3a8a;
+  --secondary: #1e3a8a;
+  --blog-heading: #f3f4f6;
+  --blog-text: #d1d5db;
+  --blog-muted: #9ca3af;
+  --blog-link: #60a5fa;
+  --blog-link-hover: #93c5fd;
 }
 
 * {

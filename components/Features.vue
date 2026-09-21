@@ -1,15 +1,15 @@
 <template>
-  <section id="features" class="py-20 bg-white overflow-hidden">
+  <section id="features" class="py-20 bg-white dark:bg-gray-900 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Title Section -->
       <div class="text-center mb-16 fade-in-up">
-        <div class="inline-block mb-4 px-4 py-1.5 bg-blue-50 rounded-full">
-          <span class="text-sm font-semibold text-[#2E53B0]">POWERFUL FEATURES</span>
+        <div class="inline-block mb-4 px-4 py-1.5 bg-blue-50 dark:bg-blue-500/10 rounded-full">
+          <span class="text-sm font-semibold text-[#2E53B0] dark:text-blue-300">POWERFUL FEATURES</span>
         </div>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900 dark:text-gray-100">
           Everything for <span class="gradient-text">Modern Finance</span>
         </h2>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
           ABLX provides comprehensive financial tools in one secure, intuitive platform
         </p>
       </div>
@@ -26,23 +26,23 @@
         </div>
 
         <!-- Gradient Overlays -->
-        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10">
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent pointer-events-none z-10">
         </div>
         <div
-          class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10">
+          class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent pointer-events-none z-10">
         </div>
 
         <!-- Navigation Arrows -->
         <button @click="prevSlide"
-          class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-gray-200"
+          class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-gray-200 dark:border-gray-700"
           aria-label="Previous slide">
-          <i class="fa-solid fa-chevron-left text-[#2E53B0] group-hover:text-[#00AAFD] transition-colors"></i>
+          <i class="fa-solid fa-chevron-left text-[#2E53B0] dark:text-blue-300 group-hover:text-[#00AAFD] transition-colors"></i>
         </button>
 
         <button @click="nextSlide"
-          class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-gray-200"
+          class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-gray-200 dark:border-gray-700"
           aria-label="Next slide">
-          <i class="fa-solid fa-chevron-right text-[#2E53B0] group-hover:text-[#00AAFD] transition-colors"></i>
+          <i class="fa-solid fa-chevron-right text-[#2E53B0] dark:text-blue-300 group-hover:text-[#00AAFD] transition-colors"></i>
         </button>
       </div>
 
@@ -51,9 +51,9 @@
         <span v-for="(feature, index) in features" :key="feature.id" @click="goToSlide(index)"
           class="relative cursor-pointer group" :class="currentSlideIndex === index ? 'w-10' : 'w-2'">
           <span class="block h-2 rounded-full transition-all duration-300 group-hover:bg-[#00AAFD]"
-            :class="currentSlideIndex === index ? 'bg-[#2E53B0]' : 'bg-gray-300'"></span>
+            :class="currentSlideIndex === index ? 'bg-[#2E53B0]' : 'bg-gray-300 dark:bg-gray-600'"></span>
           <span
-            class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-500 dark:text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
             {{ feature.title }}
           </span>
         </span>

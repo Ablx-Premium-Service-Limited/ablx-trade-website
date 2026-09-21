@@ -8,7 +8,7 @@
         <div v-if="loading" class="min-h-screen flex items-center justify-center">
             <div class="text-center">
                 <i class="fas fa-spinner fa-spin text-4xl text-blue-500 mb-4"></i>
-                <p class="text-xl text-gray-600">Loading article...</p>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Loading article...</p>
             </div>
         </div>
 
@@ -16,8 +16,8 @@
         <div v-else-if="error" class="min-h-screen flex items-center justify-center">
             <div class="text-center max-w-md mx-auto">
                 <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Article Not Found</h2>
-                <p class="text-gray-600 mb-6">The article you're looking for doesn't exist or may have been moved.</p>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Article Not Found</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">The article you're looking for doesn't exist or may have been moved.</p>
                 <NuxtLink to="/blogs"
                     class="gradient-bg text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300">
                     Back to Blog
@@ -28,16 +28,16 @@
         <!-- Blog Content -->
         <div v-else-if="post">
             <!-- Blog Header -->
-            <section class="md:pt-24 pt-10 pb-6 bg-white">
+            <section class="md:pt-24 pt-10 pb-6 bg-white dark:bg-gray-900">
                 <div class="container mx-auto px-4 sm:px-6">
                     <div class="max-w-7xl mx-auto">
                         <!-- Breadcrumb -->
-                        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-8 ">
+                        <nav class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-8 ">
                             <NuxtLink to="/" class="hover:text-blue-600 transition-colors">Home</NuxtLink>
                             <i class="fas fa-chevron-right text-xs"></i>
                             <NuxtLink to="/blogs" class="hover:text-blue-600 transition-colors">Blog</NuxtLink>
                             <i class="fas fa-chevron-right text-xs"></i>
-                            <span class="text-gray-800 font-medium">{{ post.tags?.[0] || 'General' }}</span>
+                            <span class="text-gray-800 dark:text-gray-100 font-medium">{{ post.tags?.[0] || 'General' }}</span>
                         </nav>
 
                         <!-- Article Header -->
@@ -47,18 +47,18 @@
                                     class="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
                                     {{ post.tags?.[0] || 'General' }}
                                 </span>
-                                <span class="text-gray-500 text-sm ml-4">{{ formatDate(post.createdAt) }}</span>
-                                <div class="flex items-center text-gray-500 text-sm ml-4">
+                                <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">{{ formatDate(post.createdAt) }}</span>
+                                <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm ml-4">
                                     <i class="fas fa-eye mr-1"></i>
                                     <span>{{ post.views || '1.2K' }}</span>
                                 </div>
-                                <div class="flex items-center text-gray-500 text-sm ml-4">
+                                <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm ml-4">
                                     <i class="fas fa-clock mr-1"></i>
                                     <span>{{ calculateReadTime(post.content) }}</span>
                                 </div>
                             </div>
 
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-800 leading-tight">
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-800 dark:text-gray-100 leading-tight">
                                 {{ post.title }}
                             </h1>
 
@@ -68,7 +68,7 @@
             </section>
 
             <!-- Featured Image -->
-            <section v-if="post.coverImage" class="py-8 bg-white">
+            <section v-if="post.coverImage" class="py-8 bg-white dark:bg-gray-900">
                 <div class="container mx-auto px-4 sm:px-6">
                     <div class="max-w-4xl mx-auto ">
                         <div class="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
@@ -80,7 +80,7 @@
             </section>
 
             <!-- Article Content -->
-            <section class="py-16 bg-white">
+            <section class="py-16 bg-white dark:bg-gray-900">
                 <div class="container px-4 sm:px-6">
                     <div class="max-w-7xl mx-auto">
                         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -95,7 +95,7 @@
                                     <div v-else>
                                         <!-- Introduction -->
                                         <div id="introduction" class="mb-12">
-                                            <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                                            <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                                                 This article provides valuable insights into current trends and
                                                 developments in the financial technology space.
                                             </p>
@@ -103,31 +103,31 @@
 
                                         <!-- Key Points -->
                                         <div class="bg-blue-50 rounded-2xl p-8 mb-12">
-                                            <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
                                                 <i class="fas fa-key mr-3 text-blue-500"></i>
                                                 Key Takeaways
                                             </h3>
                                             <ul class="space-y-4">
                                                 <li class="flex items-start">
                                                     <i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i>
-                                                    <span class="text-gray-700">Important insights and analysis</span>
+                                                    <span class="text-gray-700 dark:text-gray-300">Important insights and analysis</span>
                                                 </li>
                                                 <li class="flex items-start">
                                                     <i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i>
-                                                    <span class="text-gray-700">Current market trends and
+                                                    <span class="text-gray-700 dark:text-gray-300">Current market trends and
                                                         developments</span>
                                                 </li>
                                                 <li class="flex items-start">
                                                     <i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i>
-                                                    <span class="text-gray-700">Future outlook and predictions</span>
+                                                    <span class="text-gray-700 dark:text-gray-300">Future outlook and predictions</span>
                                                 </li>
                                             </ul>
                                         </div>
 
                                         <!-- Conclusion -->
                                         <div id="conclusion" class="mb-12">
-                                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Conclusion</h2>
-                                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                            <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Conclusion</h2>
+                                            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                                 The financial technology landscape continues to evolve rapidly, offering
                                                 new opportunities and challenges for investors and users alike.
                                             </p>
@@ -136,11 +136,11 @@
 
                                     <!-- Call to Action -->
                                     <div
-                                        class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-green-200">
-                                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Start Your Crypto Journey
+                                        class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-500/10 dark:to-blue-500/10 rounded-2xl p-8 border border-green-200 dark:border-green-500/30">
+                                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Start Your Crypto Journey
                                             Today
                                         </h3>
-                                        <p class="text-gray-700 mb-6">
+                                        <p class="text-gray-700 dark:text-gray-300 mb-6">
                                             Ready to explore cryptocurrency opportunities in Africa? ABLX provides
                                             secure,
                                             user-friendly platforms for trading and managing your digital assets.
@@ -178,9 +178,9 @@
                                 </article>
 
                                 <!-- Article Actions -->
-                                <div class="flex items-center justify-between py-8 border-t border-gray-200 mt-12">
+                                <div class="flex items-center justify-between py-8 border-t border-gray-200 dark:border-gray-700 mt-12">
                                     <div class="flex items-center space-x-4">
-                                        <span class="text-gray-600">Share this article:</span>
+                                        <span class="text-gray-600 dark:text-gray-400">Share this article:</span>
                                         <div class="flex space-x-2">
                                             <button @click="shareOnTwitter"
                                                 class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors">
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
                                     <button @click="toggleBookmark"
-                                        class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                                        class="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">
                                         <i :class="isBookmarked ? 'fas text-yellow-500' : 'far'"
                                             class="fa-bookmark mr-2"></i>
                                         {{ isBookmarked ? 'Saved' : 'Save for later' }}
@@ -214,14 +214,14 @@
                                 <div class="sticky top-24 space-y-8">
                                     <!-- Table of Contents -->
                                     <div v-if="tableOfContents.length > 0"
-                                        class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                                        <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                                        class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                                        <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                                             <i class="fas fa-list-ol mr-3 text-blue-500"></i>
                                             Contents
                                         </h3>
                                         <nav class="space-y-2">
                                             <a v-for="item in tableOfContents" :key="item.id" :href="`#${item.id}`"
-                                                class="block text-gray-600 hover:text-blue-600 transition-colors py-2 border-b border-gray-100 last:border-b-0"
+                                                class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors py-2 border-b border-gray-100 dark:border-gray-700 last:border-b-0"
                                                 @click="scrollToSection">
                                                 {{ item.text }}
                                             </a>
@@ -229,23 +229,23 @@
                                     </div>
 
                                     <!-- Related Posts -->
-                                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                                        <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                                        <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                                             <i class="fas fa-newspaper mr-3 text-green-500"></i>
                                             Related Articles
                                         </h3>
                                         <div class="space-y-4">
                                             <div v-for="related in relatedPosts" :key="related.id"
-                                                class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300 group">
+                                                class="flex items-start p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-300 group">
                                                 <img :src="related.coverImage" :alt="related.title"
                                                     class="w-16 h-16 rounded-lg object-cover mr-4 flex-shrink-0">
                                                 <div>
                                                     <h4
-                                                        class="font-semibold text-gray-800 text-sm mb-1 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                                                        class="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                                                         <NuxtLink :to="blogPathForPost(related)">{{ related.title }}
                                                         </NuxtLink>
                                                     </h4>
-                                                    <div class="flex items-center text-gray-500 text-xs">
+                                                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs">
                                                         <span>{{ formatDate(related.createdAt) }}</span>
                                                     </div>
                                                 </div>
@@ -260,29 +260,29 @@
             </section>
 
             <!-- Author Bio -->
-            <section class="py-16 bg-gray-50">
+            <section class="py-16 bg-gray-50 dark:bg-gray-950">
                 <div class="container mx-auto px-4 sm:px-6">
                     <div class="max-w-4xl mx-auto">
-                        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 ">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 ">
                             <div class="flex items-start">
                                 <img :src="post.author?.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&auto=format'"
                                     :alt="post.author?.name" class="w-20 h-20 rounded-full mr-6">
                                 <div class="flex-1">
-                                    <h3 class="text-2xl font-bold text-gray-800 mb-2">About the Author</h3>
+                                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">About the Author</h3>
                                     <h4 class="text-lg font-semibold text-blue-600 mb-2">{{ post.author?.name }}</h4>
                                     <div class="flex items-center space-x-4">
-                                        <span class="text-gray-500 text-sm">Follow:</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm">Follow:</span>
                                         <div class="flex space-x-3">
                                             <a href="https://x.com/ablxtrade?s=11&t=0wg6bruDtVmOhaFsfSg3TQ"
-                                                class="text-gray-400 hover:text-blue-600 transition-colors">
+                                                class="text-gray-400 dark:text-gray-500 hover:text-blue-600 transition-colors">
                                                 <i class="fab fa-twitter"></i>
                                             </a>
                                             <a href="https://www.linkedin.com/in/ablxtrade/"
-                                                class="text-gray-400 hover:text-blue-600 transition-colors">
+                                                class="text-gray-400 dark:text-gray-500 hover:text-blue-600 transition-colors">
                                                 <i class="fab fa-linkedin-in"></i>
                                             </a>
                                             <a href="https://www.instagram.com/ablxtrade/?igshid=MzRlODBiNWFlZA%3D%3D"
-                                                class="text-gray-400 hover:text-blue-600 transition-colors">
+                                                class="text-gray-400 dark:text-gray-500 hover:text-blue-600 transition-colors">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </div>
@@ -295,14 +295,14 @@
             </section>
 
             <!-- More Articles -->
-            <section class="py-16 bg-white">
+            <section class="py-16 bg-white dark:bg-gray-900">
                 <div class="container mx-auto px-4 sm:px-6">
                     <div class="max-w-7xl mx-auto">
                         <div class="text-center mb-12">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
                                 More <span class="gradient-text">Articles</span> You Might Like
                             </h2>
-                            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                                 Explore more insights about cryptocurrency, blockchain, and financial technology in
                                 Africa.
                             </p>
@@ -310,13 +310,13 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <article v-for="article in moreArticles" :key="article.id"
-                                class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover border border-gray-100 ">
+                                class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover border border-gray-100 dark:border-gray-700 ">
                                 <div class="relative h-48 overflow-hidden">
                                     <img :src="article.coverImage" :alt="article.title"
                                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                                     <div class="absolute top-4 left-4">
                                         <span
-                                            class="bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-3 py-1 rounded-full">
+                                            class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-800 dark:text-gray-100 text-xs font-medium px-3 py-1 rounded-full">
                                             {{ article.tags?.[0] || 'General' }}
                                         </span>
                                     </div>
@@ -324,19 +324,19 @@
 
                                 <div class="p-6">
                                     <h3
-                                        class="text-xl font-bold mb-3 text-gray-800 leading-tight hover:text-blue-600 transition-colors duration-300">
+                                        class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100 leading-tight hover:text-blue-600 transition-colors duration-300">
                                         <NuxtLink :to="blogPathForPost(article)">{{ article.title }}</NuxtLink>
                                     </h3>
 
-                                    <p class="text-gray-600 mb-4 leading-relaxed line-clamp-2">
+                                    <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2">
                                         {{ article.excerpt?.trim() || blogMetaDescription(article) || 'Read this article for valuable insights.' }}
                                     </p>
 
-                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                                         <div class="flex items-center">
                                             <img :src="article.author?.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&auto=format'"
                                                 :alt="article.author?.name" class="w-8 h-8 rounded-full mr-3">
-                                            <span class="text-sm font-medium text-gray-700">{{ article.author?.name ||
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ article.author?.name ||
                                                 'ABLX Team' }}</span>
                                         </div>
                                         <NuxtLink :to="blogPathForPost(article)"
@@ -811,6 +811,10 @@
     background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
 }
 
+:global(.dark .gradient-bg) {
+    background: linear-gradient(135deg, #1e40af 0%, #5b21b6 100%);
+}
+
 .gradient-text {
     background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     -webkit-background-clip: text;
@@ -856,11 +860,11 @@
 
 /* Article content styling */
 .prose {
-    color: #374151;
+    color: var(--blog-text);
 }
 
 .prose h2 {
-    color: #1f2937;
+    color: var(--blog-heading);
     font-weight: 700;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -952,7 +956,7 @@ a:focus {
 .blog-content :deep(h4),
 .blog-content :deep(h5),
 .blog-content :deep(h6) {
-    color: #1f2937;
+    color: var(--blog-heading);
     font-weight: 700;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -981,7 +985,7 @@ a:focus {
     margin-bottom: 1.5em;
     line-height: 1.7;
     font-size: 1.125rem;
-    color: #374151;
+    color: var(--blog-text);
 }
 
 .blog-content :deep(ul),
@@ -1003,21 +1007,21 @@ a:focus {
 }
 
 .blog-content :deep(a) {
-    color: #2563eb;
+    color: var(--blog-link);
     text-decoration: underline;
 }
 
 .blog-content :deep(a:hover) {
-    color: #1d4ed8;
+    color: var(--blog-link-hover);
 }
 
 .blog-content :deep(em) {
     font-style: italic;
-    color: #6b7280;
+    color: var(--blog-muted);
 }
 
 .blog-content :deep(strong) {
     font-weight: 700;
-    color: #1f2937;
+    color: var(--blog-heading);
 }
 </style>

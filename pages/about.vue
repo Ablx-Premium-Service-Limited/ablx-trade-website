@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
     <!-- Navigation -->
     <Navigation />
 
@@ -43,26 +43,26 @@
     </section>
 
     <!-- Mission & Vision -->
-    <section id="mission" class="py-16 md:py-20 bg-white">
+    <section id="mission" class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           <div class="space-y-6">
-            <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-2">
+            <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-2">
               <i class="fas fa-bullseye mr-2 text-base"></i>
               <span class="text-sm font-semibold">Our Mission</span>
             </div>
 
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
               Empowering <span class="gradient-text">Financial Freedom</span> Across Africa
             </h2>
 
             <div class="space-y-4">
-              <p class="text-lg text-gray-600 leading-relaxed">
+              <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 At ABLX, we believe that everyone deserves access to modern financial tools. Our mission is to break
                 down barriers and create a seamless financial ecosystem that serves both urban and rural communities.
               </p>
 
-              <p class="text-lg text-gray-600 leading-relaxed">
+              <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 We're building bridges between traditional finance and the digital future, ensuring that no one is left
                 behind in Africa's economic transformation.
               </p>
@@ -71,15 +71,15 @@
             <div class="flex flex-wrap gap-6 pt-2">
               <div class="text-center px-3">
                 <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">2M+</div>
-                <div class="text-gray-500 text-xs md:text-sm">Transactions Processed</div>
+                <div class="text-gray-500 dark:text-gray-400 text-xs md:text-sm">Transactions Processed</div>
               </div>
               <div class="text-center px-3">
                 <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">2+</div>
-                <div class="text-gray-500 text-xs md:text-sm">Countries Served</div>
+                <div class="text-gray-500 dark:text-gray-400 text-xs md:text-sm">Countries Served</div>
               </div>
               <div class="text-center px-3">
                 <div class="text-2xl md:text-3xl font-bold gradient-text mb-1">99.9%</div>
-                <div class="text-gray-500 text-xs md:text-sm">Platform Uptime</div>
+                <div class="text-gray-500 dark:text-gray-400 text-xs md:text-sm">Platform Uptime</div>
               </div>
             </div>
           </div>
@@ -116,17 +116,17 @@
     </section>
 
     <!-- Our Story -->
-    <section class="py-16 md:py-20 bg-gray-50">
+    <section class="py-16 md:py-20 bg-gray-50 dark:bg-gray-950">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-          <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+          <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
             <i class="fas fa-history mr-2 text-base"></i>
             <span class="text-sm font-semibold">Our Journey</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
             The <span class="gradient-text">ABLX Story</span>
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             From a simple idea to a platform serving thousands across Africa
           </p>
         </div>
@@ -138,8 +138,8 @@
                 class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2020
               </div>
-              <h3 class="text-xl font-bold mb-3 text-gray-800">Foundation</h3>
-              <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Foundation</h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
                 Born from the vision to solve cross-border payment challenges between Africans, addressing real
                 financial pain points.
               </p>
@@ -150,8 +150,8 @@
                 class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2021
               </div>
-              <h3 class="text-xl font-bold mb-3 text-gray-800">Expansion</h3>
-              <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Expansion</h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
                 Launched crypto trading and expanded our services to include bill payments, airtime, and data bundles
                 for all networks.
               </p>
@@ -162,8 +162,8 @@
                 class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-lg">
                 2023
               </div>
-              <h3 class="text-xl font-bold mb-3 text-gray-800">Growth</h3>
-              <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Growth</h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
                 Serving thousands of users across Africa with secure, fast, and affordable financial services,
                 constantly innovating for our community.
               </p>
@@ -174,31 +174,31 @@
     </section>
 
     <!-- Services Overview -->
-    <section id="services" class="py-16 md:py-20 bg-white">
+    <section id="services" class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-          <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+          <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
             <i class="fas fa-cogs mr-2 text-base"></i>
             <span class="text-sm font-semibold">What We Offer</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
             Comprehensive <span class="gradient-text">Financial Solutions</span>
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Everything you need to manage your finances in one secure, intuitive platform
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 card-hover border border-blue-100">
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-500/10 dark:to-purple-500/10 rounded-2xl p-6 card-hover border border-blue-100 dark:border-blue-500/20">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
               <i class="fab fa-bitcoin"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Crypto Trading</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Crypto Trading</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
               Buy, sell, and trade major cryptocurrencies with competitive fees and advanced security protocols.
             </p>
-            <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm md:text-base">
               <li class="flex items-center">
                 <i class="fas fa-check text-green-500 mr-2 text-base"></i>
                 Bitcoin, Ethereum & more
@@ -210,15 +210,15 @@
             </ul>
           </div>
 
-          <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-6 card-hover border border-green-100">
+          <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-500/10 dark:to-blue-500/10 rounded-2xl p-6 card-hover border border-green-100 dark:border-green-500/20">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
               <i class="fas fa-exchange-alt"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Cross-Border Payments</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Cross-Border Payments</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
               Send money between Nigeria and Kenya instantly with zero fees and great exchange rates.
             </p>
-            <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm md:text-base">
               <li class="flex items-center">
                 <i class="fas fa-check text-green-500 mr-2 text-base"></i>
                 Instant transfers
@@ -234,15 +234,15 @@
             </ul>
           </div>
 
-          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 card-hover border border-purple-100">
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-500/10 dark:to-pink-500/10 rounded-2xl p-6 card-hover border border-purple-100 dark:border-purple-500/20">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
               <i class="fas fa-tv"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Bill Payments</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Bill Payments</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
               Pay your cable TV, electricity, and other utility bills directly from the app with instant activation.
             </p>
-            <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm md:text-base">
               <li class="flex items-center">
                 <i class="fas fa-check text-green-500 mr-2 text-base"></i>
                 DSTV, GOTV & more
@@ -259,15 +259,15 @@
           </div>
 
           <div
-            class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover border border-yellow-100">
+            class="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-500/10 dark:to-orange-500/10 rounded-2xl p-6 card-hover border border-yellow-100 dark:border-yellow-500/20">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
               <i class="fas fa-wifi"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Airtime & Data</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed text-sm md:text-base">
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Airtime & Data</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
               Purchase airtime and data bundles for all major networks instantly with guaranteed best rates.
             </p>
-            <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm md:text-base">
               <li class="flex items-center">
                 <i class="fas fa-check text-green-500 mr-2 text-base"></i>
                 All networks supported
@@ -287,83 +287,83 @@
     </section>
 
     <!-- Values Section -->
-    <section id="values" class="py-16 md:py-20 bg-gray-50">
+    <section id="values" class="py-16 md:py-20 bg-gray-50 dark:bg-gray-950">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-          <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+          <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
             <i class="fas fa-heart mr-2 text-base"></i>
             <span class="text-sm font-semibold">Our Values</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
             What <span class="gradient-text">Drives Us</span>
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             The core principles that guide every decision we make and every feature we build
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Security First</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Security First</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               We implement bank-level security measures to ensure your funds and data are always protected with advanced
               encryption and multi-factor authentication.
             </p>
           </div>
 
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-bolt"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Innovation</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Innovation</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               We continuously evolve our platform with cutting-edge technology to provide the best financial solutions
               for Africa's unique challenges.
             </p>
           </div>
 
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-users"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Customer Focus</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Customer Focus</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               Our users are at the heart of everything we do. We listen, adapt, and build solutions that truly meet
               their financial needs.
             </p>
           </div>
 
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-globe-africa"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Financial Inclusion</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Financial Inclusion</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               We're committed to bringing financial services to underserved communities, breaking down barriers to
               economic participation across Africa.
             </p>
           </div>
 
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-handshake"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Transparency</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Transparency</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               We believe in clear communication, honest pricing, and building trust through complete transparency in all
               our operations and fees.
             </p>
           </div>
 
-          <div class="bg-white rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 card-hover shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
               <i class="fas fa-rocket"></i>
             </div>
-            <h3 class="text-xl font-bold mb-4 text-gray-800">Excellence</h3>
-            <p class="text-gray-600 leading-relaxed text-base">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Excellence</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
               We strive for excellence in every aspect of our service, from user experience to customer support and
               platform reliability and performance.
             </p>

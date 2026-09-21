@@ -15,7 +15,7 @@
         <div class="hidden md:flex items-center space-x-8">
           <a v-for="link in navigationLinks" :key="link.name" :href="link.href"
             class="nav-link font-medium transition-all duration-300 relative group"
-            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-blue-700 hover:text-blue-900'">
+            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-blue-700 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-100'">
             {{ link.name }}
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00AAFD] transition-all duration-300 group-hover:w-full"></span>
@@ -24,6 +24,7 @@
 
         <!-- CTA Buttons -->
         <div class="hidden lg:flex items-center space-x-4">
+          <ThemeToggle :light="hasLogo" />
           <button :class="hasLogo ? 'border border-white/40' : 'border border-transparent bg-[#00AAFD]'"
             class="px-8 py-2.5 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             @click="scrollToHero">
@@ -32,11 +33,14 @@
         </div>
 
         <!-- Mobile Menu Button -->
-        <button class="md:hidden p-2 rounded-lg transition-colors"
-          :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black-700 hover:text-black-900'"
-          @click="toggleMobileMenu">
-          <i class="fas fa-bars text-xl"></i>
-        </button>
+        <div class="md:hidden flex items-center space-x-1">
+          <ThemeToggle :light="hasLogo" />
+          <button class="p-2 rounded-lg transition-colors"
+            :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black-700 hover:text-black-900 dark:text-gray-300 dark:hover:text-white'"
+            @click="toggleMobileMenu">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Mobile Menu -->
@@ -46,7 +50,7 @@
         <div class="p-6 space-y-4">
           <a v-for="link in navigationLinks" :key="link.name" :href="link.href"
             class="block font-medium py-2 transition-colors border-b border-white/10 last:border-b-0"
-            @click="closeMobileMenu" :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black'">
+            @click="closeMobileMenu" :class="hasLogo ? 'text-white/90 hover:text-white' : 'text-black dark:text-gray-100'">
             {{ link.name }}
           </a>
           <div class="pt-4 space-y-3">
@@ -103,7 +107,7 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
   // Change background based on scroll position
   navBackground.value = isScrolled.value
-    ? 'bg-white/90 backdrop-blur-md shadow-lg'
+    ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
     : 'gradient-bg'
   hasLogo.value = !isScrolled.value
 }
@@ -122,6 +126,10 @@ onUnmounted(() => {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
   position: relative;
   overflow: hidden;
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .nav-link {

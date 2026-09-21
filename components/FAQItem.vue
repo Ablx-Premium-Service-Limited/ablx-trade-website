@@ -1,27 +1,27 @@
 <template>
-  <div class="bg-white rounded-xl shadow-md p-6 mb-4 fade-in">
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-4 fade-in">
     <div class="flex justify-between items-center cursor-pointer" @click="$emit('toggle')">
-      <h3 class="text-lg font-bold">{{ faq.question }}</h3>
-      <i :class="`fas fa-chevron-${isActive ? 'up' : 'down'} text-blue-500 transition-transform duration-300`"></i>
+      <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ faq.question }}</h3>
+      <i :class="`fas fa-chevron-${isActive ? 'up' : 'down'} text-blue-500 dark:text-blue-400 transition-transform duration-300`"></i>
     </div>
-    <div class="mt-4 text-gray-600 transition-all duration-300 overflow-hidden"
+    <div class="mt-4 text-gray-600 dark:text-gray-400 transition-all duration-300 overflow-hidden"
       :style="isActive ? { display: 'block' } : { display: 'none' }">
       <p class="whitespace-pre-line">{{ faq.answer }}</p>
 
       <!-- YouTube Video Section -->
       <div v-if="faq.videoUrl && isActive" class="mt-4">
-        <h4 class="text-md font-semibold text-gray-800 mb-3 flex items-center">
+        <h4 class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
           <i class="fas fa-play-circle mr-2 text-red-500"></i>
           Watch Tutorial Video
         </h4>
-        <div class="bg-gray-100 rounded-lg overflow-hidden">
+        <div class="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden">
           <iframe class="w-full h-48 md:h-64" :src="`https://www.youtube.com/embed/${getVideoId(faq.videoUrl)}`"
             :title="`${faq.question} - Tutorial`" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
-        <p class="text-sm text-gray-500 mt-2">
+        <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">
           Learn more with our step-by-step video guide.
         </p>
       </div>

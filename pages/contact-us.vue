@@ -1,24 +1,24 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
     <!-- Navigation -->
     <Navigation />
 
     <!-- Toast Notification -->
     <div v-if="toast.show" :class="['fixed top-4 right-4 z-50 max-w-sm w-full p-4 rounded-lg shadow-lg transform transition-all duration-300',
-      toast.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200']"
+      toast.type === 'success' ? 'bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30' : 'bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30']"
       @click="toast.show = false" role="alert">
       <div class="flex items-center">
         <div :class="['flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3',
-          toast.type === 'success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600']">
+          toast.type === 'success' ? 'bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400']">
           <i :class="toast.type === 'success' ? 'fas fa-check' : 'fas fa-exclamation-triangle'"></i>
         </div>
         <div class="flex-1">
           <p :class="['font-medium text-sm',
-            toast.type === 'success' ? 'text-green-800' : 'text-red-800']">
+            toast.type === 'success' ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300']">
             {{ toast.message }}
           </p>
         </div>
-        <button class="ml-4 text-gray-400 hover:text-gray-600 transition-colors">
+        <button class="ml-4 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -68,21 +68,21 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-16 md:py-20 bg-white">
+    <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
           <!-- Contact Form -->
           <div class="fade-in">
-            <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-6">
+            <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-6">
               <i class="fas fa-paper-plane mr-2 text-base"></i>
               <span class="text-sm font-semibold">Send us a Message</span>
             </div>
 
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 leading-tight">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100 leading-tight">
               Let's Start a <span class="gradient-text">Conversation</span>
             </h2>
 
-            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
               Fill out the form below and our team will get back to you within 24 hours. We're committed to providing
               you with the best financial solutions.
             </p>
@@ -90,38 +90,38 @@
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
-                  <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                  <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name *</label>
                   <input type="text" id="firstName" v-model="form.firstName" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                     placeholder="Enter your first name">
                 </div>
 
                 <div class="form-group">
-                  <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                  <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name *</label>
                   <input type="text" id="lastName" v-model="form.lastName" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                     placeholder="Enter your last name">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address *</label>
                 <input type="email" id="email" v-model="form.email" required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                   placeholder="your.email@example.com">
               </div>
 
               <div class="form-group">
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
                 <input type="tel" id="phone" v-model="form.phone"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                   placeholder="+1 (555) 000-0000">
               </div>
 
               <div class="form-group">
-                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject *</label>
                 <select id="subject" v-model="form.subject" required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
                   <option value="">Select a topic</option>
                   <option value="crypto-trading">Crypto Trading Support</option>
                   <option value="payments">Cross-Border Payments</option>
@@ -135,9 +135,9 @@
               </div>
 
               <div class="form-group">
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message *</label>
                 <textarea id="message" v-model="form.message" required rows="6"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 resize-none"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 resize-none"
                   placeholder="Tell us how we can help you..."></textarea>
               </div>
 
@@ -157,7 +157,7 @@
 
           <!-- Contact Information -->
           <div class="space-y-8 fade-in" style="animation-delay: 0.2s;">
-            <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0]  rounded-2xl p-8 text-white shadow-xl">
+            <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] dark:from-[#0369a1] dark:to-[#1e3a8a] rounded-2xl p-8 text-white shadow-xl">
               <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                 <h3 class="text-2xl md:text-3xl font-bold mb-6">Contact Information</h3>
                 <p class="text-lg leading-relaxed mb-8">
@@ -201,16 +201,16 @@
             </div>
 
             <!-- Support Hours -->
-            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 card-hover">
-              <h3 class="text-2xl font-bold mb-6 text-gray-800">Support Hours</h3>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700 card-hover">
+              <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">Support Hours</h3>
               <div class="space-y-4">
-                <div class="flex justify-between items-center pb-4 border-b border-gray-100">
-                  <span class="text-gray-600">Monday - Sunday</span>
-                  <span class="font-semibold text-gray-800">24/7</span>
+                <div class="flex justify-between items-center pb-4 border-b border-gray-100 dark:border-gray-700">
+                  <span class="text-gray-600 dark:text-gray-400">Monday - Sunday</span>
+                  <span class="font-semibold text-gray-800 dark:text-gray-100">24/7</span>
                 </div>
                 <div class="flex justify-between items-center">
-                  <span class="text-gray-600">Emergency Support</span>
-                  <span class="font-semibold text-green-600">Always Available</span>
+                  <span class="text-gray-600 dark:text-gray-400">Emergency Support</span>
+                  <span class="font-semibold text-green-600 dark:text-green-400">Always Available</span>
                 </div>
               </div>
             </div>
@@ -220,17 +220,17 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 md:py-20 bg-gray-50">
+    <section class="py-16 md:py-20 bg-gray-50 dark:bg-gray-950">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-          <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+          <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
             <i class="fas fa-question-circle mr-2 text-base"></i>
             <span class="text-sm font-semibold">Common Questions</span>
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
             Frequently Asked <span class="gradient-text">Questions</span>
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Quick answers to the most common questions about our services
           </p>
         </div>
@@ -238,7 +238,7 @@
         <div class="max-w-4xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div v-for="(faq, index) in faqs" :key="index"
-              class="bg-white rounded-2xl p-6 card-hover border border-gray-100 fade-in"
+              class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover border border-gray-100 dark:border-gray-700 fade-in"
               :style="`animation-delay: ${index * 0.1}s`">
               <div class="flex items-start">
                 <div
@@ -246,8 +246,8 @@
                   <i class="fas fa-question text-sm"></i>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold mb-3 text-gray-800">{{ faq.question }}</h3>
-                  <p class="text-gray-600 leading-relaxed">{{ faq.answer }}</p>
+                  <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">{{ faq.question }}</h3>
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{{ faq.answer }}</p>
                 </div>
               </div>
             </div>
@@ -624,6 +624,10 @@ onMounted(() => {
 <style scoped>
 .gradient-bg {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .gradient-text {

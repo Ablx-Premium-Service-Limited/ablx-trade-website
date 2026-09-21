@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
         <!-- Navigation -->
         <Navigation />
 
@@ -57,16 +57,16 @@
         </section>
 
         <!-- FAQ Content -->
-        <section class="py-16 md:py-20 bg-white">
+        <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-6xl mx-auto">
                     <!-- Categories -->
                     <div class="text-center mb-12 fade-in">
-                        <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+                        <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
                             <i class="fas fa-layer-group mr-2 text-base"></i>
                             <span class="text-sm font-semibold">{{ filteredFaqs.length }} Questions Available</span>
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Common Questions</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-8">Common Questions</h2>
 
                         <!-- Category Filters -->
                         <div class="flex flex-wrap justify-center gap-3 mb-8">
@@ -75,7 +75,7 @@
                                     'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
                                     activeCategory === category.id
                                         ? 'gradient-bg text-white shadow-lg'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                 ]">
                                 {{ category.name }}
                             </button>
@@ -85,7 +85,7 @@
                     <!-- FAQ List -->
                     <div class="space-y-6">
                         <div v-for="faq in filteredFaqs" :key="faq.id"
-                            class="bg-gray-50 rounded-2xl overflow-hidden card-hover">
+                            class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden card-hover">
                             <button @click="toggleFaq(faq.id)"
                                 class="w-full px-6 py-6 md:px-8 md:py-6 text-left flex items-center justify-between focus:outline-none">
                                 <div class="flex items-start space-x-4">
@@ -94,9 +94,9 @@
                                         <i class="fas fa-question text-sm"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">{{ faq.question }}
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{{ faq.question }}
                                         </h3>
-                                        <div class="text-gray-600 text-sm transition-all duration-300 overflow-hidden"
+                                        <div class="text-gray-600 dark:text-gray-400 text-sm transition-all duration-300 overflow-hidden"
                                             :class="openFaq === faq.id ? 'max-h-0' : 'max-h-6'">
                                             Click to {{ openFaq === faq.id ? 'collapse' : 'expand' }}
                                         </div>
@@ -111,18 +111,18 @@
                             <!-- Answer -->
                             <div class="transition-all duration-300"
                                 :class="openFaq === faq.id ? 'opacity-100' : 'max-h-0 opacity-0'">
-                                <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-gray-200 pt-6">
-                                    <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                                <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+                                    <div class="prose prose-lg max-w-none text-gray-600 dark:text-gray-400 leading-relaxed">
                                         <div v-html="formatAnswer(faq.answer)"></div>
                                     </div>
 
                                     <!-- YouTube Video Section -->
                                     <div v-if="faq.videoUrl" class="mt-6">
-                                        <h4 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
                                             <i class="fas fa-play-circle mr-2 text-red-500"></i>
                                             Watch Video
                                         </h4>
-                                        <div class="relative bg-gray-200 rounded-xl" style="padding-bottom: 56.25%;">
+                                        <div class="relative bg-gray-200 dark:bg-gray-700 rounded-xl" style="padding-bottom: 56.25%;">
                                             <!-- 16:9 aspect ratio -->
                                             <iframe class="absolute top-0 left-0 w-full h-full" :src="faq.videoUrl"
                                                 title="ABLX Trade Tutorial" frameborder="0"
@@ -134,8 +134,8 @@
 
                                     <!-- Additional Info -->
                                     <div v-if="hasContactInfo(faq.answer)"
-                                        class="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-200">
-                                        <p class="text-blue-800 text-sm flex items-center">
+                                        class="mt-4 p-4 bg-blue-50 dark:bg-blue-500/10 rounded-xl border border-blue-200 dark:border-blue-500/30">
+                                        <p class="text-blue-800 dark:text-blue-300 text-sm flex items-center">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             Need more help? Contact our support team for immediate assistance.
                                         </p>
@@ -149,8 +149,8 @@
                                 class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mx-auto mb-4">
                                 <i class="fas fa-search"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">No questions found</h3>
-                            <p class="text-gray-600 mb-6">Try adjusting your search terms or browse different
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">No questions found</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">Try adjusting your search terms or browse different
                                 categories.</p>
                             <button @click="clearSearch"
                                 class="px-6 py-3 gradient-bg text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300">
@@ -161,7 +161,7 @@
 
                     <!-- Contact CTA -->
                     <div
-                        class="mt-16 p-8 bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] rounded-2xl text-white text-center fade-in">
+                        class="mt-16 p-8 bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] dark:from-[#0369a1] dark:to-[#1e3a8a] rounded-2xl text-white text-center fade-in">
                         <div class="max-w-2xl mx-auto">
                             <i class="fas fa-headset text-4xl mb-4 text-yellow-300"></i>
                             <h3 class="text-2xl md:text-3xl font-bold mb-4">Still have questions?</h3>
@@ -527,6 +527,10 @@ onMounted(() => {
 <style scoped>
 .gradient-bg {
     background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+    background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .gradient-text {

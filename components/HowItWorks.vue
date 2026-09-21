@@ -1,10 +1,10 @@
 <template>
-  <section id="how-it-works" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+  <section id="how-it-works" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-950 dark:to-gray-900">
     <div class="container mx-auto px-4">
       <!-- Header -->
       <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">How <span class="gradient-text">ABLX Trade Works</span></h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-gray-100">How <span class="gradient-text">ABLX Trade Works</span></h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           Experience the future of digital trading with our powerful yet intuitive platform designed to keep you
           efficient and informed every step of the way.
         </p>
@@ -23,8 +23,8 @@
               </div>
             </div>
             <div class="flex-1">
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">Create Your Account</h3>
-              <p class="text-gray-600 text-lg leading-relaxed">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Create Your Account</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
                 Sign up in minutes with ABLX Trade and unlock seamless access to crypto and gift card trading. Complete
                 verification and start trading immediately.
               </p>
@@ -40,8 +40,8 @@
               </div>
             </div>
             <div class="flex-1">
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">Initiate a Trade</h3>
-              <p class="text-gray-600 text-lg leading-relaxed">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Initiate a Trade</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
                 Select your preferred currency or gift card to trade. Our intelligent system ensures fast, secure, and
                 seamless transaction processing.
               </p>
@@ -57,8 +57,8 @@
               </div>
             </div>
             <div class="flex-1">
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">Get Paid Instantly</h3>
-              <p class="text-gray-600 text-lg leading-relaxed">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Get Paid Instantly</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
                 Experience lightning-fast payments with ABLX Trade. Receive your funds in minutes and enjoy the rewards
                 of your successful trading journey.
               </p>
@@ -86,8 +86,8 @@
           </div>
 
           <!-- Floating Elements -->
-          <div class="absolute -top-4 -right-4 w-24 h-24 bg-blue-200 rounded-full opacity-60 animate-float"></div>
-          <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-200 rounded-full opacity-40 animate-float-delayed">
+          <div class="absolute -top-4 -right-4 w-24 h-24 bg-blue-200 dark:bg-blue-500/20 rounded-full opacity-60 animate-float"></div>
+          <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-200 dark:bg-purple-500/20 rounded-full opacity-40 animate-float-delayed">
           </div>
         </div>
       </div>
@@ -96,29 +96,29 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
         <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
           <div
-            class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
-            <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+            class="w-16 h-16 bg-blue-100 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-500/20 transition-colors">
+            <i class="fas fa-shield-alt text-blue-600 dark:text-blue-400 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-bold mb-3">Bank-Level Security</h4>
-          <p class="text-gray-600">Military-grade encryption protects your funds and personal data at all times</p>
+          <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Bank-Level Security</h4>
+          <p class="text-gray-600 dark:text-gray-400">Military-grade encryption protects your funds and personal data at all times</p>
         </div>
 
         <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
           <div
-            class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
-            <i class="fas fa-bolt text-green-600 text-2xl"></i>
+            class="w-16 h-16 bg-green-100 dark:bg-green-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 dark:group-hover:bg-green-500/20 transition-colors">
+            <i class="fas fa-bolt text-green-600 dark:text-green-400 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-bold mb-3">Instant Transactions</h4>
-          <p class="text-gray-600">Send money, pay bills, and complete trades in seconds, not days</p>
+          <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Instant Transactions</h4>
+          <p class="text-gray-600 dark:text-gray-400">Send money, pay bills, and complete trades in seconds, not days</p>
         </div>
 
         <div class="text-center p-6 group hover:transform hover:scale-105 transition-all duration-300">
           <div
-            class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-            <i class="fas fa-headset text-purple-600 text-2xl"></i>
+            class="w-16 h-16 bg-purple-100 dark:bg-purple-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 dark:group-hover:bg-purple-500/20 transition-colors">
+            <i class="fas fa-headset text-purple-600 dark:text-purple-400 text-2xl"></i>
           </div>
-          <h4 class="text-xl font-bold mb-3">24/7 Support</h4>
-          <p class="text-gray-600">Our dedicated team is always available to assist you with any questions</p>
+          <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">24/7 Support</h4>
+          <p class="text-gray-600 dark:text-gray-400">Our dedicated team is always available to assist you with any questions</p>
         </div>
       </div>
     </div>
@@ -165,6 +165,10 @@ export default {
 
 .gradient-bg {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 @keyframes float {

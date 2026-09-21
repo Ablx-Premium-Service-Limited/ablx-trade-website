@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
     <!-- Navigation -->
     <Navigation />
 
@@ -47,21 +47,21 @@
     </section>
 
     <!-- Terms Content -->
-    <section class="py-16 md:py-20 bg-white">
+    <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
           <!-- Last Updated & Acceptance -->
           <div class="text-center mb-12 fade-in">
-            <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-4">
+            <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-4">
               <i class="fas fa-clock mr-2 text-base"></i>
               <span class="text-sm font-semibold">Effective Date: December 1, 2023</span>
             </div>
-            <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 max-w-3xl mx-auto">
+            <div class="bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-200 dark:border-yellow-500/30 rounded-2xl p-6 max-w-3xl mx-auto">
               <div class="flex items-start">
                 <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl mr-4 mt-1"></i>
                 <div>
-                  <h3 class="text-xl font-bold mb-2 text-gray-800">Important Notice</h3>
-                  <p class="text-gray-700">
+                  <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Important Notice</h3>
+                  <p class="text-gray-700 dark:text-gray-300">
                     By accessing or using ABLX Trade services, you acknowledge that you have read, understood, and agree
                     to be bound by these Terms of Service. If you do not agree with these terms, please do not use our
                     services.
@@ -72,19 +72,19 @@
           </div>
 
           <!-- Quick Navigation -->
-          <div class="bg-gray-50 rounded-2xl p-6 mb-12 card-hover fade-in">
-            <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 mb-12 card-hover fade-in">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
               <i class="fas fa-bookmark mr-3 text-blue-500"></i>
               Quick Navigation
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <a v-for="section in termsSections" :key="section.id" :href="`#${section.id}`"
-                class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                class="flex items-center p-3 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-all duration-300 group">
                 <div
                   class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
                   <i :class="section.icon"></i>
                 </div>
-                <span class="text-gray-700 font-medium text-sm">{{ section.title }}</span>
+                <span class="text-gray-700 dark:text-gray-300 font-medium text-sm">{{ section.title }}</span>
               </a>
             </div>
           </div>
@@ -97,10 +97,10 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-handshake"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">1. Agreement to Terms</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">1. Agreement to Terms</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
-                <div class="space-y-4 text-gray-600 leading-relaxed text-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8">
+                <div class="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                   <p>
                     These Terms of Service ("Terms") govern your access to and use of ABLX Trade's website, mobile
                     application, and services (collectively, the "Services"). By accessing or using our Services, you
@@ -110,8 +110,8 @@
                     If you are using the Services on behalf of an organization, you are agreeing to these Terms for that
                     organization and promising that you have the authority to bind that organization to these Terms.
                   </p>
-                  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-4">
-                    <p class="text-blue-800 font-medium">
+                  <div class="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-xl p-4 mt-4">
+                    <p class="text-blue-800 dark:text-blue-300 font-medium">
                       <i class="fas fa-info-circle mr-2"></i>
                       You must be at least 18 years old and have the legal capacity to enter into binding contracts to
                       use our Services.
@@ -127,41 +127,41 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-user-plus"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">2. Account Registration</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">2. Account Registration</h2>
               </div>
               <div class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+                  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 card-hover">
                     <div
-                      class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-4">
+                      class="w-14 h-14 bg-green-100 dark:bg-green-500/10 rounded-2xl flex items-center justify-center text-green-600 dark:text-green-400 text-2xl mb-4">
                       <i class="fas fa-id-card"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">KYC Verification</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">KYC Verification</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                       You must complete our Know Your Customer (KYC) verification process by providing accurate and
                       current identification documents.
                     </p>
                   </div>
 
-                  <div class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+                  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 card-hover">
                     <div
-                      class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-4">
+                      class="w-14 h-14 bg-red-100 dark:bg-red-500/10 rounded-2xl flex items-center justify-center text-red-600 dark:text-red-400 text-2xl mb-4">
                       <i class="fas fa-lock"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Account Security</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">Account Security</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                       You are responsible for maintaining the confidentiality of your account credentials and for all
                       activities under your account.
                     </p>
                   </div>
                 </div>
 
-                <div class="bg-yellow-50 rounded-2xl p-6 border border-yellow-200">
-                  <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                <div class="bg-yellow-50 dark:bg-yellow-500/10 rounded-2xl p-6 border border-yellow-200 dark:border-yellow-500/30">
+                  <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                     <i class="fas fa-exclamation-circle mr-3 text-yellow-600"></i>
                     Important Account Rules
                   </h3>
-                  <ul class="space-y-3 text-gray-700">
+                  <ul class="space-y-3 text-gray-700 dark:text-gray-300">
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
                       <span>One account per individual - multiple accounts are strictly prohibited</span>
@@ -189,9 +189,9 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-concierge-bell"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">3. Services Description</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">3. Services Description</h2>
               </div>
-              <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] rounded-2xl p-8 text-white">
+              <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] dark:from-[#0369a1] dark:to-[#1e3a8a] rounded-2xl p-8 text-white">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 class="text-2xl font-bold mb-6">Our Financial Services</h3>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -213,30 +213,30 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-credit-card"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">4. Fees & Payments</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">4. Fees & Payments</h2>
               </div>
               <div class="space-y-6">
-                <div class="bg-white rounded-2xl p-6 border border-gray-200">
-                  <h3 class="text-xl font-bold mb-4 text-gray-800">Transaction Fees</h3>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+                  <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Transaction Fees</h3>
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div v-for="fee in transactionFees" :key="fee.type" class="text-center p-4 bg-gray-50 rounded-xl">
+                    <div v-for="fee in transactionFees" :key="fee.type" class="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
                       <div class="text-2xl font-bold gradient-text mb-2">{{ fee.amount }}</div>
-                      <div class="text-gray-600 font-medium">{{ fee.type }}</div>
-                      <div class="text-gray-500 text-sm mt-1">{{ fee.description }}</div>
+                      <div class="text-gray-600 dark:text-gray-400 font-medium">{{ fee.type }}</div>
+                      <div class="text-gray-500 dark:text-gray-500 text-sm mt-1">{{ fee.description }}</div>
                     </div>
                   </div>
                 </div>
 
-                <div class="bg-green-50 rounded-2xl p-6 border border-green-200">
-                  <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                <div class="bg-green-50 dark:bg-green-500/10 rounded-2xl p-6 border border-green-200 dark:border-green-500/30">
+                  <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                     <i class="fas fa-percentage mr-3 text-green-600"></i>
                     Fee Transparency
                   </h3>
-                  <p class="text-gray-700 mb-4">
+                  <p class="text-gray-700 dark:text-gray-300 mb-4">
                     We believe in complete fee transparency. All applicable fees will be clearly displayed before you
                     confirm any transaction.
                   </p>
-                  <ul class="space-y-2 text-gray-700">
+                  <ul class="space-y-2 text-gray-700 dark:text-gray-300">
                     <li class="flex items-center">
                       <i class="fas fa-check text-green-500 mr-3"></i>
                       No hidden charges or surprise fees
@@ -260,27 +260,27 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-ban"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">5. Prohibited Activities</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">5. Prohibited Activities</h2>
               </div>
-              <div class="bg-red-50 rounded-2xl p-6 md:p-8 border border-red-200">
-                <h3 class="text-2xl font-bold mb-6 text-red-800 flex items-center">
+              <div class="bg-red-50 dark:bg-red-500/10 rounded-2xl p-6 md:p-8 border border-red-200 dark:border-red-500/30">
+                <h3 class="text-2xl font-bold mb-6 text-red-800 dark:text-red-400 flex items-center">
                   <i class="fas fa-exclamation-triangle mr-3"></i>
                   Strictly Forbidden Activities
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div v-for="activity in prohibitedActivities" :key="activity.title"
-                    class="bg-white rounded-xl p-4 border border-red-200">
+                    class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-red-200 dark:border-red-500/30">
                     <div class="flex items-start">
                       <i class="fas fa-times-circle text-red-500 mr-3 mt-1 text-lg"></i>
                       <div>
-                        <h4 class="font-bold text-gray-800 mb-2">{{ activity.title }}</h4>
-                        <p class="text-gray-600 text-sm">{{ activity.description }}</p>
+                        <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-2">{{ activity.title }}</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">{{ activity.description }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="mt-6 p-4 bg-red-100 rounded-xl border border-red-300">
-                  <p class="text-red-800 font-medium text-center">
+                <div class="mt-6 p-4 bg-red-100 dark:bg-red-500/15 rounded-xl border border-red-300 dark:border-red-500/30">
+                  <p class="text-red-800 dark:text-red-300 font-medium text-center">
                     <i class="fas fa-gavel mr-2"></i>
                     Violation of these prohibitions may result in immediate account suspension, termination, and legal
                     action.
@@ -295,20 +295,20 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-copyright"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">6. Intellectual Property</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">6. Intellectual Property</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                       <i class="fas fa-robot mr-3 text-blue-500"></i>
                       Our Rights
                     </h3>
-                    <p class="text-gray-600 mb-4">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
                       All intellectual property rights in the Services, including trademarks, logos, software, and
                       content, are owned by ABLX Trade or our licensors.
                     </p>
-                    <ul class="space-y-2 text-gray-600">
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li class="flex items-center">
                         <i class="fas fa-check text-green-500 mr-3"></i>
                         Platform software and technology
@@ -324,15 +324,15 @@
                     </ul>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                       <i class="fas fa-user-lock mr-3 text-purple-500"></i>
                       Your License
                     </h3>
-                    <p class="text-gray-600 mb-4">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
                       We grant you a limited, non-exclusive, non-transferable license to access and use our Services for
                       personal, non-commercial purposes.
                     </p>
-                    <ul class="space-y-2 text-gray-600">
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li class="flex items-center">
                         <i class="fas fa-times text-red-500 mr-3"></i>
                         No reverse engineering
@@ -357,36 +357,36 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-balance-scale-left"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">7. Limitation of Liability</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">7. Limitation of Liability</h2>
               </div>
-              <div class="bg-orange-50 rounded-2xl p-6 md:p-8 border border-orange-200">
+              <div class="bg-orange-50 dark:bg-orange-500/10 rounded-2xl p-6 md:p-8 border border-orange-200 dark:border-orange-500/30">
                 <div class="flex items-start mb-6">
                   <i class="fas fa-info-circle text-orange-500 text-2xl mr-4 mt-1"></i>
                   <div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Important Legal Disclaimer</h3>
-                    <p class="text-gray-700">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Important Legal Disclaimer</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
                       To the maximum extent permitted by law, ABLX Trade shall not be liable for any indirect,
                       incidental, special, consequential, or punitive damages, or any loss of profits or revenues.
                     </p>
                   </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div class="bg-white rounded-xl p-4">
-                    <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                  <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
                       <i class="fas fa-chart-line mr-2 text-blue-500"></i>
                       Market Risks
                     </h4>
-                    <p class="text-gray-600 text-sm">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
                       Cryptocurrency investments are subject to market risks. Past performance does not guarantee future
                       results.
                     </p>
                   </div>
-                  <div class="bg-white rounded-xl p-4">
-                    <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                  <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
                       <i class="fas fa-network-wired mr-2 text-green-500"></i>
                       Technical Issues
                     </h4>
-                    <p class="text-gray-600 text-sm">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
                       We are not liable for service interruptions, delays, or errors caused by factors beyond our
                       reasonable control.
                     </p>
@@ -401,30 +401,30 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-gavel"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">8. Governing Law & Dispute Resolution</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">8. Governing Law & Dispute Resolution</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">Applicable Law</h3>
-                    <p class="text-gray-600 mb-4">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Applicable Law</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
                       These Terms shall be governed by and construed in accordance with the laws of the Federal Republic
                       of Nigeria, without regard to its conflict of law provisions.
                     </p>
-                    <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                      <p class="text-blue-800 text-sm">
+                    <div class="bg-blue-50 dark:bg-blue-500/10 rounded-xl p-4 border border-blue-200 dark:border-blue-500/30">
+                      <p class="text-blue-800 dark:text-blue-300 text-sm">
                         <i class="fas fa-map-marker-alt mr-2"></i>
                         <strong>Jurisdiction:</strong> Lagos, Nigeria
                       </p>
                     </div>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">Dispute Resolution</h3>
-                    <p class="text-gray-600 mb-4">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">Dispute Resolution</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
                       Most disputes can be resolved quickly and amicably by contacting our support team. If we cannot
                       resolve a dispute informally, we agree to resolve any claim through binding arbitration.
                     </p>
-                    <ul class="space-y-2 text-gray-600 text-sm">
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
                       <li class="flex items-center">
                         <i class="fas fa-arrow-right text-blue-500 mr-3"></i>
                         Informal negotiation (30 days)
@@ -449,7 +449,7 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-envelope"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">9. Contact Information</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">9. Contact Information</h2>
               </div>
               <div class="bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-8 text-white text-center">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
@@ -475,13 +475,13 @@
           </div>
 
           <!-- Acceptance Confirmation -->
-          <div class="mt-16 p-6 bg-green-50 rounded-2xl border border-green-200 fade-in">
+          <div class="mt-16 p-6 bg-green-50 dark:bg-green-500/10 rounded-2xl border border-green-200 dark:border-green-500/30 fade-in">
             <div class="flex items-center justify-between flex-col md:flex-row gap-6">
               <div class="flex items-start">
                 <i class="fas fa-check-circle text-green-500 text-2xl mr-4 mt-1"></i>
                 <div>
-                  <h3 class="text-xl font-bold mb-2 text-gray-800">Acceptance of Terms</h3>
-                  <p class="text-gray-600">
+                  <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Acceptance of Terms</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
                     By using ABLX Trade services, you confirm that you have read, understood, and agree to be bound by
                     these Terms of Service.
                   </p>
@@ -699,6 +699,10 @@ onMounted(() => {
 <style scoped>
 .gradient-bg {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .gradient-text {

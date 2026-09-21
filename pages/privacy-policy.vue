@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
     <!-- Navigation -->
     <Navigation />
 
@@ -46,34 +46,34 @@
     </section>
 
     <!-- Policy Content -->
-    <section class="py-16 md:py-20 bg-white">
+    <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
           <!-- Last Updated -->
           <div class="text-center mb-12 fade-in">
-            <div class="inline-flex items-center bg-green-50 text-green-600 rounded-full px-4 py-2 mb-4">
+            <div class="inline-flex items-center bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 rounded-full px-4 py-2 mb-4">
               <i class="fas fa-clock mr-2 text-base"></i>
               <span class="text-sm font-semibold">Last Updated: December 1, 2023</span>
             </div>
-            <p class="text-lg text-gray-600">
+            <p class="text-lg text-gray-600 dark:text-gray-400">
               This policy describes how ABLX Trade collects, uses, and protects your personal information.
             </p>
           </div>
 
           <!-- Quick Navigation -->
-          <div class="bg-gray-50 rounded-2xl p-6 mb-12 card-hover fade-in">
-            <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 mb-12 card-hover fade-in">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
               <i class="fas fa-bookmark mr-3 text-blue-500"></i>
               Quick Navigation
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <a v-for="section in policySections" :key="section.id" :href="`#${section.id}`"
-                class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                class="flex items-center p-3 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-all duration-300 group">
                 <div
                   class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white mr-3 group-hover:scale-110 transition-transform">
                   <i :class="section.icon"></i>
                 </div>
-                <span class="text-gray-700 font-medium text-sm">{{ section.title }}</span>
+                <span class="text-gray-700 dark:text-gray-300 font-medium text-sm">{{ section.title }}</span>
               </a>
             </div>
           </div>
@@ -86,15 +86,15 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-info-circle"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Introduction</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Introduction</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
-                <p class="text-gray-600 leading-relaxed mb-4 text-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 text-lg">
                   At ABLX Trade ("we," "our," or "us"), we are committed to protecting your privacy and ensuring the
                   security of your personal information. This Privacy Policy explains how we collect, use, disclose, and
                   safeguard your information when you use our financial services platform.
                 </p>
-                <p class="text-gray-600 leading-relaxed text-lg">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                   By accessing or using ABLX services, you consent to the practices described in this policy. We
                   encourage you to read this policy carefully to understand our views and practices regarding your
                   personal data.
@@ -108,15 +108,15 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-database"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Information We Collect</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Information We Collect</h2>
               </div>
               <div class="space-y-6">
-                <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-                  <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                <div class="bg-blue-50 dark:bg-blue-500/10 rounded-2xl p-6 border border-blue-100 dark:border-blue-500/20">
+                  <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                     <i class="fas fa-user-circle mr-3 text-blue-500"></i>
                     Personal Information
                   </h3>
-                  <ul class="space-y-3 text-gray-600">
+                  <ul class="space-y-3 text-gray-600 dark:text-gray-400">
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
                       <span><strong>Identity Data:</strong> Full name, government-issued ID, date of birth,
@@ -139,12 +139,12 @@
                   </ul>
                 </div>
 
-                <div class="bg-purple-50 rounded-2xl p-6 border border-purple-100">
-                  <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                <div class="bg-purple-50 dark:bg-purple-500/10 rounded-2xl p-6 border border-purple-100 dark:border-purple-500/20">
+                  <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                     <i class="fas fa-laptop-code mr-3 text-purple-500"></i>
                     Technical Information
                   </h3>
-                  <ul class="space-y-3 text-gray-600">
+                  <ul class="space-y-3 text-gray-600 dark:text-gray-400">
                     <li class="flex items-start">
                       <i class="fas fa-check text-green-500 mr-3 mt-1 text-lg"></i>
                       <span><strong>Device Information:</strong> IP address, browser type, device type, operating
@@ -170,17 +170,17 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-cogs"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">How We Use Your Information</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">How We Use Your Information</h2>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div v-for="use in informationUses" :key="use.title"
-                  class="bg-white rounded-2xl p-6 border border-gray-200 card-hover">
+                  class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 card-hover">
                   <div
                     class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4">
                     <i :class="use.icon"></i>
                   </div>
-                  <h3 class="text-xl font-bold mb-3 text-gray-800">{{ use.title }}</h3>
-                  <p class="text-gray-600 leading-relaxed">{{ use.description }}</p>
+                  <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">{{ use.title }}</h3>
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{{ use.description }}</p>
                 </div>
               </div>
             </div>
@@ -191,41 +191,41 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-share-alt"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Data Sharing & Disclosure</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Data Sharing & Disclosure</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
-                <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">
                   We may share your information in the following circumstances:
                 </p>
                 <div class="space-y-4">
-                  <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
+                  <div class="flex items-start p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
                     <div
-                      class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4 flex-shrink-0">
+                      class="w-10 h-10 bg-blue-100 dark:bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4 flex-shrink-0">
                       <i class="fas fa-gavel"></i>
                     </div>
                     <div>
-                      <h4 class="font-bold text-gray-800 mb-1">Legal Requirements</h4>
-                      <p class="text-gray-600 text-sm">When required by law, regulation, or legal process</p>
+                      <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-1">Legal Requirements</h4>
+                      <p class="text-gray-600 dark:text-gray-400 text-sm">When required by law, regulation, or legal process</p>
                     </div>
                   </div>
-                  <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
+                  <div class="flex items-start p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
                     <div
-                      class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mr-4 flex-shrink-0">
+                      class="w-10 h-10 bg-green-100 dark:bg-green-500/10 rounded-lg flex items-center justify-center text-green-600 dark:text-green-400 mr-4 flex-shrink-0">
                       <i class="fas fa-handshake"></i>
                     </div>
                     <div>
-                      <h4 class="font-bold text-gray-800 mb-1">Service Providers</h4>
-                      <p class="text-gray-600 text-sm">Trusted partners who help us deliver our services</p>
+                      <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-1">Service Providers</h4>
+                      <p class="text-gray-600 dark:text-gray-400 text-sm">Trusted partners who help us deliver our services</p>
                     </div>
                   </div>
-                  <div class="flex items-start p-4 bg-white rounded-xl border border-gray-200">
+                  <div class="flex items-start p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
                     <div
-                      class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-4 flex-shrink-0">
+                      class="w-10 h-10 bg-purple-100 dark:bg-purple-500/10 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 mr-4 flex-shrink-0">
                       <i class="fas fa-shield-alt"></i>
                     </div>
                     <div>
-                      <h4 class="font-bold text-gray-800 mb-1">Security & Fraud Prevention</h4>
-                      <p class="text-gray-600 text-sm">To protect our platform and users from fraudulent activities</p>
+                      <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-1">Security & Fraud Prevention</h4>
+                      <p class="text-gray-600 dark:text-gray-400 text-sm">To protect our platform and users from fraudulent activities</p>
                     </div>
                   </div>
                 </div>
@@ -238,9 +238,9 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-lock"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Data Security</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Data Security</h2>
               </div>
-              <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] rounded-2xl p-8 text-white">
+              <div class="bg-gradient-to-br from-[#00AAFD] to-[#2E53B0] dark:from-[#0369a1] dark:to-[#1e3a8a] rounded-2xl p-8 text-white">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 class="text-2xl font-bold mb-6">Bank-Level Security Measures</h3>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -262,17 +262,17 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-user-check"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Your Rights</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Your Rights</h2>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div v-for="right in userRights" :key="right.title"
-                  class="bg-white rounded-2xl p-6 border border-gray-200 card-hover text-center">
+                  class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 card-hover text-center">
                   <div
                     class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center text-white text-2xl mb-4 mx-auto">
                     <i :class="right.icon"></i>
                   </div>
-                  <h3 class="text-xl font-bold mb-3 text-gray-800">{{ right.title }}</h3>
-                  <p class="text-gray-600 leading-relaxed text-sm">{{ right.description }}</p>
+                  <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100">{{ right.title }}</h3>
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">{{ right.description }}</p>
                 </div>
               </div>
             </div>
@@ -283,11 +283,11 @@
                 <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center text-white text-xl mr-4">
                   <i class="fas fa-envelope"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-gray-800">Contact Us</h2>
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Contact Us</h2>
               </div>
-              <div class="bg-gray-50 rounded-2xl p-6 md:p-8 text-center">
-                <h3 class="text-2xl font-bold mb-4 text-gray-800">Privacy Concerns & Questions</h3>
-                <p class="text-gray-600 mb-6 text-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Privacy Concerns & Questions</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-6 text-lg">
                   If you have any questions about this Privacy Policy or how we handle your data, please contact our
                   Data Protection Officer.
                 </p>
@@ -298,7 +298,7 @@
                     privacy@ablxtrade.com
                   </a>
                   <a href="/contact"
-                    class="inline-flex items-center px-6 py-3 bg-white text-gray-700 font-bold rounded-lg border border-gray-300 hover:shadow-lg transition-all duration-300">
+                    class="inline-flex items-center px-6 py-3 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-bold rounded-lg border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-300">
                     <i class="fas fa-headset mr-3"></i>
                     Contact Support
                   </a>
@@ -308,16 +308,16 @@
           </div>
 
           <!-- Policy Updates -->
-          <div class="mt-16 p-6 bg-yellow-50 rounded-2xl border border-yellow-200 fade-in">
+          <div class="mt-16 p-6 bg-yellow-50 dark:bg-yellow-500/10 rounded-2xl border border-yellow-200 dark:border-yellow-500/30 fade-in">
             <div class="flex items-start">
               <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl mr-4 mt-1"></i>
               <div>
-                <h3 class="text-xl font-bold mb-2 text-gray-800">Policy Updates</h3>
-                <p class="text-gray-600 mb-3">
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Policy Updates</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-3">
                   We may update this Privacy Policy from time to time. We will notify you of any changes by posting the
                   new Privacy Policy on this page and updating the "Last Updated" date.
                 </p>
-                <p class="text-gray-600 text-sm">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
                   Your continued use of our services after any modifications constitutes acceptance of the updated
                   policy.
                 </p>
@@ -534,6 +534,10 @@ onMounted(() => {
 <style scoped>
 .gradient-bg {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .gradient-text {

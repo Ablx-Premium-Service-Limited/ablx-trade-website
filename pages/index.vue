@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-50 text-gray-800">
+  <div id="app" class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100">
     <Navigation />
     <Hero />
     <Features />

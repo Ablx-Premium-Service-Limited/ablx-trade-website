@@ -1,11 +1,11 @@
 <template>
   <SchemaFAQ />
-  <section id="faq" class="py-16 bg-gray-50">
+  <section id="faq" class="py-16 bg-gray-50 dark:bg-gray-950">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16 fade-in" ref="title">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Frequently Asked <span class="gradient-text">Questions</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Find answers to common questions about ABLX</p>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Find answers to common questions about ABLX</p>
       </div>
 
       <div class="max-w-3xl mx-auto">

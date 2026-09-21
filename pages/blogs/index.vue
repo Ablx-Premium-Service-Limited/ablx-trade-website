@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-950 dark:to-gray-900">
     <!-- Navigation -->
     <Navigation />
 
@@ -41,17 +41,17 @@
     </section>
 
     <!-- Blog Content -->
-    <section class="py-16 md:py-20 bg-white">
+    <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
           <!-- Featured Post -->
           <div v-if="featuredPost" class="mb-16">
-            <div class="inline-flex items-center bg-blue-50 text-blue-600 rounded-full px-4 py-2 mb-6">
+            <div class="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 rounded-full px-4 py-2 mb-6">
               <i class="fas fa-star mr-2 text-base"></i>
               <span class="text-sm font-semibold">Featured Article</span>
             </div>
 
-            <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl overflow-hidden shadow-xl card-hover">
+            <div class="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden shadow-xl card-hover">
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="p-8 md:p-12">
                   <div class="flex items-center mb-4">
@@ -59,14 +59,14 @@
                       class="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium px-3 py-1 rounded-full">
                       {{ featuredPost.tags[0] || 'Featured' }}
                     </span>
-                    <span class="text-gray-500 text-sm ml-4">{{ formatDate(featuredPost.createdAt) }}</span>
+                    <span class="text-gray-500 dark:text-gray-400 text-sm ml-4">{{ formatDate(featuredPost.createdAt) }}</span>
                   </div>
 
-                  <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 leading-tight">
+                  <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-100 leading-tight">
                     {{ featuredPost.title }}
                   </h2>
 
-                  <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                  <p class="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                     {{ featuredPost.excerpt?.trim() || blogMetaDescription(featuredPost) || 'Read this featured article for the latest insights.' }}
                   </p>
 
@@ -76,8 +76,8 @@
                         :src="featuredPost.author.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&auto=format'"
                         :alt="featuredPost.author.name" class="w-10 h-10 rounded-full mr-3">
                       <div>
-                        <p class="font-semibold text-gray-800">{{ featuredPost.author.name }}</p>
-                        <p class="text-gray-500 text-sm">Author</p>
+                        <p class="font-semibold text-gray-800 dark:text-gray-100">{{ featuredPost.author.name }}</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Author</p>
                       </div>
                     </div>
                     <NuxtLink :to="blogPathForPost(featuredPost)"
@@ -101,16 +101,16 @@
           <div v-if="!loading && allPosts.length === 0" class="text-center py-16">
             <div class="max-w-md mx-auto">
               <div class="mb-8">
-                <i class="fas fa-newspaper text-8xl text-gray-300 mb-6"></i>
+                <i class="fas fa-newspaper text-8xl text-gray-300 dark:text-gray-700 mb-6"></i>
               </div>
-              <h2 class="text-3xl font-bold text-gray-800 mb-4">No Blog Posts Yet</h2>
-              <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+              <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">No Blog Posts Yet</h2>
+              <p class="text-gray-600 dark:text-gray-400 text-lg mb-8 leading-relaxed">
                 We're working on creating amazing content for you. Check back soon for the latest insights on African
                 fintech, crypto trends, and financial tips.
               </p>
-              <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">What to Expect</h3>
-                <ul class="text-gray-600 text-left space-y-2">
+              <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-500/10 dark:to-purple-500/10 rounded-2xl p-6 border border-blue-100 dark:border-blue-500/20">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">What to Expect</h3>
+                <ul class="text-gray-600 dark:text-gray-400 text-left space-y-2">
                   <li class="flex items-center">
                     <i class="fas fa-check-circle text-green-500 mr-3"></i>
                     Crypto market analysis and trends
@@ -139,7 +139,7 @@
                     'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
                     activeCategory === category.id
                       ? 'gradient-bg text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   ]">
                   {{ category.name }}
                 </button>
@@ -149,27 +149,27 @@
               <div v-if="loading" class="text-center py-12">
                 <div class="inline-flex items-center justify-center">
                   <i class="fas fa-spinner fa-spin text-3xl text-blue-500 mr-3"></i>
-                  <span class="text-xl text-gray-600">Loading blog posts...</span>
+                  <span class="text-xl text-gray-600 dark:text-gray-400">Loading blog posts...</span>
                 </div>
               </div>
 
               <!-- Blog Posts Grid -->
               <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <article v-for="post in filteredPosts" :key="post.id"
-                  class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover border border-gray-100">
+                  class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover border border-gray-100 dark:border-gray-700">
                   <div class="relative h-48 overflow-hidden">
                     <img :src="post.coverImage" :alt="post.title"
                       class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     <div class="absolute top-4 left-4">
                       <span
-                        class="bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-3 py-1 rounded-full">
+                        class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-800 dark:text-gray-100 text-xs font-medium px-3 py-1 rounded-full">
                         {{ post.tags[0] || 'General' }}
                       </span>
                     </div>
                   </div>
 
                   <div class="p-6">
-                    <div class="flex items-center text-gray-500 text-sm mb-3">
+                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
                       <span>{{ formatDate(post.createdAt) }}</span>
                       <span class="mx-2">•</span>
                       <span>{{ calculateReadTime(post.content) }}</span>
@@ -181,20 +181,20 @@
                     </div>
 
                     <h3
-                      class="text-xl font-bold mb-3 text-gray-800 leading-tight hover:text-blue-600 transition-colors duration-300">
+                      class="text-xl font-bold mb-3 text-gray-800 dark:text-gray-100 leading-tight hover:text-blue-600 transition-colors duration-300">
                       <NuxtLink :to="blogPathForPost(post)">{{ post.title }}</NuxtLink>
                     </h3>
 
-                    <p class="text-gray-600 mb-4 leading-relaxed line-clamp-2">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2">
                       {{ post.excerpt?.trim() || blogMetaDescription(post) || 'Read this article for valuable insights.' }}
                     </p>
 
-                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                       <div class="flex items-center">
                         <img
                           :src="post.author.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&auto=format'"
                           :alt="post.author.name" class="w-8 h-8 rounded-full mr-3">
-                        <span class="text-sm font-medium text-gray-700">{{ post.author.name }}</span>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ post.author.name }}</span>
                       </div>
                       <NuxtLink :to="blogPathForPost(post)"
                         class="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center transition-colors duration-300">
@@ -209,9 +209,9 @@
               <!-- Empty State -->
               <div v-if="!loading && filteredPosts.length === 0" class="text-center py-12">
                 <div class="max-w-md mx-auto">
-                  <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
-                  <h3 class="text-xl font-bold text-gray-700 mb-2">No articles found</h3>
-                  <p class="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+                  <i class="fas fa-search text-6xl text-gray-300 dark:text-gray-700 mb-4"></i>
+                  <h3 class="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2">No articles found</h3>
+                  <p class="text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
                 </div>
               </div>
 
@@ -235,35 +235,35 @@
             <!-- Sidebar -->
             <div class="space-y-8">
               <!-- Search Box -->
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 ">
+                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
                   <i class="fas fa-search mr-3 text-blue-500"></i>
                   Search Articles
                 </h3>
                 <div class="relative">
                   <input v-model="searchQuery" type="text" placeholder="Search blog posts..."
-                    class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
-                  <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    class="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-500 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
+                  <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
                 </div>
               </div>
 
               <!-- Popular Posts -->
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                <h3 class="text-xl font-bold mb-6 text-gray-800 flex items-center">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-gray-100 flex items-center">
                   <i class="fas fa-fire mr-3 text-red-500"></i>
                   Popular Posts
                 </h3>
                 <div class="space-y-4">
                   <div v-for="post in popularPosts" :key="post.id"
-                    class="flex items-start p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300 group">
+                    class="flex items-start p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-300 group">
                     <img :src="post.coverImage" :alt="post.title"
                       class="w-16 h-16 rounded-lg object-cover mr-4 flex-shrink-0">
                     <div>
                       <h4
-                        class="font-semibold text-gray-800 text-sm mb-1 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                        class="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                         <NuxtLink :to="blogPathForPost(post)">{{ post.title }}</NuxtLink>
                       </h4>
-                      <div class="flex items-center text-gray-500 text-xs">
+                      <div class="flex items-center text-gray-500 dark:text-gray-400 text-xs">
                         <span>{{ formatDate(post.createdAt) }}</span>
                         <span class="mx-2">•</span>
                         <div class="flex items-center">
@@ -277,18 +277,18 @@
               </div>
 
               <!-- Categories -->
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ">
-                <h3 class="text-xl font-bold mb-6 text-gray-800 flex items-center">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 ">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-gray-100 flex items-center">
                   <i class="fas fa-folder mr-3 text-green-500"></i>
                   Categories
                 </h3>
                 <div class="space-y-3">
                   <button v-for="category in categories" :key="category.id" @click="setActiveCategory(category.id)"
-                    class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300 group w-full text-left">
-                    <span class="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">{{
+                    class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-300 group w-full text-left">
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 transition-colors duration-300">{{
                       category.name }}</span>
                     <span
-                      class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded-full group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors duration-300">
+                      class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-medium px-2 py-1 rounded-full group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors duration-300">
                       {{ category.count }}
                     </span>
                   </button>
@@ -317,14 +317,14 @@
               </div> -->
 
               <!-- Tags -->
-              <div v-if="popularTags.length > 0" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ">
-                <h3 class="text-xl font-bold mb-6 text-gray-800 flex items-center">
+              <div v-if="popularTags.length > 0" class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 ">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-gray-100 flex items-center">
                   <i class="fas fa-tags mr-3 text-purple-500"></i>
                   Popular Tags
                 </h3>
                 <div class="flex flex-wrap gap-2">
                   <button v-for="tag in popularTags" :key="tag" @click="searchByTag(tag)"
-                    class="inline-block bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-blue-100 hover:text-blue-600 transition-colors duration-300">
+                    class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm px-3 py-1 rounded-full hover:bg-blue-100 dark:hover:bg-blue-500/20 hover:text-blue-600 dark:hover:text-blue-300 transition-colors duration-300">
                     #{{ tag }}
                   </button>
                 </div>
@@ -571,6 +571,10 @@ onMounted(() => {
 <style scoped>
 .gradient-bg {
   background: linear-gradient(135deg, #00AAFD 0%, #2E53B0 100%);
+}
+
+:global(.dark .gradient-bg) {
+  background: linear-gradient(135deg, #0369a1 0%, #1e3a8a 100%);
 }
 
 .gradient-text {
