@@ -395,7 +395,7 @@ const featuredPost = computed(() => {
   return allPosts.value.length > 0 ? allPosts.value[0] : null
 })
 
-const filteredPosts = computed(() => {
+const matchingPosts = computed(() => {
   let filtered = allPosts.value
 
   // Filter by category
@@ -419,9 +419,11 @@ const filteredPosts = computed(() => {
     )
   }
 
-  // Pagination
-  const startIndex = (currentPage.value - 1) * postsPerPage
-  return filtered.slice(0, startIndex + postsPerPage)
+  return filtered
+})
+
+const filteredPosts = computed(() => {
+  return matchingPosts.value.slice(0, currentPage.value * postsPerPage)
 })
 
 const popularPosts = computed(() => {
@@ -431,7 +433,7 @@ const popularPosts = computed(() => {
 })
 
 const hasMorePosts = computed(() => {
-  return filteredPosts.value.length < allPosts.value.length
+  return filteredPosts.value.length < matchingPosts.value.length
 })
 
 // Methods
@@ -506,12 +508,21 @@ const extractPopularTags = () => {
 const fetchBlogPosts = async () => {
   loading.value = true
   try {
-    // Fetch from your posts.json file
-    const response = await fetch('/api/blog/posts')
-    const data = await response.json()
+    const limit = 100
+    const posts = []
+    let page = 1
+    let pages = 1
 
-    allPosts.value = data.posts.filter(post => post.status === 'published');
-    totalPosts.value = allPosts.value.length;
+    do {
+      const response = await fetch(`/api/blog/posts?status=published&limit=${limit}&page=${page}`)
+      const data = await response.json()
+      posts.push(...(data.posts || []))
+      pages = data.pagination?.pages || 1
+      page++
+    } while (page <= pages)
+
+    allPosts.value = posts
+    totalPosts.value = posts.length
 
     // Update category counts based on actual data
     updateCategoryCounts()
