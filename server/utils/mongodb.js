@@ -21,16 +21,15 @@ export async function connectToDatabase() {
 
   try {
     await client.connect()
-    console.log('✅ Connected to MongoDB successfully')
-    
-    const db = client.db('blogs') // Your database name
-    
+
+    const db = client.db('blogs')
+
     cachedClient = client
     cachedDb = db
-    
+
     return { client, db }
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error)
+    console.error('MongoDB connection error:', error)
     throw error
   }
 }

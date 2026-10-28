@@ -4,6 +4,9 @@ import { ObjectId } from 'mongodb'
 
 export default defineEventHandler(async (event) => {
   try {
+    assertSameOrigin(event)
+    requireAdmin(event)
+
     const { id } = event.context.params
     
     // Validate ID

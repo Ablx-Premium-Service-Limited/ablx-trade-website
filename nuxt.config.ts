@@ -52,6 +52,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI,
     mongodbDb: process.env.MONGODB_DB || 'blogs',
+    // Private — never put these under `public`
+    adminEmail: process.env.ADMIN_EMAIL || '',
+    adminPassword: process.env.ADMIN_PASSWORD || '',
+    adminSessionSecret: process.env.ADMIN_SESSION_SECRET || '',
 
     public: {
       siteUrl: 'https://ablxtrade.com',

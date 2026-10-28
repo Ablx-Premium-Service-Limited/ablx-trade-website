@@ -314,13 +314,14 @@ import { ref, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 
 definePageMeta({
-  middleware: "admin-auth-server",
+  middleware: ["admin-auth-server"],
 });
+
 
 const router = useRouter();
 
 // State
-const adminUser = ref(JSON.parse(localStorage.getItem("adminUser") || "{}"));
+const adminUser = ref({});
 const blogPosts = ref([]);
 const showCreateModal = ref(false);
 const editingPost = ref(null);

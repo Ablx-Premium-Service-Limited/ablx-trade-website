@@ -1,46 +1,43 @@
 export default defineEventHandler(async (event) => {
+  assertLoginRateLimit(event)
+  assertSameOrigin(event)
+
   const body = await readBody(event)
-  const { email, password, remember } = body
+  const { email, password, remember } = body || {}
+  const config = useRuntimeConfig()
 
-  try {
-    // Validate credentials
-    if (email === 'admin@ablxtrade.com' && password === 'admin123') {
-      const userData = {
-        email: email,
-        name: 'Administrator',
-        role: 'admin'
-      }
+  const adminEmail = String(config.adminEmail || '').trim()
+  const adminPassword = String(config.adminPassword || '')
 
-      // Set HttpOnly cookie for authentication
-      setCookie(event, 'adminAuth', 'true', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: remember ? 30 * 24 * 60 * 60 : 24 * 60 * 60 // 30 days or 1 day
-      })
+  if (!adminEmail || !adminPassword) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Admin credentials are not configured'
+    })
+  }
 
-      // Set non-HttpOnly cookie for user info (accessible by frontend)
-      setCookie(event, 'adminUser', JSON.stringify(userData), {
-        httpOnly: false,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: remember ? 30 * 24 * 60 * 60 : 24 * 60 * 60
-      })
+  const emailOk = typeof email === 'string' && email.trim() === adminEmail
+  const passwordOk = typeof password === 'string' && password === adminPassword
 
-      return {
-        success: true,
-        user: userData
-      }
-    } else {
-      throw createError({
-        statusCode: 401,
-        statusMessage: 'Invalid email or password'
-      })
-    }
-  } catch (error) {
+  if (!emailOk || !passwordOk) {
     throw createError({
       statusCode: 401,
-      statusMessage: 'Authentication failed'
+      statusMessage: 'Invalid email or password'
     })
+  }
+
+  clearLoginRateLimit(event)
+
+  const { token, maxAgeSec, user } = createAdminSessionToken({
+    email: adminEmail,
+    name: 'Administrator',
+    remember: Boolean(remember)
+  })
+
+  setAdminSessionCookie(event, token, maxAgeSec)
+
+  return {
+    success: true,
+    user
   }
 })

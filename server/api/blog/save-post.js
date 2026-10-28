@@ -4,6 +4,9 @@ import { ObjectId } from 'mongodb'
 import { titleToSlug } from '#blog-slug'
 
 export default defineEventHandler(async (event) => {
+  assertSameOrigin(event)
+  requireAdmin(event)
+
   const body = await readBody(event)
   const { posts, action = 'saveAll' } = body // action: 'saveAll', 'upsert', 'updateOne'
 

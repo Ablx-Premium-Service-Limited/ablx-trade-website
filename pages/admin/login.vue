@@ -31,7 +31,7 @@
                         </label>
                         <input type="email" id="email" v-model="loginForm.email" required
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                            placeholder="admin@ablxtrade.com" :class="{ 'border-red-300': errors.email }">
+                            placeholder="Admin email" :class="{ 'border-red-300': errors.email }">
                         <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
                     </div>
 
@@ -104,6 +104,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
+definePageMeta({
+  middleware: ['admin-auth-server']
+})
 
 // SEO Meta Data
 useHead({
