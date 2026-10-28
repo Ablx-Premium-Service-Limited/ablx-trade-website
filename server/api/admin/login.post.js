@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)
   const { email, password, remember } = body || {}
-  const config = useRuntimeConfig()
+  const config = getPrivateConfig()
 
   const adminEmail = String(config.adminEmail || '').trim()
   const adminPassword = String(config.adminPassword || '')

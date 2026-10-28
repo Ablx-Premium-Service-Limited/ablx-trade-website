@@ -10,9 +10,8 @@ export async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb }
   }
 
-  const config = useRuntimeConfig()
-  const uri = config.mongodbUri
-  
+  const { mongodbUri: uri, mongodbDb } = getPrivateConfig()
+
   if (!uri) {
     throw new Error('MONGODB_URI environment variable is not defined')
   }
@@ -22,7 +21,7 @@ export async function connectToDatabase() {
   try {
     await client.connect()
 
-    const db = client.db('blogs')
+    const db = client.db(mongodbDb || 'blogs')
 
     cachedClient = client
     cachedDb = db

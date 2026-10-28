@@ -1,0 +1,6 @@
+[build]
+  command = "yarn build"
+  publish = "dist"
+
+# Secrets must stay as Netlify env vars (UI), not inlined into the Nitro bundle.
+# Keep ADMIN_*, MONGODB_* configured in Site settings → Environment variables.

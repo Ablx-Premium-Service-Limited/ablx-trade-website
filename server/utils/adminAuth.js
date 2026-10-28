@@ -13,8 +13,7 @@ const LOGIN_MAX_ATTEMPTS = 5
 const loginAttempts = new Map()
 
 function getSecret() {
-  // Prefer process.env so this util stays Nitro-safe (no `#imports`).
-  const secret = String(process.env.ADMIN_SESSION_SECRET || '').trim()
+  const secret = String(getPrivateConfig().adminSessionSecret || '').trim()
   if (!secret || secret.length < 32) {
     throw createError({
       statusCode: 500,
@@ -25,7 +24,10 @@ function getSecret() {
 }
 
 function getSiteUrl() {
-  return String(process.env.NUXT_PUBLIC_SITE_URL || 'https://ablxtrade.com').replace(/\/$/, '')
+  const env = process.env
+  return String(
+    env['NUXT_PUBLIC_SITE_URL'] || 'https://ablxtrade.com'
+  ).replace(/\/$/, '')
 }
 
 function signPayload(payload, secret) {

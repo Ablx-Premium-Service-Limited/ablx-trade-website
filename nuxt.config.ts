@@ -49,13 +49,15 @@ export default defineNuxtConfig({
       prerender: false 
     }
   },
+  // Empty defaults on purpose: do NOT read process.env.SECRET here or Nuxt
+  // will bake values into the Netlify function bundle and secrets-scanning fails.
+  // Override at runtime with NUXT_* (or plain ADMIN_*/MONGODB_* via privateConfig).
   runtimeConfig: {
-    mongodbUri: process.env.MONGODB_URI,
-    mongodbDb: process.env.MONGODB_DB || 'blogs',
-    // Private — never put these under `public`
-    adminEmail: process.env.ADMIN_EMAIL || '',
-    adminPassword: process.env.ADMIN_PASSWORD || '',
-    adminSessionSecret: process.env.ADMIN_SESSION_SECRET || '',
+    mongodbUri: '',
+    mongodbDb: 'blogs',
+    adminEmail: '',
+    adminPassword: '',
+    adminSessionSecret: '',
 
     public: {
       siteUrl: 'https://ablxtrade.com',
