@@ -1,10 +1,12 @@
-// server/api/blog/posts.get.js
-import { connectToDatabase, serializeDocument } from '../../utils/mongodb.js'
+import {
+  serializeBlogPost,
+  resolveSort,
+  throwSupabaseError
+} from '../../utils/blogPosts.js'
 
 export default defineEventHandler(async (event) => {
   try {
     const query = getQuery(event)
-
     const {
       limit = 10,
       page = 1,
@@ -16,65 +18,78 @@ export default defineEventHandler(async (event) => {
       search
     } = query
 
-    // Public callers may only list published posts. Drafts / "all" need admin session.
     const isPublicList = status === 'published'
     if (!isPublicList) {
       requireAdmin(event)
     }
 
-    const { db } = await connectToDatabase()
-    const collection = db.collection('feed-blogs')
+    const supabase = getSupabaseAdmin()
+    const pageNum = Math.max(1, parseInt(page, 10) || 1)
+    const limitNum = Math.max(1, Math.min(100, parseInt(limit, 10) || 10))
+    const from = (pageNum - 1) * limitNum
+    const to = from + limitNum - 1
+    const { column, ascending } = resolveSort(sortBy, sortOrder)
 
-    const filter = {}
+    let dbQuery = supabase
+      .from('blog_posts')
+      .select('*', { count: 'exact' })
 
     if (status && status !== 'all') {
-      filter.status = status
+      dbQuery = dbQuery.eq('status', status)
     } else if (isPublicList) {
-      filter.status = 'published'
+      dbQuery = dbQuery.eq('status', 'published')
     }
 
     if (tag) {
-      filter.tags = tag
+      dbQuery = dbQuery.contains('tags', [String(tag)])
     }
 
     if (author) {
-      filter['author.name'] = author
+      dbQuery = dbQuery.eq('author_name', String(author))
     }
 
     if (search) {
-      filter.$or = [
-        { title: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } },
-        { excerpt: { $regex: search, $options: 'i' } },
-        { content: { $regex: search, $options: 'i' } }
-      ]
+      const term = String(search).replace(/[%_,]/g, ' ').trim()
+      if (term) {
+        dbQuery = dbQuery.or(
+          `title.ilike.%${term}%,description.ilike.%${term}%,excerpt.ilike.%${term}%,content.ilike.%${term}%`
+        )
+      }
     }
 
-    const total = await collection.countDocuments(filter)
-    const skip = (parseInt(page) - 1) * parseInt(limit)
-    const sortDirection = sortOrder === 'asc' ? 1 : -1
-    const sortOptions = { [sortBy]: sortDirection }
+    const { data, error, count } = await dbQuery
+      .order(column, { ascending })
+      .range(from, to)
 
-    const posts = await collection
-      .find(filter)
-      .sort(sortOptions)
-      .skip(skip)
-      .limit(parseInt(limit))
-      .toArray()
+    if (error) throwSupabaseError(error, 'Failed to retrieve blog posts')
 
-    const allTags = await collection.distinct('tags')
+    const { data: tagRows, error: tagError } = await supabase
+      .from('blog_posts')
+      .select('tags')
+
+    if (tagError) throwSupabaseError(tagError, 'Failed to load tags')
+
+    const availableTags = [
+      ...new Set(
+        (tagRows || []).flatMap((row) =>
+          Array.isArray(row.tags) ? row.tags.filter(Boolean) : []
+        )
+      )
+    ].sort()
+
+    const total = count || 0
 
     return {
       success: true,
-      posts: posts.map((post) => serializeDocument(post)),
+      posts: (data || []).map(serializeBlogPost),
       pagination: {
         total,
-        page: parseInt(page),
-        limit: parseInt(limit),
-        pages: Math.ceil(total / parseInt(limit))
+        page: pageNum,
+        limit: limitNum,
+        pages: Math.ceil(total / limitNum) || 0
       },
       filters: {
-        availableTags: allTags.filter((t) => t).sort(),
+        availableTags,
         appliedFilters: { status, tag, author, search }
       }
     }
@@ -87,7 +102,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Failed to retrieve blog posts',
       data: {
         error: error.message,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
         timestamp: new Date().toISOString()
       }
     })

@@ -1,7 +1,8 @@
-// server/api/blog/[id].get.js — segment is slug (title-based) or legacy MongoDB ObjectId
-import { connectToDatabase, serializeDocument } from '../../utils/mongodb.js'
-import { ObjectId } from 'mongodb'
-import { titleToSlug } from '#blog-slug'
+import {
+  serializeBlogPost,
+  isUuid,
+  throwSupabaseError
+} from '../../utils/blogPosts.js'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -15,31 +16,27 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const { db } = await connectToDatabase()
-    const collection = db.collection('feed-blogs')
-
+    const supabase = getSupabaseAdmin()
     let post = null
-    let objectId = null
 
-    if (ObjectId.isValid(id) && String(new ObjectId(id)) === id) {
-      objectId = new ObjectId(id)
-      post = await collection.findOne({ _id: objectId })
+    if (isUuid(id)) {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('id', id)
+        .maybeSingle()
+      if (error) throwSupabaseError(error, 'Failed to retrieve blog post')
+      post = data
     }
 
     if (!post) {
-      post = await collection.findOne({ slug: id })
-    }
-
-    if (!post) {
-      const cursor = collection.find({
-        $or: [{ slug: { $exists: false } }, { slug: null }, { slug: '' }]
-      })
-      for await (const doc of cursor) {
-        if (titleToSlug(doc.title || '') === id) {
-          post = doc
-          break
-        }
-      }
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', id)
+        .maybeSingle()
+      if (error) throwSupabaseError(error, 'Failed to retrieve blog post')
+      post = data
     }
 
     if (!post) {
@@ -49,34 +46,33 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Draft / non-published posts are admin-only
     if (post.status && post.status !== 'published') {
       requireAdmin(event)
     }
 
-    objectId = post._id
-
-    // Increment view count only for public published views
     if (post.status === 'published') {
-      collection
-        .updateOne({ _id: objectId }, { $inc: { views: 1 } })
+      supabase
+        .from('blog_posts')
+        .update({ views: (post.views || 0) + 1 })
+        .eq('id', post.id)
+        .then(() => {})
         .catch(() => {})
     }
 
     let relatedPosts = []
     try {
-      relatedPosts = await getRelatedPosts(collection, post, post._id)
+      relatedPosts = await getRelatedPosts(supabase, post)
     } catch {
-      // Continue without related posts
+      relatedPosts = []
     }
 
     return {
       success: true,
-      post: serializeDocument(post),
+      post: serializeBlogPost(post),
       relatedPosts,
       metadata: {
         fetchedAt: new Date().toISOString(),
-        postId: objectId.toString(),
+        postId: post.id,
         hasRelatedPosts: relatedPosts.length > 0
       }
     }
@@ -95,32 +91,24 @@ export default defineEventHandler(async (event) => {
   }
 })
 
-async function getRelatedPosts(collection, currentPost, currentPostId) {
-  const relatedCriteria = []
+async function getRelatedPosts(supabase, currentPost) {
+  let query = supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('status', 'published')
+    .neq('id', currentPost.id)
+    .order('created_at', { ascending: false })
+    .limit(4)
 
   if (currentPost.category) {
-    relatedCriteria.push({ category: currentPost.category })
-  }
-
-  if (currentPost.tags && currentPost.tags.length > 0) {
-    relatedCriteria.push({ tags: { $in: currentPost.tags } })
-  }
-
-  if (relatedCriteria.length === 0) {
+    query = query.eq('category', currentPost.category)
+  } else if (Array.isArray(currentPost.tags) && currentPost.tags.length > 0) {
+    query = query.overlaps('tags', currentPost.tags)
+  } else {
     return []
   }
 
-  const related = await collection
-    .find({
-      $and: [
-        { _id: { $ne: currentPostId } },
-        { status: 'published' },
-        { $or: relatedCriteria }
-      ]
-    })
-    .sort({ createdAt: -1 })
-    .limit(4)
-    .toArray()
-
-  return related.map((post) => serializeDocument(post))
+  const { data, error } = await query
+  if (error) throw error
+  return (data || []).map(serializeBlogPost)
 }

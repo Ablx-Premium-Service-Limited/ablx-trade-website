@@ -558,10 +558,9 @@ const handlePostSaved = async (postData) => {
         throw new Error("Failed to update post");
       }
     } else {
-      // Create new post using upsert action
+      // Create new post using upsert action (Supabase assigns UUID)
       const newPost = {
         ...postData,
-        id: generateId(), // Keep your client-side ID for local state
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
@@ -607,14 +606,6 @@ const handlePostSaved = async (postData) => {
   } finally {
     loading.value = false;
   }
-};
-
-// Helper function to generate a MongoDB-compatible ID
-const generateId = () => {
-  // Generate a 24-character hex string (like MongoDB ObjectId)
-  return [...Array(24)]
-    .map(() => Math.floor(Math.random() * 16).toString(16))
-    .join("");
 };
 
 const handleModalClosed = () => {

@@ -8,16 +8,16 @@ export function getPrivateConfig() {
   const env = process.env
 
   return {
-    mongodbUri:
-      String(config.mongodbUri || '').trim() ||
-      env['NUXT_MONGODB_URI'] ||
-      env['MONGODB_URI'] ||
+    supabaseUrl:
+      String(config.supabaseUrl || '').trim() ||
+      env['NUXT_SUPABASE_URL'] ||
+      env['SUPABASE_URL'] ||
       '',
-    mongodbDb:
-      String(config.mongodbDb || '').trim() ||
-      env['NUXT_MONGODB_DB'] ||
-      env['MONGODB_DB'] ||
-      'blogs',
+    supabaseServiceRoleKey:
+      String(config.supabaseServiceRoleKey || '').trim() ||
+      env['NUXT_SUPABASE_SERVICE_ROLE_KEY'] ||
+      env['SUPABASE_SERVICE_ROLE_KEY'] ||
+      '',
     adminEmail:
       String(config.adminEmail || '').trim() ||
       env['NUXT_ADMIN_EMAIL'] ||

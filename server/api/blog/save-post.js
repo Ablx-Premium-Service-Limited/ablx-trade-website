@@ -1,17 +1,17 @@
-// server/api/blog/save-post.js
-import { connectToDatabase } from '../../utils/mongodb.js'
-import { ObjectId } from 'mongodb'
-import { titleToSlug } from '#blog-slug'
+import {
+  toDbPost,
+  isUuid,
+  throwSupabaseError
+} from '../../utils/blogPosts.js'
 
 export default defineEventHandler(async (event) => {
   assertSameOrigin(event)
   requireAdmin(event)
 
   const body = await readBody(event)
-  const { posts, action = 'saveAll' } = body // action: 'saveAll', 'upsert', 'updateOne'
+  const { posts, action = 'saveAll' } = body || {}
 
   try {
-    // Validate input
     if (!posts || !Array.isArray(posts)) {
       throw createError({
         statusCode: 400,
@@ -19,31 +19,25 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const { db } = await connectToDatabase()
-    const collection = db.collection('feed-blogs')
-    
+    const supabase = getSupabaseAdmin()
     let result
-    
-    // Choose operation based on action
+
     switch (action) {
-      case 'saveAll': // Replace all posts (your original behavior)
-        result = await handleSaveAll(collection, posts)
+      case 'saveAll':
+        result = await handleSaveAll(supabase, posts)
         break
-        
-      case 'upsert': // Update existing, insert new
-        result = await handleUpsert(collection, posts)
+      case 'upsert':
+        result = await handleUpsert(supabase, posts)
         break
-        
-      case 'updateOne': // Update single post
+      case 'updateOne':
         if (posts.length !== 1) {
           throw createError({
             statusCode: 400,
             statusMessage: 'For updateOne action, only one post should be provided'
           })
         }
-        result = await handleUpdateOne(collection, posts[0])
+        result = await handleUpdateOne(supabase, posts[0])
         break
-        
       default:
         throw createError({
           statusCode: 400,
@@ -56,23 +50,10 @@ export default defineEventHandler(async (event) => {
       message: result.message,
       ...result.data
     }
-
   } catch (error) {
+    if (error.statusCode) throw error
+
     console.error('Error saving/updating blog posts:', error)
-    
-    // Handle specific MongoDB errors
-    if (error.code === 11000) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Duplicate post found'
-      })
-    }
-    
-    // Pass through HTTP errors
-    if (error.statusCode) {
-      throw error
-    }
-    
     throw createError({
       statusCode: 500,
       statusMessage: 'Failed to save/update blog posts: ' + error.message
@@ -80,143 +61,145 @@ export default defineEventHandler(async (event) => {
   }
 })
 
-// Helper function 1: Replace all posts
-async function handleSaveAll(collection, posts) {
-  // Prepare posts
-  const postsToSave = posts.map(preparePostForSave)
-  
-  // Delete all existing posts
-  await collection.deleteMany({})
-  
-  // Insert new posts
-  const insertResult = await collection.insertMany(postsToSave)
-  
+async function handleSaveAll(supabase, posts) {
+  const rows = posts.map((post) => toDbPost(post, { forInsert: true }))
+
+  const { error: deleteError } = await supabase
+    .from('blog_posts')
+    .delete()
+    .gte('created_at', '1970-01-01')
+
+  if (deleteError) throwSupabaseError(deleteError, 'Failed to clear posts')
+
+  if (rows.length === 0) {
+    return {
+      message: 'All blog posts replaced successfully',
+      data: { totalPosts: 0, insertedIds: [], action: 'saveAll' }
+    }
+  }
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .insert(rows)
+    .select('id')
+
+  if (error) throwSupabaseError(error, 'Failed to save posts')
+
   return {
     message: 'All blog posts replaced successfully',
     data: {
-      totalPosts: insertResult.insertedCount,
-      insertedIds: Object.values(insertResult.insertedIds || {}).map(id => id.toString()),
+      totalPosts: data?.length || 0,
+      insertedIds: (data || []).map((row) => row.id),
       action: 'saveAll'
     }
   }
 }
 
-// Helper function 2: Upsert (update existing, insert new)
-async function handleUpsert(collection, posts) {
-  const operations = posts.map(post => {
-    const preparedPost = preparePostForSave(post)
-    const { _id, ...postData } = preparedPost
-    
-    // Determine filter: use _id if exists, otherwise use slug
-    let filter = {}
-    if (_id) {
-      filter._id = _id
-    } else if (post.slug) {
-      filter.slug = post.slug
-    } else {
-      // Generate a filter for upsert
-      filter._id = new ObjectId()
-    }
-    
-    return {
-      updateOne: {
-        filter,
-        update: {
-          $set: postData,
-          $setOnInsert: {
-            createdAt: new Date()
-          }
-        },
-        upsert: true
+async function handleUpsert(supabase, posts) {
+  const upsertedIds = []
+  let matchedCount = 0
+  let modifiedCount = 0
+  let upsertedCount = 0
+
+  for (const post of posts) {
+    const row = toDbPost(post, { forInsert: true })
+
+    if (isUuid(post.id)) {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .update(row)
+        .eq('id', post.id)
+        .select('id')
+
+      if (error) throwSupabaseError(error, 'Failed to update post')
+
+      if (data && data.length > 0) {
+        matchedCount += 1
+        modifiedCount += 1
+        upsertedIds.push(data[0].id)
+        continue
       }
     }
-  })
-  
-  const bulkResult = await collection.bulkWrite(operations, { ordered: false })
-  
+
+    // Prefer slug match, otherwise insert
+    if (row.slug) {
+      const { data: existing, error: findError } = await supabase
+        .from('blog_posts')
+        .select('id')
+        .eq('slug', row.slug)
+        .maybeSingle()
+
+      if (findError) throwSupabaseError(findError, 'Failed to look up post')
+
+      if (existing?.id) {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .update(row)
+          .eq('id', existing.id)
+          .select('id')
+
+        if (error) throwSupabaseError(error, 'Failed to update post')
+        matchedCount += 1
+        modifiedCount += 1
+        upsertedIds.push(data?.[0]?.id || existing.id)
+        continue
+      }
+    }
+
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .insert(row)
+      .select('id')
+      .single()
+
+    if (error) throwSupabaseError(error, 'Failed to create post')
+    upsertedCount += 1
+    upsertedIds.push(data.id)
+  }
+
   return {
     message: 'Posts updated/inserted successfully',
     data: {
-      matchedCount: bulkResult.matchedCount,
-      modifiedCount: bulkResult.modifiedCount,
-      upsertedCount: bulkResult.upsertedCount,
-      upsertedIds: Object.values(bulkResult.upsertedIds || {}).map(id => id.toString()),
+      matchedCount,
+      modifiedCount,
+      upsertedCount,
+      upsertedIds,
       action: 'upsert'
     }
   }
 }
 
-// Helper function 3: Update single post
-async function handleUpdateOne(collection, post) {
-  const { id, metaDescription: _md, ...postData } = post
-  
-  // Validate post ID
-  if (!id || !ObjectId.isValid(id)) {
+async function handleUpdateOne(supabase, post) {
+  if (!post?.id || !isUuid(post.id)) {
     throw createError({
       statusCode: 400,
       statusMessage: 'Valid post ID is required for update'
     })
   }
-  
-  // Prepare update data
-  const updateData = {
-    ...postData,
-    updatedAt: new Date()
-  }
 
-  if (postData.title) {
-    updateData.slug = titleToSlug(postData.title)
-  }
-  
-  // Convert date strings to Date objects if needed
-  if (postData.createdAt) {
-    updateData.createdAt = new Date(postData.createdAt)
-  }
-  
-  // Perform update
-  const updateResult = await collection.updateOne(
-    { _id: new ObjectId(id) },
-    { $set: updateData }
-  )
-  
-  if (updateResult.matchedCount === 0) {
+  const row = toDbPost(post)
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .update(row)
+    .eq('id', post.id)
+    .select('id')
+
+  if (error) throwSupabaseError(error, 'Failed to update post')
+
+  if (!data || data.length === 0) {
     throw createError({
       statusCode: 404,
       statusMessage: 'Post not found'
     })
   }
-  
+
   return {
     message: 'Post updated successfully',
     data: {
-      postId: id,
-      modifiedCount: updateResult.modifiedCount,
-      matchedCount: updateResult.matchedCount,
+      postId: post.id,
+      modifiedCount: 1,
+      matchedCount: 1,
       action: 'updateOne'
     }
   }
-}
-
-// Helper function to prepare post data
-function preparePostForSave(post) {
-  const { id, metaDescription: _meta, ...postData } = post
-
-  delete postData.createdAt;
-  delete postData.updatedAt;
-  
-  // Prepare the post object
-  const preparedPost = {
-    ...postData,
-  }
-
-  if (preparedPost.title) {
-    preparedPost.slug = titleToSlug(preparedPost.title)
-  }
-  
-  // Add _id if valid ObjectId is provided
-  if (id && ObjectId.isValid(id)) {
-    preparedPost._id = new ObjectId(id)
-  }
-  
-  return preparedPost
 }

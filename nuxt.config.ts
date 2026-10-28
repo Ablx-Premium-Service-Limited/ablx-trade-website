@@ -51,10 +51,10 @@ export default defineNuxtConfig({
   },
   // Empty defaults on purpose: do NOT read process.env.SECRET here or Nuxt
   // will bake values into the Netlify function bundle and secrets-scanning fails.
-  // Override at runtime with NUXT_* (or plain ADMIN_*/MONGODB_* via privateConfig).
+  // Override at runtime via privateConfig (SUPABASE_* / ADMIN_*).
   runtimeConfig: {
-    mongodbUri: '',
-    mongodbDb: 'blogs',
+    supabaseUrl: '',
+    supabaseServiceRoleKey: '',
     adminEmail: '',
     adminPassword: '',
     adminSessionSecret: '',
